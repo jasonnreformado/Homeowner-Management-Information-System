@@ -1,0 +1,14 @@
+-- Table for storing posts
+CREATE TABLE posts (
+    post_id INT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    is_pinned BOOLEAN NOT NULL DEFAULT 0
+);
+
+-- Table for storing file paths associated with each post
+CREATE TABLE post_files (
+    file_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    file_path VARCHAR(255) NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES posts(post_id)
+);

@@ -1,0 +1,42 @@
+/* Your existing CSS styles */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background-color: #f8f9fa; /* Change the background color as needed */
+    padding-top: 50px;
+    transition: 0.5s;
+  }
+  
+  .sidebar a {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #ddd; /* Change the hover background color as needed */
+  }
+  
+  .sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 991px) {
+    .sidebar {
+      left: 0;
+    }
+  
+    .sidebar-toggle {
+      display: none;
+    }
+  }
+  

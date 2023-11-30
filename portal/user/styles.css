@@ -1,0 +1,29 @@
+ /* Add some basic CSS for styling */
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("image/main.jpg");
+    background-attachment: fixed;
+    background-size: cover; /* Optional: Cover the entire viewport */
+    background-position: center; /* Optional: Center the image */
+    background-repeat: no-repeat;
+    
+}
+
+nav {
+    background-color: #006400;
+    text-align: right;
+}
+
+nav a {
+    display: inline-block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo {
+    float: left;
+    padding: 0px; /* Adjust the padding as needed */
+}
