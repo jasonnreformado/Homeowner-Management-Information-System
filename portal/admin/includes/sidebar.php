@@ -49,7 +49,7 @@
             <li>
               <a href="dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
             </li>
-            <h5>Management</h5>
+           
             <li>
               <a href="customer-list.php" class="chart-nav"><i class="fa fa-users nav_icon"></i>Homeowner's Member</a>
             </li>
