@@ -81,7 +81,7 @@ $totalappointment=mysqli_num_rows($query2);
 ?>
 						<div class="stats-left">
 							<h5>Total</h5>
-							<h4>Reservation</h4>
+							<h4>Appointment</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalappointment;?></label>
@@ -94,7 +94,7 @@ $totalaccapt=mysqli_num_rows($query3);
 ?>
 						<div class="stats-left">
 							<h5>Total</h5>
-							<h4>Accepted Rsvn</h4>
+							<h4>Accepted Apt</h4>
 						</div>
 						<div class="stats-right">
 							<label><?php echo $totalaccapt;?></label>
@@ -114,7 +114,7 @@ $totalrejapt=mysqli_num_rows($query4);
 ?>
 						<div class="stats-left ">
 							<h5>Total</h5>
-							<h4>Rejected Rsvn</h4>
+							<h4>Rejected Apt</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalrejapt;?></label>

@@ -65,7 +65,7 @@
             </li>
           
             <li>
-              <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Reservation<span class="fa arrow"></span></a>
+              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Reservation<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                 <li>
                   <a href="all-appointment.php">All Reservation</a>
@@ -85,7 +85,7 @@
            
         
            <li>
-              <a href="#"><i class="fa fa-bell-o nav_icon"></i>Complaint Report<span class="fa arrow"></span></a>
+              <a href="readenq.php"><i class="fa fa-bell-o nav_icon"></i>Complaint Report<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                 <li><a href="readenq.php">Read Complaint</a></li>
         <li><a href="unreadenq.php">Unread Complaint</a></li>
@@ -113,7 +113,7 @@
             </li>
           
             <li>
-              <a href="#"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
+              <a href="sales-reports.php"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                  <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
                    
