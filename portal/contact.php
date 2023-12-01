@@ -10,9 +10,10 @@ if(isset($_POST['submit']))
     $lname=$_POST['lname'];
     $phone=$_POST['phone'];
     $email=$_POST['email'];
+    $address=$_POST['address'];
     $message=$_POST['message'];
      
-    $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,Message) value('$fname','$lname','$phone','$email','$message')");
+    $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,address,Message) value('$fname','$lname','$phone','$email','$address','$message')");
     if ($query) {
    echo "<script>alert('Your message was sent successfully!.');</script>";
 echo "<script>window.location.href ='contact.php'</script>";
@@ -92,6 +93,9 @@ $(function () {
                         <div class="twice-two">
                            <input type="text" class="form-control" placeholder="Phone" required="" name="phone" pattern="[0-9]+" maxlength="10">
                             <input type="email" class="form-control" class="form-control" placeholder="Email" required="" name="email">
+                        </div>
+                        <div class="twice-two">
+                            <input type="text" class="form-control" class="form-control" placeholder="Address" required="" name="address">
                         </div>
                         
                         <textarea class="form-control" id="message" name="message" placeholder="Message" required=""></textarea>

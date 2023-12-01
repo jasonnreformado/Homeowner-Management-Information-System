@@ -7,9 +7,12 @@ if (strlen($_SESSION['bpmsaid']==0)) {
   } 
      ?>
 <!DOCTYPE HTML>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
 <head>
 <title>Villa Arcadia | Admin Dashboard</title>
+
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -56,10 +59,13 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 		
 	<?php include_once('includes/header.php');?>
 		<!-- main content start-->
+		
 		<div id="page-wrapper" class="row calender widget-shadow">
 			<div class="main-page">
 				
 			
+
+
 				<div class="row calender widget-shadow">
 					<div class="row-one">
 					<div class="col-md-4 widget">
@@ -75,6 +81,8 @@ $totalcust=mysqli_num_rows($query1);
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
+
+					
 					<div class="col-md-4 widget states-mdl">
 						<?php $query2=mysqli_query($con,"Select * from tblbook");
 $totalappointment=mysqli_num_rows($query2);
@@ -88,6 +96,8 @@ $totalappointment=mysqli_num_rows($query2);
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
+
+
 					<div class="col-md-4 widget states-last">
 						<?php $query3=mysqli_query($con,"Select * from tblbook where Status='Selected'");
 $totalaccapt=mysqli_num_rows($query3);
@@ -103,8 +113,8 @@ $totalaccapt=mysqli_num_rows($query3);
 					</div>
 					<div class="clearfix"> </div>	
 				</div>
-						
 					</div>
+
 
 				<div class="row calender widget-shadow">
 					<div class="row-one">
@@ -121,6 +131,8 @@ $totalrejapt=mysqli_num_rows($query4);
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
+
+
 					<div class="col-md-4 widget states-mdl">
 						<?php $query5=mysqli_query($con,"Select * from  tblservices");
 $totalser=mysqli_num_rows($query5);
@@ -134,6 +146,8 @@ $totalser=mysqli_num_rows($query5);
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
+					
+
 					<div class="col-md-4 widget states-last">
 						<?php
 //todays sale
@@ -200,6 +214,7 @@ endif;
 					<div class="col-md-4 widget states-mdl">
 						<?php
 //Last Sevendays Sale
+
  $query8=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)>=(DATE(NOW()) - INTERVAL 7 DAY);");
@@ -251,21 +266,31 @@ else:
 	echo $totalsale;
 endif;
 						?></label>
+						
+						</div>
+						
+							<div class="clearfix"> </div>	
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
-					<div class="clearfix"> </div>	
-				</div>
-						
+							
+						</div>
 					</div>
-				</div>
-				<div class="clearfix"> </div>
+					<div class="clearfix"> </div>
+					
+
 			</div>
 		</div>
+		</div>
+		
+
 		<!--footer-->
-		<?php include_once('includes/footer.php');?>
+	
         <!--//footer-->
-	</div>
+
+	
+	<?php include_once('includes/footer.php');?>
+	
 	<!-- Classie -->
 		<script src="js/classie.js"></script>
 		<script>
@@ -293,5 +318,8 @@ endif;
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
    <script src="js/bootstrap.js"> </script>
+
+  
+
 </body>
 </html>

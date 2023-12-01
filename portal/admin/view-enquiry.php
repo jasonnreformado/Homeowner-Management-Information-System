@@ -85,11 +85,21 @@ while ($row=mysqli_fetch_array($ret)) {
                 	                	<th>Query Date</th>
                 	<td><?php  echo $row['EnquiryDate'];?></td>
                 </tr>
-                <tr>
-    
-    <th>Message</th>
+
+				<tr>
+   <th >Address</th>
+    <td colspan="4"><?php  echo $row['address'];?></td>
+  </tr>
+
+
+
+	<tr>
+   <th >Message</th>
     <td colspan="4"><?php  echo $row['Message'];?></td>
   </tr>
+
+
+
               </table><?php $cnt=$cnt+1;} ?> 
 					</div>
 				</div>

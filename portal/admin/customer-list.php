@@ -87,7 +87,8 @@ while ($row=mysqli_fetch_array($ret)) {
 ?>
 
 						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td> <td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['Email'];?></td> <td><?php  echo $row['address'];?></td> <td><?php  echo $row['RegDate'];?></td> 
-						 	<td> <a href="add-customer-services.php?addid=<?php echo $row['ID'];?>" class="btn btn-primary">Assign Services</a>
+						 	<td> <a href="add-customer-services.php?addid=<?php echo $row['ID'];?>" class="btn btn-primary">Bill</a>
+							 <a href="#?addid=<?php echo $row['ID'];?>" class="btn btn-primary">View</a>
 <a href="customer-list.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
 						 		</td> </tr>   <?php 
 $cnt=$cnt+1;

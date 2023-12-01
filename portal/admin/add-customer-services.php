@@ -27,7 +27,7 @@ echo "<script>window.location.href ='invoices.php'</script>";
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Sam's Salon & Spa | Assign Services</title>
+<title>Villa Arcadia | Assign Services</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
