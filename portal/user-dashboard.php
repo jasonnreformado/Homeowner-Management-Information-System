@@ -99,13 +99,18 @@ while ($row=mysqli_fetch_array($ret)) {
                         </div>
                         <div style="padding-top: 30px;">
                             <label>Mobile Number</label>
-                           
                            <input type="text" class="form-control" name="mobilenumber" value="<?php  echo $row['MobileNumber'];?>"  readonly="true"></div>
-                           <div style="padding-top: 30px;">
+                           
+						   <div style="padding-top: 30px;">
                             <label>Email address</label>
-                            
                             <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  readonly="true">
                         </div>
+
+						<div style="padding-top: 30px;">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
+                        </div>
+
                          <div style="padding-top: 30px;">
                             <label>Registration Date</label>
                            

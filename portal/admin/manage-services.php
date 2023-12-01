@@ -64,7 +64,7 @@ echo "<script>window.location.href='manage-services.php'</script>";
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Update Services:</h4>
+						<h4>Update Categories:</h4>
 						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Service Name</th> <th>Service Price</th> <th>Creation Date</th><th>Action</th> </tr> </thead> <tbody>
 <?php
 $ret=mysqli_query($con,"select *from  tblservices");

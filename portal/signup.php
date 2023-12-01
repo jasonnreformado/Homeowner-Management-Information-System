@@ -10,6 +10,7 @@ if(isset($_POST['submit']))
     $lname=$_POST['lastname'];
     $contno=$_POST['mobilenumber'];
     $email=$_POST['email'];
+    $address=$_POST['address'];
     $password=md5($_POST['password']);
 
     $ret=mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNumber='$contno'");
@@ -19,7 +20,7 @@ if(isset($_POST['submit']))
 echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
     }
     else{
-    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, Password) value('$fname', '$lname','$contno', '$email', '$password' )");
+    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address, Password) value('$fname', '$lname','$contno', '$email', '$address', '$password' )");
     if ($query) {
     
     echo "<script>alert('You have successfully registered.');</script>";
@@ -83,7 +84,7 @@ return true;
 <div class="breadcrumbs-sub">
 <div class="container">   
 <ul class="breadcrumbs-custom-path">
-    <li class="right-side propClone"><a href="admin/index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+    <li class="right-side propClone"><a href="admin/customer-list.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
     <li class="active ">
         Signup</li>
 </ul>
@@ -119,6 +120,11 @@ return true;
                             <label>Email address</label>
                             <input type="email" class="form-control" class="form-control" placeholder="Email address" required="" name="email">
                         </div>
+                        <div style="padding-top: 30px;">
+                            <label>Address</label>
+                            <input type="text" class="form-control" class="form-control" placeholder="Address" required="" name="address">
+                        </div>
+                        
                          <div style="padding-top: 30px;">
                             <label>Password</label>
                            <input type="password" class="form-control" name="password" placeholder="Password" required="true">

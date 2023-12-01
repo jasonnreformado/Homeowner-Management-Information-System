@@ -12,7 +12,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Sam's Salon & Spa | View Invoice</title>
+<title>Villa Arcadia | View Invoice</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -71,7 +71,7 @@ while ($row=mysqli_fetch_array($ret)) {
 						<h4>Invoice #<?php echo $invid;?></h4>
 						<table class="table table-bordered" width="100%" border="1"> 
 <tr>
-<th colspan="6">Customer Details</th>	
+<th colspan="6">Homeowner's Details</th>	
 </tr>
 							 <tr> 
 								<th>Name</th> 

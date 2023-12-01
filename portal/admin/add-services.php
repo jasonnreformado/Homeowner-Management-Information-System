@@ -47,7 +47,7 @@ move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$newimage);
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Sam's Salon & Spa | Add Services</title>
+<title>Villa Arcadia | Add Services</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
