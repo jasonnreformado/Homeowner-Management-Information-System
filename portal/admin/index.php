@@ -21,7 +21,7 @@ if(isset($_POST['login']))
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>ADMIN | Login Page </title>
+<title>Admin | Login </title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -50,13 +50,14 @@ if(isset($_POST['login']))
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
 		
 		<!-- main content start-->
-		<div style="background-color: #fff; height:800px;">
-			<div class="main-page login-page ">
+		<div style="background-image: url('assets/img/aa.jpg'); background-size: cover; height: 930px;">
+    <div class="main-page login-page">
 			<br><br><br><br><br><br><br><br><br>
 				<div class="widget-shadow">
 					<div class="login-top">
@@ -73,17 +74,18 @@ if(isset($_POST['login']))
 							<input type="submit" name="login" value="Sign In">
 							<div class="forgot-grid">
 								
-								
 							<div class="forgot-grid">
 								
-								<div class="forgot">
-								<a href="../signup.php">Create Account for Homeowners</a>
+								<div class="forgot" align="left">
+							
 								<a href="../user/index.php">Portal</a>
 									<a href="forgot-password.php">Forgot password?</a>
 								</div>
+						
 								<div class="clearfix"> </div>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 				

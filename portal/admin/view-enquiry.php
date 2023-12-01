@@ -14,7 +14,7 @@ $query=mysqli_query($con, "update   tblcontact set IsRead ='$isread' where ID='$
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Vill Arcadia | Manage Unread Complaint</title>
+<title>Villa Arcadia | Manage Unread Complaint</title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -87,13 +87,12 @@ while ($row=mysqli_fetch_array($ret)) {
                 </tr>
 
 				<tr>
-   <th >Address</th>
-    <td colspan="4"><?php  echo $row['address'];?></td>
-  </tr>
-
-
-
-	<tr>
+                	<th>Address</th>
+                	<td><?php  echo $row['address'];?></td>
+                	                	<th>Subject</th>
+                	<td><?php  echo $row['subject'];?></td>
+                </tr>
+			
    <th >Message</th>
     <td colspan="4"><?php  echo $row['Message'];?></td>
   </tr>

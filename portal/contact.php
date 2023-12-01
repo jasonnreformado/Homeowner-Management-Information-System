@@ -11,9 +11,10 @@ if(isset($_POST['submit']))
     $phone=$_POST['phone'];
     $email=$_POST['email'];
     $address=$_POST['address'];
+    $subject=$_POST['subject'];
     $message=$_POST['message'];
      
-    $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,address,Message) value('$fname','$lname','$phone','$email','$address','$message')");
+    $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,address,subject,Message) value('$fname','$lname','$phone','$email','$address','$subject','$message')");
     if ($query) {
    echo "<script>alert('Your message was sent successfully!.');</script>";
 echo "<script>window.location.href ='contact.php'</script>";
@@ -78,7 +79,7 @@ $(function () {
     <div class="contact-sec	">
         <div class="container">
         <div class="text-center">
-    <h3>Complaint Letter</h3>
+    <h3>Letter of Complaint</h3>
 </div><br><br>
             <div class="d-grid contact-view">
                
@@ -86,24 +87,34 @@ $(function () {
                <?php  ?> </div>
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <form method="post">
+                    <?php
+$uid=$_SESSION['bpmsuid'];
+$ret=mysqli_query($con,"select * from tbluser where ID='$uid'");
+$cnt=1;
+while ($row=mysqli_fetch_array($ret)) {
+
+?>
                         <div class="twice-two">
                             <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required="">
                             <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="">
                         </div>
                         <div class="twice-two">
+                          
                            <input type="text" class="form-control" placeholder="Phone" required="" name="phone" pattern="[0-9]+" maxlength="10">
-                            <input type="email" class="form-control" class="form-control" placeholder="Email" required="" name="email">
+                           <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  readonly="true">
                         </div>
                         <div class="twice-two">
-                            <input type="text" class="form-control" class="form-control" placeholder="Address" required="" name="address">
+                        <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">
                         </div>
                         
-                        <textarea class="form-control" id="message" name="message" placeholder="Message" required=""></textarea>
+                        <textarea class="form-control" id="message" name="message" placeholder="Description of Complaint" required=""></textarea>
+                        <?php }?>
                         <button type="submit" class="btn btn-contact" name="submit">Send Message</button>
                     </form>
                 </div>
     </div>
-   
+
     </div></div>
 </section>
 

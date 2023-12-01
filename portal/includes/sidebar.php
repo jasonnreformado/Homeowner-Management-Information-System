@@ -71,7 +71,7 @@
            
         
            <li>
-              <a href="contact.php"><i class="fa fa-envelope-o nav_icon"></i>Complain<span class=""></span></a>
+              <a href="contact.php"><i class="fa fa-envelope-o nav_icon"></i>Complaint Letter<span class=""></span></a>
               
               <!-- //nav-second-level -->
             </li>

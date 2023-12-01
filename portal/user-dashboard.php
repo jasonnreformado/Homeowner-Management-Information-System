@@ -90,13 +90,13 @@ while ($row=mysqli_fetch_array($ret)) {
 ?>
                         <div style="padding-top: 30px;">
                             <label>First Name</label>
-                            
                             <input type="text" class="form-control" name="firstname" value="<?php  echo $row['FirstName'];?>" required="true"></div>
+
                            <div style="padding-top: 30px;">
                             <label>Last Name</label>
-                            
                             <input type="text" class="form-control" name="lastname" value="<?php  echo $row['LastName'];?>" required="true">
                         </div>
+
                         <div style="padding-top: 30px;">
                             <label>Mobile Number</label>
                            <input type="text" class="form-control" name="mobilenumber" value="<?php  echo $row['MobileNumber'];?>"  readonly="true"></div>
@@ -111,6 +111,7 @@ while ($row=mysqli_fetch_array($ret)) {
                             <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
                         </div>
 
+						
                          <div style="padding-top: 30px;">
                             <label>Registration Date</label>
                            
@@ -118,6 +119,7 @@ while ($row=mysqli_fetch_array($ret)) {
                        </div>
                      
                       <?php }?>
+					  
                         <button type="submit" class="btn btn-contact" name="submit">Save Change</button>
                     </form>
                 </div>

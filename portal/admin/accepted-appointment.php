@@ -64,17 +64,17 @@ echo "<script>window.location.href='accepted-appointment.php'</script>";
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>New Appointment:</h4>
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Appointment Number</th> <th>Name</th><th>Mobile Number</th> <th>Appointment Date</th><th>Appointment Time</th><th>Message</th>
+						<h4>Accepted Appointment:</h4>
+						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Reservation Number</th> <th>Name</th><th> Contact #</th> <th>Date</th> <th>Start Time</th> <th>End Time</th> <th>Message</th>
 							<th>Status</th><th>Action</th> </tr> </thead> <tbody>
 <?php
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status='Selected'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status='Approved'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
 
-						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['AptNumber'];?></td> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td><td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['AptDate'];?></td> <td><?php  echo $row['AptTime'];?></td>  <td><?php  echo $row['Message'];?></td><?php     if($row['Status']==""){ ?>
+						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['AptNumber'];?></td> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td><td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['AptDate'];?></td> <td><?php  echo $row['AptTime'];?></td> <td><?php  echo $row['endTime'];?></td> <td><?php  echo $row['Message'];?></td><?php     if($row['Status']==""){ ?>
 
                      <td class="font-w600"><?php echo "Not Updated Yet"; ?></td>
                      <?php } else { ?>

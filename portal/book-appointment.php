@@ -12,10 +12,11 @@ if(isset($_POST['submit']))
     $uid=$_SESSION['bpmsuid'];
     $adate=$_POST['adate'];
     $atime=$_POST['atime'];
+    $endtime=$_POST['endtime'];
     $msg=$_POST['message'];
     $aptnumber = mt_rand(100000000, 999999999);
   
-    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime,Message) value('$uid','$aptnumber','$adate','$atime','$msg')");
+    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime,endTime,Message) value('$uid','$aptnumber','$adate','$atime','$endtime','$msg')");
 
     if ($query) {
 $ret=mysqli_query($con,"select AptNumber from tblbook where tblbook.UserID='$uid' order by ID desc limit 1;");
@@ -92,12 +93,16 @@ $(function () {
                     <form method="post">
                         <div style="padding-top: 30px;">
                             <label>Appointment Date</label>
-                            
                             <input type="date" class="form-control appointment_date" placeholder="Date" name="adate" id='adate' required="true"></div>
+
                         <div style="padding-top: 30px;">
-                            <label>Appointment Time</label>
-                            
+                            <label>Start Time</label>
                             <input type="time" class="form-control appointment_time" placeholder="Time" name="atime" id='atime' required="true"></div>
+
+                            <div style="padding-top: 30px;">
+                            <label>End Time</label>
+                            <input type="time" class="form-control appointment_time" placeholder="Time" name="endtime" id='endtime' required="true"></div>
+                            
 
                         <div style="padding-top: 30px;">
                         <textarea class="form-control" id="message" name="message" placeholder="Message" required=""></textarea></div>

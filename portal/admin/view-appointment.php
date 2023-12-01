@@ -26,7 +26,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Sam's Salon & Spa | View Appointment</title>
+<title>Villa Arcadia | View Reservation</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -68,20 +68,21 @@ if(isset($_POST['submit']))
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">View Appointment</h3>
+					<h3 class="title1">View Reservation</h3>
 					<div class="table-responsive bs-example widget-shadow">
 						
-						<h4>View Appointment:</h4>
+						<h4>View Reservation:</h4>
+
 						<?php
 $cid=$_GET['viewid'];
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.ID='$cid'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
-						<table class="table table-bordered">
+				  		<table class="table table-bordered">
 							<tr>
-    <th>Appointment Number</th>
+    <th>Reservation Number</th>
     <td><?php  echo $row['AptNumber'];?></td>
   </tr>
   <tr>
@@ -98,13 +99,18 @@ while ($row=mysqli_fetch_array($ret)) {
     <td><?php  echo $row['MobileNumber'];?></td>
   </tr>
    <tr>
-    <th>Appointment Date</th>
+    <th> Date</th>
     <td><?php  echo $row['AptDate'];?></td>
   </tr>
  
 <tr>
-    <th>Appointment Time</th>
+    <th>Start Time</th>
     <td><?php  echo $row['AptTime'];?></td>
+  </tr>
+
+  tr>
+    <th>End Time</th>
+    <td><?php  echo $row['endTime'];?></td>
   </tr>
   
   
