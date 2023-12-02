@@ -7,7 +7,7 @@
         <div class="logo">
           <a href="index.html">
             <img src="assets/images/logo.png" width="100px" class="img-responsive ">
-            <span>User</span>
+            <span>UserPanel</span>
           </a>
         </div>
 		<br>

@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
     $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,address,subject,Message) value('$fname','$lname','$phone','$email','$address','$subject','$message')");
     if ($query) {
    echo "<script>alert('Your message was sent successfully!.');</script>";
-echo "<script>window.location.href ='contact.php'</script>";
+echo "<script>window.location.href ='complaint.php'</script>";
   }
   else
     {
@@ -58,25 +58,10 @@ $(function () {
 <!-- disable body scroll which navbar is in active -->
 
 <!-- breadcrumbs -->
-<section class="w3l-inner-banner-main">
-  
-       
-</div>
-</div>
-<div class="breadcrumbs-sub">
-<div class="container">   
-<ul class="breadcrumbs-custom-path">
-    <li class="right-side propClone"><a href="user-dashboard.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
-    <li class="active ">
-        Complaint Letter</li>
-</ul>
-</div>
-</div>
-    </div>
-</section>
+<br><br><br>
 <!-- breadcrumbs //-->
 <section class="w3l-contact-info-main" id="contact">
-    <div class="contact-sec	">
+  
         <div class="container">
         <div class="text-center">
     <h3>Letter of Complaint</h3>

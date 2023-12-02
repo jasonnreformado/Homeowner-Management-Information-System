@@ -44,15 +44,19 @@
             <div class="navbar-collapse">
         <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
           <ul class="nav" id="side-menu">
+
+           <!-- Profiles -->
             <li>
               <a href="user-dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
             </li>
+
+             <!-- Announcement -->
             <li>
               <a href="announcement.php" class="chart-nav"><i class="fa fa-bullhorn nav_icon"></i>Announcement</a>
             </li>
             
-          
-            <li>
+           <!-- Reservation  -->
+              <li>
               <a href="book-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Reservation<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                 <li>
@@ -64,25 +68,28 @@
                 <li>
                   <a href="booking-history.php">Reservation History</a>
                 </li>
-               
               </ul>
-              <!-- //nav-second-level -->
             </li>
            
-        
-           <li>
-              <a href="contact.php"><i class="fa fa-envelope-o nav_icon"></i>Complaint Letter<span class=""></span></a>
-              
-              <!-- //nav-second-level -->
+        <!-- complaint -->
+            <li>
+              <a href="complaint.php"><i class="fa fa-envelope-o nav_icon"></i>Complaint Letter<span class=""></span></a>
             </li>
           
+            <!-- Monthly Dues -->
               <li>
               <a href="#"><i class="fa fa-money nav_icon"></i>Monthly Due's<span></span></a>
               </li>
-              <!-- //nav-second-level -->
-            </li>
 
-    <li>
+              <li>
+              <a href="receipt.php"><i class="fa fa-money nav_icon"></i>Payment Receipt<span></span></a>
+              </li>
+
+
+
+
+
+  
           
           
 
