@@ -63,7 +63,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 	<div class="form-body">
 							<form method="post" name="search" action="">
   
-							 <div class="form-group"> <label for="exampleInputEmail1" style="padding-bottom: 20px;">Search by Appointment Number / Phone Number / Name</label> <input id="searchdata" type="text" name="searchdata" required="true" class="form-control">
+							 <div class="form-group"> <label for="exampleInputEmail1" style="padding-bottom: 20px;">Search by Reservation Number / Phone Number / Name</label> <input id="searchdata" type="text" name="searchdata" required="true" class="form-control">
 						
 							<br>
 							  <button type="submit" name="search" class="btn btn-primary btn-sm">Search</button> </form> 
@@ -77,9 +77,9 @@ $sdata=$_POST['searchdata'];
   ?>
   <h4 align="center">Result against "<?php echo $sdata;?>" keyword </h4> 
 
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Appointment Number</th> <th>Name</th><th>Mobile Number</th> <th>Appointment Date</th><th>Appointment Time</th><th>Action</th> </tr> </thead> <tbody>
+						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Reservation Number</th> <th>Name</th><th>Contact #</th> <th> Date</th><th>Start Time</th><th>End Time</th><th>Message</th><th>Action</th> </tr> </thead> <tbody>
 <?php
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber like '%$sdata%'  || tbluser.MobileNumber like '%$sdata%' || tbluser.FirstName like '%$sdata%'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber like '%$sdata%'  || tbluser.MobileNumber like '%$sdata%' || tbluser.FirstName like '%$sdata%'");
 $num=mysqli_num_rows($ret);
 if($num>0){
 $cnt=1;
@@ -87,7 +87,7 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
 
-						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['AptNumber'];?></td> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td><td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['AptDate'];?></td> <td><?php  echo $row['AptTime'];?></td> <td><a href="view-appointment.php?viewid=<?php echo $row['ID'];?>" class="btn btn-primary">View</a></td> </tr>   <?php 
+						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['AptNumber'];?></td> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td><td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['AptDate'];?></td> <td><?php  echo $row['AptTime'];?></td> <td><?php  echo $row['endTime'];?></td> <td><?php  echo $row['Message'];?></td>  <td><a href="view-appointment.php?viewid=<?php echo $row['bid'];?>" class="btn btn-primary">View</a></td> </tr>   <?php 
 $cnt=$cnt+1;
 } } else { ?>
   <tr>

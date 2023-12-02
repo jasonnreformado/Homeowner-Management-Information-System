@@ -4259,7 +4259,8 @@
       font-size: 32px !important; } }
 
 .w3l-contact-info-main .contact-sec {
-  padding: 70px 0px 70px; }
+
+  padding: 80px 0px 440px; }
 
 .w3l-contact-info-main .cont-top {
   display: grid;
@@ -4285,7 +4286,7 @@
   background: #f8f9fa;
   color: #777;
   font-size: 16px;
-  padding: 12px 15px;
+  padding: 12px 5px;
   width: 100%;
   border-radius: 4px;
   height: 55px; }

@@ -58,7 +58,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 					
 	<?php
 	$invid=intval($_GET['invoiceid']);
-$ret=mysqli_query($con,"select DISTINCT  date(tblinvoice.PostingDate) as invoicedate,tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tbluser.RegDate
+$ret=mysqli_query($con,"select DISTINCT  date(tblinvoice.PostingDate) as invoicedate,tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tbluser.RegDate,tbluser.address
 	from  tblinvoice 
 	join tbluser on tbluser.ID=tblinvoice.Userid 
 	where tblinvoice.BillingId='$invid'");
@@ -84,6 +84,8 @@ while ($row=mysqli_fetch_array($ret)) {
 							 <tr> 
 								<th>Registration Date</th> 
 								<td><?php echo $row['RegDate']?></td> 
+								<th>Address</th> 
+								<td><?php echo $row['address']?></td> 
 								<th>Invoice Date</th> 
 								<td colspan="3"><?php echo $row['invoicedate']?></td> 
 							</tr> 
@@ -96,11 +98,12 @@ while ($row=mysqli_fetch_array($ret)) {
 <tr>
 <th>#</th>	
 <th>Service</th>
+<th>Description</th>
 <th>Cost</th>
 </tr>
 
 <?php
-$ret=mysqli_query($con,"select tblservices.ServiceName,tblservices.Cost  
+$ret=mysqli_query($con,"select tblservices.ServiceName,tblservices.ServiceDescription	,tblservices.Cost  
 	from  tblinvoice 
 	join tblservices on tblservices.ID=tblinvoice.ServiceId 
 	where tblinvoice.BillingId='$invid'");
@@ -111,6 +114,7 @@ while ($row=mysqli_fetch_array($ret)) {
 <tr>
 <th><?php echo $cnt;?></th>
 <td><?php echo $row['ServiceName']?></td>	
+<td><?php echo $row['ServiceDescription']?></td>
 <td><?php echo $subtotal=$row['Cost']?></td>
 </tr>
 <?php 

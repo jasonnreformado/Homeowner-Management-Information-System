@@ -34,7 +34,7 @@ echo "<script>alert('Password successfully changed');</script>";
   <head>
  
 
-    <title>SAM'S SALON AND SPA | Forgot Password Page</title>
+    <title>Villa Arcadia | Forgot Password Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -43,7 +43,7 @@ echo "<script>alert('Password successfully changed');</script>";
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   </head>
   <body id="home">
-<?php include_once('includes/header.php');?>
+
 
 <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
 <!--bootstrap working-->
@@ -74,15 +74,8 @@ return true;
 
 <!-- breadcrumbs -->
 <section class="w3l-inner-banner-main">
-    <div class="about-inner contact ">
-        <div class="container">   
-            <div class="main-titles-head text-center">
-            <h3 class="header-name ">
-                
- Forgot Password
-            </h3>
-            <p class="tiltle-para ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic fuga sit illo modi aut aspernatur tempore laboriosam saepe dolores eveniet.</p>
-        </div>
+  
+   
 </div>
 </div>
 <div class="breadcrumbs-sub">
@@ -101,54 +94,12 @@ return true;
     <div class="contact-sec	">
         <div class="container">
 
-            <div class="d-grid contact-view">
-                <div class="cont-details">
-                    <?php
-
-$ret=mysqli_query($con,"select * from tblpage where PageType='contactus' ");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-                    <div class="cont-top">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-phone text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Call Us</h6>
-                            <p class="para"><a href="tel:+44 99 555 42">+<?php  echo $row['MobileNumber'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-envelope-o text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Email Us</h6>
-                            <p class="para"><a href="mailto:example@mail.com" class="mail"><?php  echo $row['Email'];?></a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Address</h6>
-                            <p class="para"> <?php  echo $row['PageDescription'];?></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-primary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <h6>Time</h6>
-                            <p class="para"> <?php  echo $row['Timing'];?></p>
-                        </div>
-                    </div>
-               <?php } ?> </div>
+      
+               
+                  
                 <div class="map-content-9 mt-lg-0 mt-4">
-                    <h3 style="padding-bottom: 10px;">Reset your password and Fill below details</h3>
+                    <h3 style="padding-bottom: 10px;">Reset your password </h3>
+                    <br>
                     <form method="post">
                         <div>
                             <input type="text" class="form-control" name="email" placeholder="Enter Your Email" required="true">
@@ -177,7 +128,7 @@ while ($row=mysqli_fetch_array($ret)) {
    
     </div></div>
 </section>
-<?php include_once('includes/footer.php');?>
+
 <!-- move top -->
 <button onclick="topFunction()" id="movetop" title="Go to top">
 	<span class="fa fa-long-arrow-up"></span>

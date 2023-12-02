@@ -97,7 +97,7 @@ button#showLeftPush:hover {
     height: 100%;
     top: 95px;
     z-index: 1000;
-    background-color:#a238a2;
+    background-color:#9e469e;
 	padding: 2em 0;
 }
 .cbp-spmenu-left {
@@ -840,28 +840,28 @@ ul.dropdown-menu.drp-mnu li {
 .stats-left {
     float: left;
     width: 70%;
-    background-color: #be6583;
+    background-color: rgb(175, 93, 161);
 	text-align: center;
 	padding: 1em;
 }
 .states-mdl .stats-left {
-    background-color: #585858;
+    background-color: #9b5757;
 }
 .states-mdl .stats-right {
-    background-color: rgba(88, 88, 88, 0.88);
+    background-color: rgba(112, 45, 45, 0.88);
 }
 .states-last .stats-left {
-    background-color: #4f4e60;
+    background-color: #4e4c7c;
 }
 .states-last .stats-right {
-    background-color: rgb(152 151 173);
+    background-color: rgb(65, 63, 90);
 }
 .stats-right {
     float: right;
     width: 30%;
     text-align: center;
 	padding: 1.54em 1em;
-	background-color: #a18b92;
+	background-color: rgb(151, 69, 146);
 }
 .stats-left h5 {
     color: #fff;

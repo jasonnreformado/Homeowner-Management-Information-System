@@ -24,7 +24,7 @@ if(isset($_POST['login']))
   <head>
  
 
-    <title>SAM'S SALON AND SPA | Login</title>
+    <title>Villa Arcadia | Login</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -67,19 +67,21 @@ $(function () {
     </div>
 </section>
 <!-- breadcrumbs //-->
-<section class="w3l-contact-info-main" id="contact">
+<div style="background-image: url('assets/images/image.png'); background-size: cover; height: 930px;">
+<section class="w3l-contact-info-main " id="contact" >
     <div class="contact-sec	">
         <div class="container">
 
-      
+        <br> <br>
         <div class="text-center">
     <h1>LOGIN</h1>
 </div>
-        <br>
-                <div class="map-content-9 mt-lg-0 mt-5">
+        <br> <br>
+        
+                <div class="map-content-9 mt-lg-0 mt-5"  >
                     <form method="post">
                         <div>
-                            <input type="text" class="form-control" name="emailcont" required="true" placeholder="Registered Email or Contact Number" required="true">
+                            <input type="text" class="form-control" name="emailcont" required="true" placeholder="Email" required="true">
                            
                         </div>
                         <div style="padding-top: 30px;">
@@ -88,7 +90,7 @@ $(function () {
                         </div>
                         
                         <div class="twice-two" style="padding-top: 30px;">
-                          <a class="link--gray" style="color: #ab6aad;" href="forgot-password.php">Forgot Password?</a>
+                          <a class="link--gray" style="color: red;" href="forgot-password.php">Forgot Password?</a>
                         
                         </div>
                         <button type="submit" class="btn btn-contact" name="login">Login</button>
