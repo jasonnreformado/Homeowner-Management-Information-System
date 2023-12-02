@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2023 at 06:51 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Dec 02, 2023 at 07:43 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,86 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `age` int(11) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `designation` varchar(20) NOT NULL,
+  `joining_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `first_name`, `last_name`, `email`, `age`, `gender`, `designation`, `joining_date`) VALUES
+(9, 'Joana', 'Capawa', 'joanamarie.capawa@gmail.com', 22, 'Female', 'President', '2022-09-24'),
+(10, 'Jason', 'Reformado', 'jasonreformado8@gmail.com', 22, 'Male', 'Vice President', '2022-08-06'),
+(12, 'Juan', 'DelaCruz', 'juan@gmail.com', 26, 'Others', 'Secretary', '2022-11-13'),
+(13, 'Layla', 'Balmond', 'laylalovebalmond@gmail.com', 28, 'Others', 'Treasurer', '2022-08-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `post_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `is_pinned` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `content`, `is_pinned`) VALUES
+(48, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(49, 'Meeting of homeowners maintenance. etc.', 1),
+(52, 'hello', 1),
+(53, 'eqweqwewq', 1),
+(54, 'ewqewq', 1),
+(55, 'eqweqw', 1),
+(56, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(57, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_files`
+--
+
+CREATE TABLE `post_files` (
+  `file_id` int(11) NOT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `post_files`
+--
+
+INSERT INTO `post_files` (`file_id`, `post_id`, `file_path`, `description`) VALUES
+(55, 48, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
+(56, 49, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
+(59, 52, '../uploads/123.jpg', ''),
+(60, 53, '../uploads/image.png', ''),
+(61, 54, '../uploads/image.png', ''),
+(62, 55, '../uploads/image.png', ''),
+(63, 56, '../uploads/image.png', ''),
+(64, 57, '../uploads/image.png', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbladmin`
 --
 
@@ -35,7 +115,7 @@ CREATE TABLE `tbladmin` (
   `Email` varchar(200) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL,
   `AdminRegdate` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbladmin`
@@ -56,20 +136,24 @@ CREATE TABLE `tblbook` (
   `AptNumber` int(10) DEFAULT NULL,
   `AptDate` date DEFAULT NULL,
   `AptTime` time DEFAULT NULL,
+  `endTime` time DEFAULT NULL,
   `Message` mediumtext DEFAULT NULL,
   `BookingDate` timestamp NULL DEFAULT current_timestamp(),
   `Remark` varchar(250) DEFAULT NULL,
   `Status` varchar(250) DEFAULT NULL,
   `RemarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblbook`
 --
 
-INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
-(1, 1, 729411824, '2022-10-20', '19:03:00', 'Hello, this is a test message', '2022-10-20 18:30:00', 'Your appointment has been book.', 'Selected', '2022-10-20 06:11:41'),
-(2, 2, 767068476, '2022-10-22', '09:00:00', 'Hi, this is a test message', '2022-10-22 18:30:00', 'Sorry your appointment has been cancelled', 'Rejected', '2022-10-22 06:14:39');
+INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTime`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
+(31, 16, 466193290, '2023-12-02', '02:14:00', '03:14:00', 'court', '2023-12-01 18:14:25', 'ok', 'Approved', '2023-12-01 18:14:46'),
+(32, 16, 230379758, '2023-12-03', '16:19:00', '17:19:00', 'clubhouse', '2023-12-01 18:19:09', 'ok', 'Approved', '2023-12-01 18:19:46'),
+(33, 16, 952136221, '2023-12-02', '02:22:00', '03:23:00', 'test', '2023-12-01 18:22:35', 'ewqe', 'Approved', '2023-12-01 18:23:02'),
+(34, 16, 842304900, '2023-12-02', '05:22:00', '09:23:00', 'sample', '2023-12-01 18:35:34', NULL, NULL, NULL),
+(35, 16, 709896363, '2023-12-02', '05:22:00', '12:23:00', 'testt', '2023-12-01 18:47:22', 'ewew', 'Rejected', '2023-12-01 18:47:33');
 
 -- --------------------------------------------------------
 
@@ -85,18 +169,24 @@ CREATE TABLE `tblcontact` (
   `Email` varchar(200) DEFAULT NULL,
   `Message` mediumtext DEFAULT NULL,
   `EnquiryDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `IsRead` int(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `IsRead` int(5) DEFAULT NULL,
+  `address` varchar(225) NOT NULL,
+  `subject` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblcontact`
 --
 
-INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`) VALUES
-(1, 'Jhaziel', 'Nunez', 9458762145, 'nunez@gmail.com', 'Id love to get a rebond', '2022-10-20 08:43:18', 1),
-(2, 'Kaye', 'Salve', 9548976321, 'salve@gmail.com', 'Need booking for a new haircut', '2022-10-22 01:05:47', 1),
-(3, 'Eunice', 'Rosal', 9854796127, 'rosal@gmail.com', 'I want a new hair color', '2022-10-25 08:43:18', 1),
-(4, 'Gian', 'Malabanan', 9789564823, 'malabanan@gmail.com', 'I need a new look', '2022-10-30 01:05:47', 1);
+INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`) VALUES
+(21, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'May namatay', '2023-12-01 13:49:04', 1, 'Block 4 Lot 5', 'Incident'),
+(22, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'may nag park sa gate namin ', '2023-12-01 18:58:42', 1, 'Block 4 Lot 5', 'Illegal Parking'),
+(23, 'JASON', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'mabaho sa court', '2023-12-02 13:07:18', 1, 'Block 4 Lot 5', 'issue'),
+(24, 'Joana', 'Capawa', 928846512, 'joanamarie.capawa@gmail.com', 'tt', '2023-12-02 13:15:25', 1, 'Block 4 Lot 5', 'note'),
+(25, 'Jason', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ee', '2023-12-02 13:15:55', NULL, 'Block 4 Lot 5', 'note'),
+(26, 'Jason', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ee', '2023-12-02 13:16:27', NULL, 'Block 4 Lot 5', 'note'),
+(27, 'JASON', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ewqeqwe', '2023-12-02 13:17:01', 1, 'Block 4 Lot 5', 'note'),
+(28, 'tae', 'tae', 928846512, 'joanamarie.capawa@gmail.com', 'tae', '2023-12-02 13:17:39', 1, 'Block 4 Lot 5', 'tae');
 
 -- --------------------------------------------------------
 
@@ -110,7 +200,7 @@ CREATE TABLE `tblinvoice` (
   `ServiceId` int(11) DEFAULT NULL,
   `BillingId` int(11) DEFAULT NULL,
   `PostingDate` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblinvoice`
@@ -120,7 +210,56 @@ INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate
 (1, 1, 1, 138889283, '2022-10-20 11:42:21'),
 (2, 2, 2, 138889283, '2022-10-22 11:42:21'),
 (3, 3, 3, 138889283, '2022-10-25 11:42:21'),
-(4, 4, 4, 555850701, '2022-10-30 11:42:51');
+(4, 4, 4, 555850701, '2022-10-30 11:42:51'),
+(20, 1, 1, 953015659, '2023-11-29 15:09:01'),
+(21, 1, 1, 773500003, '2023-11-30 07:49:40'),
+(22, 1, 2, 773500003, '2023-11-30 07:49:40'),
+(23, 1, 3, 773500003, '2023-11-30 07:49:40'),
+(24, 12, 1, 566447019, '2023-11-30 07:49:58'),
+(25, 12, 2, 566447019, '2023-11-30 07:49:58'),
+(26, 12, 3, 566447019, '2023-11-30 07:49:58'),
+(27, 12, 4, 566447019, '2023-11-30 07:49:58'),
+(28, 12, 5, 566447019, '2023-11-30 07:49:58'),
+(29, 12, 6, 566447019, '2023-11-30 07:49:58'),
+(30, 12, 1, 255558552, '2023-11-30 08:05:39'),
+(31, 13, 18, 896265662, '2023-11-30 09:48:01'),
+(32, 12, 1, 518140448, '2023-11-30 10:10:09'),
+(33, 12, 18, 518140448, '2023-11-30 10:10:09'),
+(34, 12, 19, 518140448, '2023-11-30 10:10:09'),
+(35, 12, 20, 518140448, '2023-11-30 10:10:09'),
+(36, 12, 21, 518140448, '2023-11-30 10:10:09'),
+(37, 12, 22, 518140448, '2023-11-30 10:10:09'),
+(38, 12, 1, 706237760, '2023-11-30 10:10:09'),
+(39, 12, 18, 706237760, '2023-11-30 10:10:09'),
+(40, 12, 19, 706237760, '2023-11-30 10:10:09'),
+(41, 12, 20, 706237760, '2023-11-30 10:10:09'),
+(42, 12, 21, 706237760, '2023-11-30 10:10:09'),
+(43, 12, 22, 706237760, '2023-11-30 10:10:09'),
+(44, 12, 1, 332387267, '2023-11-30 13:30:54'),
+(45, 12, 18, 681041496, '2023-11-30 15:21:44'),
+(67, 16, 25, 544848683, '2023-12-02 12:13:56'),
+(68, 16, 25, 953797329, '2023-12-02 12:14:01'),
+(69, 16, 26, 953797329, '2023-12-02 12:14:01'),
+(70, 16, 27, 101654731, '2023-12-02 12:14:09'),
+(71, 16, 29, 101654731, '2023-12-02 12:14:09'),
+(72, 16, 30, 101654731, '2023-12-02 12:14:09'),
+(73, 16, 25, 356474633, '2023-12-02 12:24:19'),
+(74, 17, 25, 554545063, '2023-12-02 12:42:56'),
+(75, 17, 26, 554545063, '2023-12-02 12:42:56'),
+(76, 17, 27, 554545063, '2023-12-02 12:42:56'),
+(77, 17, 28, 554545063, '2023-12-02 12:42:56'),
+(78, 17, 29, 554545063, '2023-12-02 12:42:56'),
+(79, 17, 30, 554545063, '2023-12-02 12:42:56'),
+(80, 17, 25, 544423277, '2023-12-02 12:55:14'),
+(81, 17, 26, 914579991, '2023-12-02 12:55:19'),
+(82, 17, 27, 914579991, '2023-12-02 12:55:19'),
+(83, 17, 29, 846154581, '2023-12-02 12:55:25'),
+(84, 17, 30, 846154581, '2023-12-02 12:55:25'),
+(85, 16, 26, 545162856, '2023-12-02 13:01:34'),
+(86, 17, 25, 281744625, '2023-12-02 13:01:48'),
+(87, 16, 25, 484010820, '2023-12-02 13:19:23'),
+(88, 16, 26, 198332598, '2023-12-02 13:21:19'),
+(89, 17, 25, 809348391, '2023-12-02 13:21:29');
 
 -- --------------------------------------------------------
 
@@ -137,7 +276,7 @@ CREATE TABLE `tblpage` (
   `MobileNumber` bigint(10) DEFAULT NULL,
   `UpdationDate` date DEFAULT NULL,
   `Timing` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblpage`
@@ -160,26 +299,19 @@ CREATE TABLE `tblservices` (
   `Cost` int(10) DEFAULT NULL,
   `Image` varchar(200) DEFAULT NULL,
   `CreationDate` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblservices`
 --
 
 INSERT INTO `tblservices` (`ID`, `ServiceName`, `ServiceDescription`, `Cost`, `Image`, `CreationDate`) VALUES
-(1, 'O3 Facial', 'O3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 FacialO3 Facial', 1200, 'o3plus-professional-bridal-facial-kit-for-radiant-glowing-skin.jpg', '2022-05-24 22:37:38'),
-(2, 'Fruit Facial', 'Fruit facials contain certain fruit acid like glycolic acid, alpha hydroxyl acid, citric acid, phenolic acid, vitamins and minerals in it. These acids are antiblemish, antiwrinkle and help your skin to exfoliate, it highly detoxifies your skin, it excretes out all the toxins and it hydrates your face', 500, 'How-To-Do-Fruit-Facial-At-Home.jpg', '2022-05-24 22:37:53'),
-(3, 'Charcol Facial', 'Activated charcoal is created from bone char, coconut shells, peat, petroleum coke, coal, olive pits, bamboo, or sawdust. It is in the form of a fine black dust that is produced when regular charcoal is activated by exposing it to very high temperatures. This is done to alter its internal structure and increase its surface area to increase absorbability. The charcoal that you get after it has undergone this process is very porous.', 1000, 'b9fb9d37bdf15a699bc071ce49baea531652852364.jpg', '2022-05-24 22:37:10'),
-(4, 'Deluxe Menicure', 'A luxurious treatment including a soak and moisturizing exfoliation, cuticle work, nails clipped and filed, hard skin is removed (pedicure) and a renewing mask is applied. A short massage and your nails are buffed and ready to paint.', 500, 'efc1a80c391be252d7d777a437f868701652852477.jpg', '2022-05-24 22:37:34'),
-(5, 'Deluxe Pedicure', 'A luxurious treatment including a soak and moisturizing exfoliation, cuticle work, nails clipped and filed, hard skin is removed (pedicure) and a renewing mask is applied. A short massage and your nails are buffed and ready to paint.', 600, '1e6ae4ada992769567b71815f124fac51652852492.jpg', '2022-05-24 22:37:47'),
-(6, 'Normal Menicure', 'A luxurious treatment including a soak and moisturizing exfoliation, cuticle work, nails clipped and filed, hard skin is removed (pedicure) and a renewing mask is applied. A short massage and your nails are buffed and ready to paint.', 300, 'The-Dummys-Guide-To-Using-A-Manicure-Kit_OI.jpg', '2022-05-24 22:37:01'),
-(7, 'Normal Pedicure', 'A luxurious treatment including a soak and moisturizing exfoliation, cuticle work, nails clipped and filed, hard skin is removed (pedicure) and a renewing mask is applied. A short massage and your nails are buffed and ready to paint.', 400, '1e6ae4ada992769567b71815f124fac51652852492.jpg', '2022-05-24 22:37:19'),
-(8, 'U-Shape Hair Cut', 'U-Shape Hair Cut', 250, 'cff8ad28cf40ebf4fbdd383fe546098d1652852593.jpg', '2022-05-24 22:37:38'),
-(9, 'Layer Haircut', 'Layer Haircut', 550, '74375080377499ab76dad37484ee7f151652852649.jpg', '2022-05-24 22:37:53'),
-(10, 'Rebonding', 'Hair rebonding is a chemical process that changes your hair\'s natural texture and creates a smooth, straight style. It\'s also called chemical straightening. Hair rebonding is typically performed by a licensed cosmetologist at your local hair salon.', 3999, 'c362f21370120580f5779a2d019392851652852555.jpg', '2022-05-24 22:37:08'),
-(11, 'Loreal Hair Color(Full)', 'Loreal Hair Color(Full),Loreal Hair Color(Full),Loreal Hair Color(Full)', 1200, 'images.jpg', '2022-05-24 22:37:35'),
-(12, 'Body Spa', 'It is typically a massage spa therapy that helps reduce pain. The technique involves using fingertips, palm, elbow, or even feet to apply firm pressure on certain body parts or acupoint to encourage blood flow and promote healing', 1500, 'efc1a80c391be252d7d777a437f868701652852477.jpg', '2022-05-19 01:38:27'),
-(16, 'Aroma Oil Massage Therapy', 'Aroma Oil Massage TherapyAroma Oil Massage TherapyAroma Oil Massage TherapyAroma Oil Massage TherapyAroma Oil Massage', 700, '032b2cc936860b03048302d991c3498f1652173213.jpg', '2022-05-09 20:35:13');
+(25, 'Monthly Water', 'Bill', 800, 'b424718fec0f3d87f770ea20442528411701504623.jpg', '2023-12-02 08:10:23'),
+(26, 'Monthly Electric', 'Bill', 2500, 'b424718fec0f3d87f770ea20442528411701504646.jpg', '2023-12-02 08:10:46'),
+(27, 'Club House', 'Reservation', 400, 'b424718fec0f3d87f770ea20442528411701504672.jpg', '2023-12-02 08:11:12'),
+(28, 'Basketball', 'Reservation', 150, 'b424718fec0f3d87f770ea20442528411701504697.jpg', '2023-12-02 08:11:37'),
+(29, 'Chairs', 'Borrow', 200, 'b424718fec0f3d87f770ea20442528411701504735.jpg', '2023-12-02 08:12:15'),
+(30, 'Table', 'Borrow', 100, 'b424718fec0f3d87f770ea20442528411701505108.jpg', '2023-12-02 08:18:28');
 
 -- --------------------------------------------------------
 
@@ -194,22 +326,42 @@ CREATE TABLE `tbluser` (
   `MobileNumber` bigint(10) DEFAULT NULL,
   `Email` varchar(120) DEFAULT NULL,
   `Password` varchar(120) DEFAULT NULL,
-  `RegDate` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `RegDate` timestamp NULL DEFAULT current_timestamp(),
+  `address` varchar(225) NOT NULL,
+  `numplp` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`) VALUES
-(1, 'Jhaziel', NULL, 8956234569, 'nunez@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-10-20 14:22:03'),
-(2, 'Kaye', NULL, 5689234578, 'salve@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-10-22 14:37:49'),
-(3, 'Eunice', NULL, 2147483649, 'rosal@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-10-25 14:40:20'),
-(4, 'Gian', NULL, 8797977779, 'malabanan@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-10-30 05:51:06');
+INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `numplp`) VALUES
+(16, 'Jason', 'Reformado', 945263815, 'reformado@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-01 05:23:13', 'Block 4 Lot 5', 0),
+(17, 'Joana Marie', 'Capawa', 946843132, 'joanamarie.capawa@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:23:55', 'Block 4 Lot 5', 0),
+(18, 'Juan', 'Dela Cruz', 968735413, 'Juandelacruz@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:24:34', 'Block 10 Lot 6', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`post_id`);
+
+--
+-- Indexes for table `post_files`
+--
+ALTER TABLE `post_files`
+  ADD PRIMARY KEY (`file_id`),
+  ADD KEY `post_id` (`post_id`);
 
 --
 -- Indexes for table `tbladmin`
@@ -260,6 +412,24 @@ ALTER TABLE `tbluser`
 --
 
 --
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `post_files`
+--
+ALTER TABLE `post_files`
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
 -- AUTO_INCREMENT for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
@@ -269,19 +439,19 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbook`
 --
 ALTER TABLE `tblbook`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tblcontact`
 --
 ALTER TABLE `tblcontact`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -293,13 +463,13 @@ ALTER TABLE `tblpage`
 -- AUTO_INCREMENT for table `tblservices`
 --
 ALTER TABLE `tblservices`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

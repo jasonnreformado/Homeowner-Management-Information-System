@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <!-- Add these lines in the head section of your HTML -->
-    <link rel="stylesheet" href="path/to/lightbox.min.css">
-    <script src="path/to/lightbox.min.js"></script>
+ 
 
     <title>Posts</title>
 </head>
@@ -47,7 +46,7 @@
                 echo "<div class='post-media'>";
                 if (in_array($file_extension, ['jpg', 'png', 'jpeg', 'gif'])) {
                     // Display images
-                    echo "<img class='lazy-load' data-src='{$file_path}' alt='Image'>";
+                    echo "<img class='' data-src='{$file_path}' alt='Image'>";
                 } elseif (in_array($file_extension, ['mp4', 'avi', 'mov'])) {
                     // Display videos
                     echo "<video class='lazy-load' data-src='{$file_path}' controls>";
