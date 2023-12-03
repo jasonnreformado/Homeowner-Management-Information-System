@@ -68,14 +68,14 @@ $(function () {
                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment Details</h4>
                         <?php
 $cid=$_GET['aptnumber'];
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.AptNumber='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
                         <table class="table table-bordered">
                             <tr>
-    <th>Appointment Number</th>
+    <th>Reservation Number</th>
     <td><?php  echo $row['AptNumber'];?></td>
   </tr>
   <tr>
@@ -88,18 +88,23 @@ while ($row=mysqli_fetch_array($ret)) {
     <td><?php  echo $row['Email'];?></td>
   </tr>
    <tr>
-    <th>Mobile Number</th>
+    <th>Contact #</th>
     <td><?php  echo $row['MobileNumber'];?></td>
   </tr>
    <tr>
-    <th>Appointment Date</th>
+    <th> Date</th>
     <td><?php  echo $row['AptDate'];?></td>
   </tr>
  
 <tr>
-    <th>Appointment Time</th>
+    <th>Start Time</th>
     <td><?php  echo $row['AptTime'];?></td>
   </tr>
+  <tr>
+    <th>End Time</th>
+    <td><?php  echo $row['endTime'];?></td>
+  </tr>
+
   <tr>
     <th>Message</th>
     <td><?php  echo $row['Message'];?></td>
@@ -120,9 +125,9 @@ if($row['Status']=="")
   echo "Not Updated Yet";
 }
 
-if($row['Status']=="Selected")
+if($row['Status']=="Approved")
 {
-  echo "Selected";
+  echo "Approved";
 }
 
 if($row['Status']=="Rejected")

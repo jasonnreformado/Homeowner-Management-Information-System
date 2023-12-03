@@ -13,8 +13,9 @@ if(isset($_POST['submit']))
     $address=$_POST['address'];
     $subject=$_POST['subject'];
     $message=$_POST['message'];
+    $time=$_POST['time'];
      
-    $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,address,subject,Message) value('$fname','$lname','$phone','$email','$address','$subject','$message')");
+    $query=mysqli_query($con, "insert into tblcontact(FirstName,LastName,Phone,Email,address,subject,time,Message) value('$fname','$lname','$phone','$email','$address','$subject','$time','$message')");
     if ($query) {
    echo "<script>alert('Your message was sent successfully!.');</script>";
 echo "<script>window.location.href ='complaint.php'</script>";
@@ -64,7 +65,7 @@ $(function () {
   
         <div class="container">
         <div class="text-center">
-    <h3>Letter of Complaint</h3>
+    <h3>Request Maintenance</h3>
 </div><br><br>
             <div class="d-grid contact-view">
                
@@ -87,13 +88,19 @@ while ($row=mysqli_fetch_array($ret)) {
                           
                            <input type="text" class="form-control" placeholder="Phone" required="" name="phone" pattern="[0-9]+" maxlength="10">
                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  readonly="true">
+                           
                         </div>
                         <div class="twice-two">
                         <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
                         <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">
                         </div>
+
+                        <div class="twice-two">
+                        <input type="time" class="form-control" name="time" id="time" placeholder="Time" required="">
+                        </div>
                         
-                        <textarea class="form-control" id="message" name="message" placeholder="Description of Complaint" required=""></textarea>
+                        
+                        <textarea class="form-control" id="message" name="message" placeholder="Description of Request" required=""></textarea>
                         <?php }?>
                         <button type="submit" class="btn btn-contact" name="submit">Send Message</button>
                     </form>

@@ -73,12 +73,16 @@
            
         <!-- complaint -->
             <li>
-              <a href="complaint.php"><i class="fa fa-envelope-o nav_icon"></i>Complaint Letter<span class=""></span></a>
+              <a href="complaint.php"><i class="fa fa-envelope-o nav_icon"></i>Request Maintenance<span class=""></span></a>
+            </li>
+
+            <li>
+              <a href="complaint.php"><i class="fa fa-envelope-o nav_icon"></i>Incident Report<span class=""></span></a>
             </li>
           
             <!-- Monthly Dues -->
               <li>
-              <a href="#"><i class="fa fa-money nav_icon"></i>Monthly Due's<span></span></a>
+              <a href="#"><i class="fa fa-money nav_icon"></i>Monthly Dues<span></span></a>
               </li>
 
               <li>

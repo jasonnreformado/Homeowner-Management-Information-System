@@ -82,6 +82,7 @@ while ($row=mysqli_fetch_array($ret)) {
                 <tr>
                 	<th>Contact No.</th>
                 	<td><?php  echo $row['Phone'];?></td>
+					
                 	                	<th>Query Date</th>
                 	<td><?php  echo $row['EnquiryDate'];?></td>
                 </tr>
@@ -89,9 +90,15 @@ while ($row=mysqli_fetch_array($ret)) {
 				<tr>
                 	<th>Address</th>
                 	<td><?php  echo $row['address'];?></td>
+
                 	                	<th>Subject</th>
                 	<td><?php  echo $row['subject'];?></td>
                 </tr>
+
+				<th >Time</th>
+    <td colspan="4"><?php  echo $row['time'];?></td>
+  </tr>
+
 			
    <th >Message</th>
     <td colspan="4"><?php  echo $row['Message'];?></td>
