@@ -38,7 +38,7 @@ $_SESSION['aptno']=$result['AptNumber'];
   <head>
  
 
-    <title>SAM'S SALON AND SPA | Appointment Page</title>
+    <title>Villa Arcadia | Reservation Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">

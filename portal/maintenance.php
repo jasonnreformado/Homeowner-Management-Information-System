@@ -14,7 +14,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Villa Arcadia | Incident</title>
+<title>Villa Arcadia | Maintenance</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -60,7 +60,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 			
 
 					<!--content-->
-                    <?php include_once('complaint-include.php');?>
+                    <?php include_once('contact.php');?>
 <!--content-->
 <br><br><br><br><br><br><br>
 		<!--footer-->

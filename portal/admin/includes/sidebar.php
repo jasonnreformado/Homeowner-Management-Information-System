@@ -6,8 +6,9 @@
     <title>Your Page Title</title>
     <style>
         /* Your existing styles here */
-        h4{
+        h5{
           color: black;
+          font:  sans-serif;
         }
         /* Media query for responsive styles */
         @media screen and (max-width: 768px) {
@@ -50,6 +51,7 @@
               <a href="dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
             </li>
            
+            <h5>MANAGEMENT</h5>
             <li>
               <a href="customer-list.php" class="chart-nav"><i class="fa fa-users nav_icon"></i>Homeowner's Member</a>
             </li>
@@ -82,19 +84,28 @@
               </ul>
               <!-- //nav-second-level -->
             </li>
-           
-        
+            <h5>SECURITY</h5>
+         <!-- Request Maintenance -->
            <li>
-              <a href="readenq.php"><i class="fa fa-bell-o nav_icon"></i>Complaint Report<span class="fa arrow"></span></a>
+              <a href="readenq.php"><i class="fa fa-bell-o nav_icon"></i>Request Maintenance<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
-                <li><a href="readenq.php">Read Complaint</a></li>
-        <li><a href="unreadenq.php">Unread Complaint</a></li>
-               
+                <li><a href="readenq.php">Read Request</a></li>
+                <li><a href="unreadenq.php">Unread Request</a></li>
               </ul>
-              <!-- //nav-second-level -->
             </li>
+
+
+            <li>
+              <a href="read-complaint.php"><i class="fa fa-bell-o nav_icon"></i>Incident Reports<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level collapse">
+                <li><a href="read-complaint.php">Read Incident</a></li>
+                <li><a href="unread-complaint.php">Unread Incident</a></li>
+              </ul>
+            </li>
+
+
            
-             
+            <h5>PAYMENT</h5>
 
             <li>
               <a href="invoices.php"><i class="fa fa-print nav_icon"></i>Invoice<span class=""></span></a>
@@ -106,21 +117,25 @@
             </li>
 
             <li>
+              <a href="bwdates-reports-ds.php"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level collapse">
+                 <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
+                    <li><a href="sales-reports.php">Sales Reports</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+            <li>
               <a href="search-appointment.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Reservation</a>
             </li>
             <li>
               <a href="search-invoices.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Invoice</a>
             </li>
           
-            <li>
-              <a href="sales-reports.php"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level collapse">
-                 <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
-                   
-                    <li><a href="sales-reports.php">Sales Reports</a></li>
-              </ul>
-              <!-- //nav-second-level -->
-            </li>
+           
 
 
           </ul>

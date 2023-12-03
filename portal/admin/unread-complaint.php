@@ -1,20 +1,23 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
+if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{
 
-
+if($_GET['delid']){
+$sid=$_GET['delid'];
+mysqli_query($con,"delete from tblcomplaint where ID ='$sid'");
+echo "<script>alert('Data Deleted');</script>";
+echo "<script>window.location.href='unread-complaint.php'</script>";
+          }
 
   ?>
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Villa Arcadia | Incident</title>
+<title>Villa Arcadia | Unread Incident</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -55,14 +58,45 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-                
 				<div class="tables">
-			
+					<h3 class="title1">Manage Unread Incident</h3>
+					
+					
+				
+					<div class="table-responsive bs-example widget-shadow">
+						<h4>View Complaint:</h4>
+						<table class="table table-bordered"> <thead> <tr>
+                   <th>S.No</th>
+                   <th>Name</th>
+                    <th>Email</th>
+                
+                    <th>Complaint Date</th>
+                     <th>Action</th>
+                  </tr> </thead> <tbody>
+<?php
+$ret=mysqli_query($con,"select * from tblcomplaint where IsRead is null");
+$cnt=1;
+while ($row=mysqli_fetch_array($ret)) {
 
-					<!--content-->
-                    <?php include_once('complaint-include.php');?>
-<!--content-->
-<br><br><br><br><br><br><br>
+?>
+
+						 <tr class="gradeX">
+                 <td><?php echo $cnt;?></td>
+              
+                  <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td>
+                                        <td><?php  echo $row['Email'];?></td>
+                                        <td>
+                                            <span class="badge badge-primary"><?php echo $row['EnquiryDate'];?></span>
+                                        </td>
+                                         <td><a href="view-complaint.php?viewid=<?php echo $row['ID'];?>" class="btn btn-primary">View</a>
+<a href="unread-complaint.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+                </tr>   <?php 
+$cnt=$cnt+1;
+}?></tbody> </table> 
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--footer-->
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->
@@ -92,13 +126,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 	<script src="js/scripts.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
-
-  <script src="js/jquery.nicescroll.js"></script>
-	<script src="js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
-    
 </body>
 </html>
-<?php  } ?>
+<?php }  ?>

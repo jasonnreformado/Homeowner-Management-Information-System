@@ -1,21 +1,20 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
+if (strlen($_SESSION['bpmsaid']==0)) {
   header('location:logout.php');
   } else{
 
-
+$vid=$_GET['viewid'];
+$isread=1;
+$query=mysqli_query($con, "update   tblcomplaint set IsRead ='$isread' where ID='$vid'");
 
   ?>
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Villa Arcadia | Incident</title>
-
+<title>Villa Arcadia | Manage Unread Complaint</title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -55,14 +54,63 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-                
 				<div class="tables">
-			
+					<h3 class="title1">View Complaint</h3>
+					
+					
+				
+					<div class="table-responsive bs-example widget-shadow">
+					
+						 <?php
+             
+$ret=mysqli_query($con,"select * from tblcomplaint where ID=$vid");
+$cnt=1;
+while ($row=mysqli_fetch_array($ret)) {
 
-					<!--content-->
-                    <?php include_once('complaint-include.php');?>
-<!--content-->
-<br><br><br><br><br><br><br>
+?>
+                                 <table class="table table-bordered mg-b-0" style="font-size: 20px;">
+                                   
+                                   <tr style="color: blue;font-size: 30px;text-align: center;" ><td colspan="4">View Complaint</td></tr>
+              
+                <tr>
+    <th>Name</th>
+    <td><?php  echo $row['FirstName']." ".$row['LastName'];?></td>
+    <th>Email</th>
+    <td><?php  echo $row['Email'];?></td>
+  
+                </tr>
+                <tr>
+                	<th>Contact No.</th>
+                	<td><?php  echo $row['Phone'];?></td>
+					
+                	                	<th>Query Date</th>
+                	<td><?php  echo $row['EnquiryDate'];?></td>
+                </tr>
+
+				<tr>
+                	<th>Location    </th>
+                	<td><?php  echo $row['address'];?></td>
+
+                	                	<th>Subject</th>
+                	<td><?php  echo $row['subject'];?></td>
+                </tr>
+
+				<th >Time</th>
+    <td colspan="4"><?php  echo $row['time'];?></td>
+  </tr>
+
+			
+   <th >Message</th>
+    <td colspan="4"><?php  echo $row['Message'];?></td>
+  </tr>
+
+
+
+              </table><?php $cnt=$cnt+1;} ?> 
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--footer-->
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->
@@ -92,13 +140,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 	<script src="js/scripts.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
-
-  <script src="js/jquery.nicescroll.js"></script>
-	<script src="js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
-    
 </body>
 </html>
-<?php  } ?>
+<?php }  ?>
