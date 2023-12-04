@@ -59,18 +59,18 @@ echo "<script>window.location.href='readenq.php'</script>";
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">Manage Read Complaint</h3>
+					<h3 class="title1">Manage Read Maintenance</h3>
 					
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>View Complaint:</h4>
+						<h4>View Maintenance:</h4>
 						<table class="table table-bordered"> <thead> <tr>
                    <th>S.No</th>
                    <th>Name</th>
                     <th>Email</th>
                 
-                    <th>Complaint Date</th>
+                    <th>Maintenance Date</th>
                      <th>Action</th>
                   </tr> </thead> <tbody>
 <?php

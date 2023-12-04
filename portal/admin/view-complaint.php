@@ -55,7 +55,7 @@ $query=mysqli_query($con, "update   tblcomplaint set IsRead ='$isread' where ID=
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">View Complaint</h3>
+					<h3 class="title1">View Incident</h3>
 					
 					
 				
@@ -70,7 +70,7 @@ while ($row=mysqli_fetch_array($ret)) {
 ?>
                                  <table class="table table-bordered mg-b-0" style="font-size: 20px;">
                                    
-                                   <tr style="color: blue;font-size: 30px;text-align: center;" ><td colspan="4">View Complaint</td></tr>
+                                   <tr style="color: blue;font-size: 30px;text-align: center;" ><td colspan="4">View Incident</td></tr>
               
                 <tr>
     <th>Name</th>

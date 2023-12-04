@@ -64,13 +64,13 @@ echo "<script>window.location.href='unread-complaint.php'</script>";
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>View Complaint:</h4>
+						<h4>View Incident:</h4>
 						<table class="table table-bordered"> <thead> <tr>
                    <th>S.No</th>
                    <th>Name</th>
                     <th>Email</th>
                 
-                    <th>Complaint Date</th>
+                    <th>Incident Date</th>
                      <th>Action</th>
                   </tr> </thead> <tbody>
 <?php

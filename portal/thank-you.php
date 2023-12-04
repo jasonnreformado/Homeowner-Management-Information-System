@@ -14,7 +14,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
   <head>
  
 
-    <title>SAM'S SALON AND SPA | Thank You </title>
+    <title>Villa Arcadia | Thank You </title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -47,7 +47,7 @@ $(function () {
             <div class="main-titles-head text-center">
             <h3 class="header-name ">
                 
-Appointment Confirmation
+Reservation Confirmation
             </h3>
         </div>
 </div>
@@ -71,7 +71,7 @@ Appointment Confirmation
             <div>
                 
  
-                    <h4 class="w3ls_head">Thank you for applying. Your Appointment no is <?php echo $_SESSION['aptno'];?> </h4>
+                    <h4 class="w3ls_head">Thank you for applying. Your Reservation no is: <?php echo $_SESSION['aptno'];?> </h4>
                     
        
     </div>

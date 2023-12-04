@@ -59,7 +59,7 @@ echo "<script>window.location.href='unreadenq.php'</script>";
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">Manage Unread Complaint</h3>
+					<h3 class="title1">Manage Unread Maintenance</h3>
 					
 					
 				
@@ -70,7 +70,7 @@ echo "<script>window.location.href='unreadenq.php'</script>";
                    <th>Name</th>
                     <th>Email</th>
                 
-                    <th>Complaint Date</th>
+                    <th>Maintenance Date</th>
                      <th>Action</th>
                   </tr> </thead> <tbody>
 <?php
