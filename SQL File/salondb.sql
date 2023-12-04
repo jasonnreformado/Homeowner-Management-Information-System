@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 07:43 PM
+-- Generation Time: Dec 04, 2023 at 05:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,10 +67,6 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`post_id`, `content`, `is_pinned`) VALUES
 (48, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
 (49, 'Meeting of homeowners maintenance. etc.', 1),
-(52, 'hello', 1),
-(53, 'eqweqwewq', 1),
-(54, 'ewqewq', 1),
-(55, 'eqweqw', 1),
 (56, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
 (57, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
 
@@ -94,10 +90,6 @@ CREATE TABLE `post_files` (
 INSERT INTO `post_files` (`file_id`, `post_id`, `file_path`, `description`) VALUES
 (55, 48, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
 (56, 49, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
-(59, 52, '../uploads/123.jpg', ''),
-(60, 53, '../uploads/image.png', ''),
-(61, 54, '../uploads/image.png', ''),
-(62, 55, '../uploads/image.png', ''),
 (63, 56, '../uploads/image.png', ''),
 (64, 57, '../uploads/image.png', '');
 
@@ -152,8 +144,37 @@ INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTi
 (31, 16, 466193290, '2023-12-02', '02:14:00', '03:14:00', 'court', '2023-12-01 18:14:25', 'ok', 'Approved', '2023-12-01 18:14:46'),
 (32, 16, 230379758, '2023-12-03', '16:19:00', '17:19:00', 'clubhouse', '2023-12-01 18:19:09', 'ok', 'Approved', '2023-12-01 18:19:46'),
 (33, 16, 952136221, '2023-12-02', '02:22:00', '03:23:00', 'test', '2023-12-01 18:22:35', 'ewqe', 'Approved', '2023-12-01 18:23:02'),
-(34, 16, 842304900, '2023-12-02', '05:22:00', '09:23:00', 'sample', '2023-12-01 18:35:34', NULL, NULL, NULL),
-(35, 16, 709896363, '2023-12-02', '05:22:00', '12:23:00', 'testt', '2023-12-01 18:47:22', 'ewew', 'Rejected', '2023-12-01 18:47:33');
+(34, 16, 842304900, '2023-12-02', '05:22:00', '09:23:00', 'sample', '2023-12-01 18:35:34', 'no', 'Rejected', '2023-12-03 04:52:40'),
+(35, 16, 709896363, '2023-12-02', '05:22:00', '12:23:00', 'testt', '2023-12-01 18:47:22', 'ewew', 'Rejected', '2023-12-01 18:47:33'),
+(36, 16, 969874576, '2023-12-03', '12:51:00', '13:52:00', 'basketball court', '2023-12-03 04:51:54', 'ok', 'Approved', '2023-12-03 04:52:22'),
+(37, 17, 570688884, '2023-12-04', '14:56:00', '16:56:00', 'Club House', '2023-12-04 06:56:28', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcomplaint`
+--
+
+CREATE TABLE `tblcomplaint` (
+  `ID` int(10) NOT NULL,
+  `FirstName` varchar(200) DEFAULT NULL,
+  `LastName` varchar(200) DEFAULT NULL,
+  `Phone` bigint(10) DEFAULT NULL,
+  `Email` varchar(200) DEFAULT NULL,
+  `Message` mediumtext DEFAULT NULL,
+  `EnquiryDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `IsRead` int(5) DEFAULT NULL,
+  `address` varchar(225) NOT NULL,
+  `subject` varchar(30) NOT NULL,
+  `time` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblcomplaint`
+--
+
+INSERT INTO `tblcomplaint` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`, `time`) VALUES
+(34, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'may batang nasagasaan', '2023-12-03 11:46:35', 1, 'sa tabi ng court', 'car accident', '19:45:00');
 
 -- --------------------------------------------------------
 
@@ -171,22 +192,16 @@ CREATE TABLE `tblcontact` (
   `EnquiryDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `IsRead` int(5) DEFAULT NULL,
   `address` varchar(225) NOT NULL,
-  `subject` varchar(30) NOT NULL
+  `subject` varchar(30) NOT NULL,
+  `time` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblcontact`
 --
 
-INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`) VALUES
-(21, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'May namatay', '2023-12-01 13:49:04', 1, 'Block 4 Lot 5', 'Incident'),
-(22, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'may nag park sa gate namin ', '2023-12-01 18:58:42', 1, 'Block 4 Lot 5', 'Illegal Parking'),
-(23, 'JASON', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'mabaho sa court', '2023-12-02 13:07:18', 1, 'Block 4 Lot 5', 'issue'),
-(24, 'Joana', 'Capawa', 928846512, 'joanamarie.capawa@gmail.com', 'tt', '2023-12-02 13:15:25', 1, 'Block 4 Lot 5', 'note'),
-(25, 'Jason', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ee', '2023-12-02 13:15:55', NULL, 'Block 4 Lot 5', 'note'),
-(26, 'Jason', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ee', '2023-12-02 13:16:27', NULL, 'Block 4 Lot 5', 'note'),
-(27, 'JASON', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ewqeqwe', '2023-12-02 13:17:01', 1, 'Block 4 Lot 5', 'note'),
-(28, 'tae', 'tae', 928846512, 'joanamarie.capawa@gmail.com', 'tae', '2023-12-02 13:17:39', 1, 'Block 4 Lot 5', 'tae');
+INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`, `time`) VALUES
+(34, 'Jason', 'Reformado', 925458136, 'reformado@gmail.com', 'may tagas ng tubo sa loob ng bahay namin', '2023-12-03 11:50:35', 1, 'Block 4 Lot 5', 'Water', '19:50:00');
 
 -- --------------------------------------------------------
 
@@ -237,7 +252,6 @@ INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate
 (43, 12, 22, 706237760, '2023-11-30 10:10:09'),
 (44, 12, 1, 332387267, '2023-11-30 13:30:54'),
 (45, 12, 18, 681041496, '2023-11-30 15:21:44'),
-(67, 16, 25, 544848683, '2023-12-02 12:13:56'),
 (68, 16, 25, 953797329, '2023-12-02 12:14:01'),
 (69, 16, 26, 953797329, '2023-12-02 12:14:01'),
 (70, 16, 27, 101654731, '2023-12-02 12:14:09'),
@@ -257,9 +271,10 @@ INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate
 (84, 17, 30, 846154581, '2023-12-02 12:55:25'),
 (85, 16, 26, 545162856, '2023-12-02 13:01:34'),
 (86, 17, 25, 281744625, '2023-12-02 13:01:48'),
-(87, 16, 25, 484010820, '2023-12-02 13:19:23'),
-(88, 16, 26, 198332598, '2023-12-02 13:21:19'),
-(89, 17, 25, 809348391, '2023-12-02 13:21:29');
+(89, 17, 25, 809348391, '2023-12-02 13:21:29'),
+(92, 16, 25, 209442354, '2023-12-03 17:32:50'),
+(93, 16, 26, 209442354, '2023-12-03 17:32:50'),
+(94, 17, 27, 594394863, '2023-12-04 06:59:56');
 
 -- --------------------------------------------------------
 
@@ -311,7 +326,8 @@ INSERT INTO `tblservices` (`ID`, `ServiceName`, `ServiceDescription`, `Cost`, `I
 (27, 'Club House', 'Reservation', 400, 'b424718fec0f3d87f770ea20442528411701504672.jpg', '2023-12-02 08:11:12'),
 (28, 'Basketball', 'Reservation', 150, 'b424718fec0f3d87f770ea20442528411701504697.jpg', '2023-12-02 08:11:37'),
 (29, 'Chairs', 'Borrow', 200, 'b424718fec0f3d87f770ea20442528411701504735.jpg', '2023-12-02 08:12:15'),
-(30, 'Table', 'Borrow', 100, 'b424718fec0f3d87f770ea20442528411701505108.jpg', '2023-12-02 08:18:28');
+(30, 'Table', 'Borrow', 100, 'b424718fec0f3d87f770ea20442528411701505108.jpg', '2023-12-02 08:18:28'),
+(31, 'Monthly Rent', 'Bill', 4500, '6e8024ec26c292f258ec30f01e0392dc1701585739.png', '2023-12-03 06:42:19');
 
 -- --------------------------------------------------------
 
@@ -376,6 +392,12 @@ ALTER TABLE `tblbook`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `tblcomplaint`
+--
+ALTER TABLE `tblcomplaint`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `tblcontact`
 --
 ALTER TABLE `tblcontact`
@@ -421,13 +443,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `post_files`
 --
 ALTER TABLE `post_files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `tbladmin`
@@ -439,19 +461,25 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbook`
 --
 ALTER TABLE `tblbook`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `tblcomplaint`
+--
+ALTER TABLE `tblcomplaint`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tblcontact`
 --
 ALTER TABLE `tblcontact`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -463,13 +491,13 @@ ALTER TABLE `tblpage`
 -- AUTO_INCREMENT for table `tblservices`
 --
 ALTER TABLE `tblservices`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
