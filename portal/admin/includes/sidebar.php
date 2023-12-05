@@ -51,7 +51,7 @@
               <a href="dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
             </li>
            
-            <h5>MANAGEMENT</h5>
+    
             <li>
               <a href="customer-list.php" class="chart-nav"><i class="fa fa-users nav_icon"></i>Homeowner's Member</a>
             </li>
@@ -84,7 +84,7 @@
               </ul>
               <!-- //nav-second-level -->
             </li>
-            <h5>SECURITY</h5>
+
          <!-- Request Maintenance -->
            <li>
               <a href="readenq.php"><i class="fa fa-bell-o nav_icon"></i>Request Maintenance<span class="fa arrow"></span></a>
@@ -105,7 +105,7 @@
 
 
            
-            <h5>PAYMENT</h5>
+
 
             <li>
               <a href="invoices.php"><i class="fa fa-print nav_icon"></i>Invoice<span class=""></span></a>

@@ -11,6 +11,7 @@ if(isset($_POST['submit']))
     $contno=$_POST['mobilenumber'];
     $email=$_POST['email'];
     $address=$_POST['address'];
+    $status=$_POST['status'];
     $password=md5($_POST['password']);
 
     $ret=mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNumber='$contno'");
@@ -20,7 +21,7 @@ if(isset($_POST['submit']))
 echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
     }
     else{
-    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address, Password) value('$fname', '$lname','$contno', '$email', '$address', '$password' )");
+    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address,status, Password) value('$fname', '$lname','$contno', '$email', '$address','$status', '$password' )");
     if ($query) {
     
     echo "<script>alert('You have successfully registered.');</script>";
@@ -38,7 +39,7 @@ echo "<script>alert('This email or Contact Number already associated with anothe
   <head>
  
 
-    <title>SAM'S SALON AND SPA | Signup Page</title>
+    <title>Villa Arcadia | Signup Page</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -103,7 +104,7 @@ return true;
                   
                <?php     ?> </div>
                 <div class="map-content-9 mt-lg-0 mt-4">
-                    <h3>Register with us!!</h3>
+                    <h3>Create Profiles</h3>
                     <form method="post" name="signup" onsubmit="return checkpass();">
 
                         <div style="padding-top: 30px;">
@@ -123,6 +124,11 @@ return true;
                         <div style="padding-top: 30px;">
                             <label>Address</label>
                             <input type="text" class="form-control" class="form-control" placeholder="Address" required="" name="address">
+                        </div>
+
+                        <div style="padding-top: 30px;">
+                            <label>Status</label>
+                            <input type="text" class="form-control" class="form-control" placeholder="Status" required="" name="status">
                         </div>
                         
                          <div style="padding-top: 30px;">

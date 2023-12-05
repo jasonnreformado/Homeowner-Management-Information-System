@@ -111,6 +111,11 @@ while ($row=mysqli_fetch_array($ret)) {
                             <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
                         </div>
 
+						<div style="padding-top: 30px;">
+                            <label>Status</label>
+                            <input type="text" class="form-control" name="status" value="<?php  echo $row['status'];?>"  readonly="true">
+                        </div>
+
 						
                          <div style="padding-top: 30px;">
                             <label>Registration Date</label>
