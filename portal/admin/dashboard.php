@@ -256,12 +256,15 @@ endif;
 					</div>
 					<div class="clearfix"> </div>	
 				</div>
-						
+			
 					</div>
+					<br>
+					<?php include_once('linechart.php');?>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
+
 		<!--footer-->
 		<?php include_once('includes/footer.php');?>
         <!--//footer-->

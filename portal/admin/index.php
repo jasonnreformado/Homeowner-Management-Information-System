@@ -56,7 +56,7 @@ if(isset($_POST['login']))
 	<div class="main-content">
 		
 		<!-- main content start-->
-		<div style="background-image: url('assets/img/aa.jpg'); background-size: cover; height: 930px;">
+		<div style="background-image: url('assets/img/image.png'); background-size: cover; height: 930px;">
     <div class="main-page login-page">
 			<br><br><br><br><br><br><br><br><br>
 				<div class="widget-shadow">
