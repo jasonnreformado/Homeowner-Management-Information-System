@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 05:16 PM
+-- Generation Time: Dec 05, 2023 at 06:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,8 +67,7 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`post_id`, `content`, `is_pinned`) VALUES
 (48, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
 (49, 'Meeting of homeowners maintenance. etc.', 1),
-(56, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
-(57, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
+(56, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
 
 -- --------------------------------------------------------
 
@@ -90,8 +89,7 @@ CREATE TABLE `post_files` (
 INSERT INTO `post_files` (`file_id`, `post_id`, `file_path`, `description`) VALUES
 (55, 48, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
 (56, 49, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
-(63, 56, '../uploads/image.png', ''),
-(64, 57, '../uploads/image.png', '');
+(63, 56, '../uploads/image.png', '');
 
 -- --------------------------------------------------------
 
@@ -222,59 +220,8 @@ CREATE TABLE `tblinvoice` (
 --
 
 INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate`) VALUES
-(1, 1, 1, 138889283, '2022-10-20 11:42:21'),
-(2, 2, 2, 138889283, '2022-10-22 11:42:21'),
-(3, 3, 3, 138889283, '2022-10-25 11:42:21'),
-(4, 4, 4, 555850701, '2022-10-30 11:42:51'),
-(20, 1, 1, 953015659, '2023-11-29 15:09:01'),
-(21, 1, 1, 773500003, '2023-11-30 07:49:40'),
-(22, 1, 2, 773500003, '2023-11-30 07:49:40'),
-(23, 1, 3, 773500003, '2023-11-30 07:49:40'),
-(24, 12, 1, 566447019, '2023-11-30 07:49:58'),
-(25, 12, 2, 566447019, '2023-11-30 07:49:58'),
-(26, 12, 3, 566447019, '2023-11-30 07:49:58'),
-(27, 12, 4, 566447019, '2023-11-30 07:49:58'),
-(28, 12, 5, 566447019, '2023-11-30 07:49:58'),
-(29, 12, 6, 566447019, '2023-11-30 07:49:58'),
-(30, 12, 1, 255558552, '2023-11-30 08:05:39'),
-(31, 13, 18, 896265662, '2023-11-30 09:48:01'),
-(32, 12, 1, 518140448, '2023-11-30 10:10:09'),
-(33, 12, 18, 518140448, '2023-11-30 10:10:09'),
-(34, 12, 19, 518140448, '2023-11-30 10:10:09'),
-(35, 12, 20, 518140448, '2023-11-30 10:10:09'),
-(36, 12, 21, 518140448, '2023-11-30 10:10:09'),
-(37, 12, 22, 518140448, '2023-11-30 10:10:09'),
-(38, 12, 1, 706237760, '2023-11-30 10:10:09'),
-(39, 12, 18, 706237760, '2023-11-30 10:10:09'),
-(40, 12, 19, 706237760, '2023-11-30 10:10:09'),
-(41, 12, 20, 706237760, '2023-11-30 10:10:09'),
-(42, 12, 21, 706237760, '2023-11-30 10:10:09'),
-(43, 12, 22, 706237760, '2023-11-30 10:10:09'),
-(44, 12, 1, 332387267, '2023-11-30 13:30:54'),
-(45, 12, 18, 681041496, '2023-11-30 15:21:44'),
-(68, 16, 25, 953797329, '2023-12-02 12:14:01'),
-(69, 16, 26, 953797329, '2023-12-02 12:14:01'),
-(70, 16, 27, 101654731, '2023-12-02 12:14:09'),
-(71, 16, 29, 101654731, '2023-12-02 12:14:09'),
-(72, 16, 30, 101654731, '2023-12-02 12:14:09'),
-(73, 16, 25, 356474633, '2023-12-02 12:24:19'),
-(74, 17, 25, 554545063, '2023-12-02 12:42:56'),
-(75, 17, 26, 554545063, '2023-12-02 12:42:56'),
-(76, 17, 27, 554545063, '2023-12-02 12:42:56'),
-(77, 17, 28, 554545063, '2023-12-02 12:42:56'),
-(78, 17, 29, 554545063, '2023-12-02 12:42:56'),
-(79, 17, 30, 554545063, '2023-12-02 12:42:56'),
-(80, 17, 25, 544423277, '2023-12-02 12:55:14'),
-(81, 17, 26, 914579991, '2023-12-02 12:55:19'),
-(82, 17, 27, 914579991, '2023-12-02 12:55:19'),
-(83, 17, 29, 846154581, '2023-12-02 12:55:25'),
-(84, 17, 30, 846154581, '2023-12-02 12:55:25'),
-(85, 16, 26, 545162856, '2023-12-02 13:01:34'),
-(86, 17, 25, 281744625, '2023-12-02 13:01:48'),
-(89, 17, 25, 809348391, '2023-12-02 13:21:29'),
-(92, 16, 25, 209442354, '2023-12-03 17:32:50'),
-(93, 16, 26, 209442354, '2023-12-03 17:32:50'),
-(94, 17, 27, 594394863, '2023-12-04 06:59:56');
+(95, 16, 25, 151961585, '2023-12-05 15:37:20'),
+(96, 16, 26, 151961585, '2023-12-05 15:37:20');
 
 -- --------------------------------------------------------
 
@@ -299,7 +246,7 @@ CREATE TABLE `tblpage` (
 
 INSERT INTO `tblpage` (`ID`, `PageType`, `PageTitle`, `PageDescription`, `Email`, `MobileNumber`, `UpdationDate`, `Timing`) VALUES
 (1, 'aboutus', 'About Us', 'Our main focus is on quality and hygiene. Our Parlour is well equipped with advanced technology equipments and provides best quality services. Our staff is well trained and experienced, offering advanced services in Skin, Hair and Body Shaping that will provide you with a luxurious experience that leave you feeling relaxed and stress free. The specialities in the parlour are, apart from regular bleachings and Facials, many types of hairstyles, Bridal and cine make-up and different types of Facials &amp; fashion hair colourings.', NULL, NULL, NULL, ''),
-(2, 'contactus', 'Contact Us', 'Palo Alto, Habay I Bacoor City, Cavite', 'salon@gmail.com', 9363622667, NULL, '9:30 am to 7:30 pm');
+(2, 'contactus', 'Contact Us', 'Villa Arcadia, Imus, Cavite', 'Villa.Arcadia@gmail.com', 9363622667, NULL, '9:30 am to 7:30 pm');
 
 -- --------------------------------------------------------
 
@@ -327,7 +274,8 @@ INSERT INTO `tblservices` (`ID`, `ServiceName`, `ServiceDescription`, `Cost`, `I
 (28, 'Basketball', 'Reservation', 150, 'b424718fec0f3d87f770ea20442528411701504697.jpg', '2023-12-02 08:11:37'),
 (29, 'Chairs', 'Borrow', 200, 'b424718fec0f3d87f770ea20442528411701504735.jpg', '2023-12-02 08:12:15'),
 (30, 'Table', 'Borrow', 100, 'b424718fec0f3d87f770ea20442528411701505108.jpg', '2023-12-02 08:18:28'),
-(31, 'Monthly Rent', 'Bill', 4500, '6e8024ec26c292f258ec30f01e0392dc1701585739.png', '2023-12-03 06:42:19');
+(31, 'Monthly Rent', 'Bill', 4500, '6e8024ec26c292f258ec30f01e0392dc1701585739.png', '2023-12-03 06:42:19'),
+(32, 'Maintenance', 'Support', 100, 'e2abfbb81043fe33cef26c48e14bdb5d1701782802.jpg', '2023-12-05 13:26:42');
 
 -- --------------------------------------------------------
 
@@ -344,17 +292,18 @@ CREATE TABLE `tbluser` (
   `Password` varchar(120) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT current_timestamp(),
   `address` varchar(225) NOT NULL,
-  `numplp` int(10) NOT NULL
+  `status` varchar(225) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `numplp`) VALUES
-(16, 'Jason', 'Reformado', 945263815, 'reformado@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-01 05:23:13', 'Block 4 Lot 5', 0),
-(17, 'Joana Marie', 'Capawa', 946843132, 'joanamarie.capawa@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:23:55', 'Block 4 Lot 5', 0),
-(18, 'Juan', 'Dela Cruz', 968735413, 'Juandelacruz@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:24:34', 'Block 10 Lot 6', 0);
+INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`) VALUES
+(16, 'Jason', 'Reformado', 945263815, 'reformado@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:23:13', 'Block 4 Lot 5', 'Owner'),
+(17, 'Joana Marie', 'Capawa', 946843132, 'joanamarie.capawa@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:23:55', 'Block 4 Lot 5', 'Owner'),
+(18, 'Juan', 'Dela Cruz', 968735413, 'Juandelacruz@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:24:34', 'Block 10 Lot 6', 'Renter'),
+(20, 'Wilfred', 'Delos Reyes', 946843322, 'delosreyes@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Renter');
 
 --
 -- Indexes for dumped tables
@@ -479,7 +428,7 @@ ALTER TABLE `tblcontact`
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -491,13 +440,13 @@ ALTER TABLE `tblpage`
 -- AUTO_INCREMENT for table `tblservices`
 --
 ALTER TABLE `tblservices`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
