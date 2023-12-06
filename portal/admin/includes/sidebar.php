@@ -128,13 +128,7 @@
 
 
 
-            <li>
-              <a href="search-appointment.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Reservation</a>
-            </li>
-            <li>
-              <a href="search-invoices.php" class="chart-nav"><i class="fa fa-search nav_icon"></i>Search Invoice</a>
-            </li>
-          
+           
            
 
 

@@ -97,7 +97,7 @@ button#showLeftPush:hover {
     height: 100%;
     top: 95px;
     z-index: 1000;
-    background-color:#9e469e;
+    background-color:#478f3f;
 	padding: 2em 0;
 }
 .cbp-spmenu-left {
@@ -228,7 +228,7 @@ ul.dropdown-menu{
     font-weight: 700;
 }
 .logo a span {
-    color: rgb(219, 102, 215);
+    color: rgb(102, 219, 112);
     font-size: 1.7em;
     text-align: center;
     letter-spacing: 7px;
@@ -840,7 +840,7 @@ ul.dropdown-menu.drp-mnu li {
 .stats-left {
     float: left;
     width: 70%;
-    background-color: rgb(175, 93, 161);
+    background-color: rgb(49, 141, 57);
 	text-align: center;
 	padding: 1em;
 }
@@ -861,7 +861,7 @@ ul.dropdown-menu.drp-mnu li {
     width: 30%;
     text-align: center;
 	padding: 1.54em 1em;
-	background-color: rgb(151, 69, 146);
+	background-color:rgb(36, 112, 42);
 }
 .stats-left h5 {
     color: #fff;

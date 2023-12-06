@@ -31,6 +31,22 @@ if(isset($_POST['login']))
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+   <style>
+       nav {
+  background-color: #006400;
+    text-align: right;
+}
+
+nav a {
+    display: inline-block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #fff;
+}
+h2 {
+    text-align: center;
+}
+   </style>
   </head>
   <body id="home">
 
@@ -50,29 +66,16 @@ $(function () {
 <!-- disable body scroll which navbar is in active -->
 
 <!-- breadcrumbs -->
-<section class="w3l-inner-banner-main">
-    <div class="about-inner contact ">
-        <div class="container">   
-            <div class="main-titles-head text-center">
-            <h3 class="header-name ">
-                
- Login Page
-            </h3>
-        </div>
-</div>
-</div>
-<div class="breadcrumbs-sub">
-<div class="container">   
-<ul class="breadcrumbs-custom-path">
-    <li class="right-side propClone"><a href="user/index.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
-    <li class="active ">
-        Login</li>
-</ul>
-</div>
-</div>
-    </div>
-</section>
+<nav>
+        <a href="user/index.php">Home</a>
+        <a href="user/faqs.php">FAQs</a>
+        <a href="user/officer.php">Officer</a>
+    
+        </a>
+    </nav>
 <!-- breadcrumbs //-->
+<br><br>
+<h2>User Login</h2>
 <section class="w3l-contact-info-main" id="contact">
     <div class="contact-sec	">
         <div class="container">
@@ -144,8 +147,9 @@ while ($row=mysqli_fetch_array($ret)) {
     </div>
    
     </div></div>
+    
 </section>
-<?php include_once('includes/footer.php');?>
+
 <!-- move top -->
 <button onclick="topFunction()" id="movetop" title="Go to top">
 	<span class="fa fa-long-arrow-up"></span>
