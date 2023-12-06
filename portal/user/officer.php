@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="">
     <style>
         /* styles.css */
-   
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -32,24 +32,25 @@ nav a {
     /* Style the officers section */
 .officers {
   display: flex;
+  flex-wrap: wrap; /* Allow officers to wrap to the next line on small screens */
   justify-content: space-around;
   align-items: center;
-  padding: 40px;
+  padding: 20px;
 }
 
 .officer {
   text-align: center;
   margin: 10px;
-  padding: 130px;
+  padding: 40px; /* Reduced padding for small screens */
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust the width based on your design */
 }
 
 .officer-img {
   width: 150px;
   height: 150px;
-  background-image: url('officer-image.jpg');
   background-size: cover;
   background-position: center;
   border-radius: 50%;
@@ -94,8 +95,6 @@ nav a {
   transition: color 0.3s ease-in-out;
 }
 
-
-
 /* Add animation for officer position on hover */
 .officer:hover .officer-info {
   transform: translateX(0);
@@ -122,6 +121,17 @@ body.loaded {
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 600px) {
+  .officers {
+    padding: 10px; /* Adjust padding for small screens */
+  }
+
+  .officer {
+    width: 100%; /* Full width for small screens */
   }
 }
 </style>
@@ -204,5 +214,13 @@ window.addEventListener('load', () => {
   body.classList.add('loaded');
 });
 </script>
+
+<script>
+    // Wait for the page to fully load
+    window.addEventListener('load', () => {
+      const body = document.querySelector('body');
+      body.classList.add('loaded');
+    });
+    </script>
 </body>
 </html>
