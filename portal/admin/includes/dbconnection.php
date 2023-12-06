@@ -1,5 +1,5 @@
 <?php
-$con=mysqli_connect("localhost", "root", "", "vaddb");
+$con=mysqli_connect("localhost", "root", "", "vasdb");
 if(mysqli_connect_errno()){
 echo "Connection Fail".mysqli_connect_error();
 }

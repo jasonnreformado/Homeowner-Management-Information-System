@@ -4,7 +4,7 @@ $dbConfig = array(
     'host' => 'localhost', // Change to your database host
     'username' => 'root', // Change to your database username
     'password' => '', // Change to your database password
-    'database' => 'vaddb' // Change to your database name
+    'database' => 'vasdb' // Change to your database name
 );
 
 // Create a database connection
