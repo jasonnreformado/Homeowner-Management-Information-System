@@ -120,7 +120,7 @@
               <a href="bwdates-reports-ds.php"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                  <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
-                    <li><a href="sales-reports.php">Sales Reports</a></li>
+                    <li><a href="sales-reports.php">Reports</a></li>
               </ul>
             </li>
 

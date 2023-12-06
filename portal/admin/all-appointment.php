@@ -59,12 +59,12 @@ echo "<script>window.location.href='all-appointment.php'</script>";
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">All Appointment</h3>
+					<h3 class="title1">All Reservation</h3>
 					
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>All Appointment:</h4>
+						<h4>All Reservation:</h4>
 						<table class="table table-bordered"> <thead> <tr> <th>#</th> 
 							<th> Reservation Number</th> 
 							<th>Name</th><th>Contact #</th> 
