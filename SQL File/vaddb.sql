@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 06:19 PM
+-- Generation Time: Dec 06, 2023 at 03:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
+  `first_name` varchar(30) DEFAULT NULL,
   `last_name` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `age` int(11) NOT NULL,
@@ -145,7 +145,7 @@ INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTi
 (34, 16, 842304900, '2023-12-02', '05:22:00', '09:23:00', 'sample', '2023-12-01 18:35:34', 'no', 'Rejected', '2023-12-03 04:52:40'),
 (35, 16, 709896363, '2023-12-02', '05:22:00', '12:23:00', 'testt', '2023-12-01 18:47:22', 'ewew', 'Rejected', '2023-12-01 18:47:33'),
 (36, 16, 969874576, '2023-12-03', '12:51:00', '13:52:00', 'basketball court', '2023-12-03 04:51:54', 'ok', 'Approved', '2023-12-03 04:52:22'),
-(37, 17, 570688884, '2023-12-04', '14:56:00', '16:56:00', 'Club House', '2023-12-04 06:56:28', NULL, NULL, NULL);
+(37, 17, 570688884, '2023-12-04', '14:56:00', '16:56:00', 'Club House', '2023-12-04 06:56:28', 'no available!', 'Rejected', '2023-12-06 05:11:34');
 
 -- --------------------------------------------------------
 
@@ -172,7 +172,8 @@ CREATE TABLE `tblcomplaint` (
 --
 
 INSERT INTO `tblcomplaint` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`, `time`) VALUES
-(34, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'may batang nasagasaan', '2023-12-03 11:46:35', 1, 'sa tabi ng court', 'car accident', '19:45:00');
+(34, 'Jason', 'Reformado', 928846512, 'reformado@gmail.com', 'may batang nasagasaan', '2023-12-03 11:46:35', 1, 'sa tabi ng court', 'car accident', '19:45:00'),
+(35, 'JASON', 'REFORMADO', 928846512, 'joanamarie.capawa@gmail.com', 'ewqeqwe', '2023-12-06 05:51:47', NULL, 'BACOOR CAVITE', 'note', '13:51:00');
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,9 @@ CREATE TABLE `tblinvoice` (
 
 INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate`) VALUES
 (95, 16, 25, 151961585, '2023-12-05 15:37:20'),
-(96, 16, 26, 151961585, '2023-12-05 15:37:20');
+(96, 16, 26, 151961585, '2023-12-05 15:37:20'),
+(97, 16, 27, 840983880, '2023-12-06 11:21:13'),
+(98, 16, 27, 287399920, '2023-12-06 12:28:25');
 
 -- --------------------------------------------------------
 
@@ -246,7 +249,7 @@ CREATE TABLE `tblpage` (
 
 INSERT INTO `tblpage` (`ID`, `PageType`, `PageTitle`, `PageDescription`, `Email`, `MobileNumber`, `UpdationDate`, `Timing`) VALUES
 (1, 'aboutus', 'About Us', 'Our main focus is on quality and hygiene. Our Parlour is well equipped with advanced technology equipments and provides best quality services. Our staff is well trained and experienced, offering advanced services in Skin, Hair and Body Shaping that will provide you with a luxurious experience that leave you feeling relaxed and stress free. The specialities in the parlour are, apart from regular bleachings and Facials, many types of hairstyles, Bridal and cine make-up and different types of Facials &amp; fashion hair colourings.', NULL, NULL, NULL, ''),
-(2, 'contactus', 'Contact Us', 'Villa Arcadia, Imus, Cavite', 'Villa.Arcadia@gmail.com', 9363622667, NULL, '9:30 am to 7:30 pm');
+(2, 'contactus', 'Contact Us', '        Villa Arcadia, Imus, Cavite', 'villa.arcadia@yopmail.com', 9363622667, NULL, '9:30 am to 7:30 pm');
 
 -- --------------------------------------------------------
 
@@ -392,13 +395,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `post_files`
 --
 ALTER TABLE `post_files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `tbladmin`
@@ -416,7 +419,7 @@ ALTER TABLE `tblbook`
 -- AUTO_INCREMENT for table `tblcomplaint`
 --
 ALTER TABLE `tblcomplaint`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tblcontact`
@@ -428,7 +431,7 @@ ALTER TABLE `tblcontact`
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -446,7 +449,7 @@ ALTER TABLE `tblservices`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
