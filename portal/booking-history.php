@@ -73,6 +73,7 @@ $(function () {
                                 <th>Start Time</th>
                                 <th>End Time</th>
                                 <th>Message</th>
+                                <th>Remarks</th>
                                 <th>Status</th>
                                 <th>Action</th>
                                 </tr>
@@ -82,7 +83,7 @@ $(function () {
                                 <tr>
                                     <?php
                                    $userid= $_SESSION['bpmsuid'];
- $query=mysqli_query($con,"select tbluser.ID as uid, tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tbluser.ID='$userid'");
+ $query=mysqli_query($con,"select tbluser.ID as uid, tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.Remark,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tbluser.ID='$userid'");
 $cnt=1;
               while($row=mysqli_fetch_array($query))
               { ?>
@@ -93,6 +94,7 @@ $cnt=1;
 <td><?php echo $row['AptTime']?></td> 
 <td><?php echo $row['endTime']?></td> 
 <td><?php echo $row['Message']?></td> 
+<td><?php echo $row['Remark']?></td> 
 <td><?php $status=$row['Status'];
 if($status==''){
  echo "Waiting for confirmation";   

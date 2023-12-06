@@ -109,6 +109,11 @@ while ($row=mysqli_fetch_array($ret)) {
     <th>Message</th>
     <td><?php  echo $row['Message'];?></td>
   </tr>
+
+  <tr>
+    <th>Remarks</th>
+    <td><?php  echo $row['Remark'];?></td>
+  </tr>
   
   
   <tr>

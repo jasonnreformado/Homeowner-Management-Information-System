@@ -67,6 +67,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 $totalcust=mysqli_num_rows($query1);
 ?>
 						<div class="stats-left ">
+							<h5></h5>
 							<h5>Total</h5>
 							<h4>Homeowners</h4>
 						</div>
@@ -75,13 +76,15 @@ $totalcust=mysqli_num_rows($query1);
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
+
+
 					<div class="col-md-4 widget states-mdl">
 						<?php $query2=mysqli_query($con,"Select * from tblbook");
 $totalappointment=mysqli_num_rows($query2);
 ?>
 						<div class="stats-left">
-							<h5>Total</h5>
-							<h4>Appointment</h4>
+						<h5>Book</h5>
+							<h4>Reservation</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalappointment;?></label>
@@ -90,53 +93,8 @@ $totalappointment=mysqli_num_rows($query2);
 					</div>
 
 					<div class="col-md-4 widget states-last">
-						<?php $query3=mysqli_query($con,"Select * from tblbook where Status='Approved'");
-$totalaccapt=mysqli_num_rows($query3);
-?>
-						<div class="stats-left">
-							<h5>Total</h5>
-							<h4>Accepted Apt</h4>
-						</div>
-						<div class="stats-right">
-							<label><?php echo $totalaccapt;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="clearfix"> </div>	
-				</div>
-						</div>
+					<?php
 
-				<div class="row calender widget-shadow">
-					<div class="row-one">
-					<div class="col-md-4 widget">
-						<?php $query4=mysqli_query($con,"Select * from tblbook where Status='Rejected'");
-$totalrejapt=mysqli_num_rows($query4);
-?>
-						<div class="stats-left ">
-							<h5>Total</h5>
-							<h4>Rejected Apt</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalrejapt;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="col-md-4 widget states-mdl">
-						<?php $query5=mysqli_query($con,"Select * from  tblservices");
-$totalser=mysqli_num_rows($query5);
-?>
-						<div class="stats-left">
-							<h5>Total</h5>
-							<h4>Category</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalser;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="col-md-4 widget states-last">
-						<?php
-//todays sale
  $query6=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE();");
@@ -160,6 +118,76 @@ else:
 endif;
 						?></label>
 						</div>
+						
+				
+
+						
+					</div>
+				</div>
+						</div>
+
+				<div class="row calender widget-shadow">
+					<div class="row-one">
+					<div class="col-md-4 widget">
+					<?php $query5=mysqli_query($con,"Select * from  employees");
+$totalser=mysqli_num_rows($query5);
+?>
+						<div class="stats-left">
+						<h5>Total</h5>
+							<h4>Officer</h4>
+						</div>
+						<div class="stats-right">
+							<label> <?php echo $totalser;?></label>
+						</div>
+						<div class="clearfix"> </div>	
+					</div>
+
+
+
+					<div class="col-md-4 widget states-mdl">
+					<?php $query3=mysqli_query($con,"Select * from tblbook where Status='Approved'");
+$totalaccapt=mysqli_num_rows($query3);
+?>
+						<div class="stats-left">
+						<h5>Total</h5>
+							<h4>Accepted</h4>
+						</div>
+
+						<div class="stats-right">
+							<label><?php echo $totalaccapt;?></label>
+						</div>
+						<div class="clearfix"> </div>	
+					</div>
+
+
+					
+						<!-- today-->	
+					<div class="col-md-4 widget states-last">
+					<?php
+
+$query7=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
+from tblinvoice 
+ join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE()-1;");
+while($row7=mysqli_fetch_array($query7))
+{
+$yesterdays_sale=$row7['Cost'];
+$yesterdaysale+=$yesterdays_sale;
+
+}
+?>
+					   <div class="stats-left ">
+						   <h5>Yesterday</h5>
+						   <h4>Collection</h4>
+					   </div>
+					   <div class="stats-right">
+						   <label> <?php 
+if($yesterdaysale==""):
+						   echo "0";
+else:
+   echo $yesterdaysale;
+endif;
+					   ?></label>
+					   </div>
 						<div class="clearfix"> </div>	
 					</div>
 					<div class="clearfix"> </div>	
@@ -167,67 +195,53 @@ endif;
 						
 					</div>
 
+
+
+	<!-- yersterday -->
 				<div class="row calender widget-shadow">
 					<div class="row-one">
 					<div class="col-md-4 widget">
-						<?php
-//Yesterday's sale
- $query7=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
- from tblinvoice 
-  join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE()-1;");
-while($row7=mysqli_fetch_array($query7))
-{
-$yesterdays_sale=$row7['Cost'];
-$yesterdaysale+=$yesterdays_sale;
-
-}
- ?>
-						<div class="stats-left ">
-							<h5>Yesterday</h5>
-							<h4>Collection</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php 
-if($yesterdaysale==""):
-							echo "0";
-else:
-	echo $yesterdaysale;
-endif;
-						?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="col-md-4 widget states-mdl">
-						<?php
-//Last Sevendays Sale
- $query8=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
- from tblinvoice 
-  join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)>=(DATE(NOW()) - INTERVAL 7 DAY);");
-while($row8=mysqli_fetch_array($query8))
-{
-$sevendays_sale=$row8['Cost'];
-$tseven+=$sevendays_sale;
-
-}
- ?>
+					<?php $query5=mysqli_query($con,"Select * from  tblservices");
+$totalser=mysqli_num_rows($query5);
+?>
 						<div class="stats-left">
-							<h5>Last Sevendays</h5>
-							<h4>Collection</h4>
+						<h5>Total</h5>
+							<h4>Category</h4>
 						</div>
 						<div class="stats-right">
-							<label> <?php 
-
-						if($tseven==""):
-							echo "0";
-else:
-	echo $tseven;
-endif;?></label>
+							<label> <?php echo $totalser;?></label>
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
+
+
+
+	<!-- sevendays -->
+					<div class="col-md-4 widget states-mdl">
+					<?php $query4=mysqli_query($con,"Select * from tblbook where Status='Rejected'");
+$totalrejapt=mysqli_num_rows($query4);
+?>
+						<div class="stats-left ">
+						<h5>Total</h5>
+							<h4>Rejected </h4>
+						</div>
+						<div class="stats-right">
+							<label> <?php echo $totalrejapt;?></label>
+						</div>
+
+
+
+
+
+						<div class="clearfix"> </div>	
+					</div>
+
+
+
+						<!-- total -->
 					<div class="col-md-4 widget states-last">
 						<?php
-//Total Sale
+
  $query9=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
  from tblinvoice 
   join tblservices  on tblservices.ID=tblinvoice.ServiceId");

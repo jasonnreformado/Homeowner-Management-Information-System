@@ -7,7 +7,7 @@
     {
 
       title:{
-      text: "Collection - per month"
+      text: "Monthly Collection"
       },
       axisX: {
         valueFormatString: "MMM",

@@ -75,7 +75,7 @@ if(isset($_POST['submit']))
 
 						<?php
 $cid=$_GET['viewid'];
-$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.ID='$cid'");
+$ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tbluser.address,tbluser.status,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.BookingDate,tblbook.Remark,tblbook.Status,tblbook.RemarkDate from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -98,6 +98,18 @@ while ($row=mysqli_fetch_array($ret)) {
     <th>Mobile Number</th>
     <td><?php  echo $row['MobileNumber'];?></td>
   </tr>
+
+  <tr>
+    <th>Address</th>
+    <td><?php  echo $row['address'];?></td>
+  </tr>
+
+  <tr>
+    <th>Status</th>
+    <td><?php  echo $row['status'];?></td>
+  </tr>
+
+
    <tr>
     <th> Date</th>
     <td><?php  echo $row['AptDate'];?></td>
