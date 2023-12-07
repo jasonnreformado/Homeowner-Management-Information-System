@@ -72,9 +72,7 @@
             </li>
            
         <!-- complaint -->
-            <li>
-              <a href="maintenance.php"><i class="fa fa-envelope-o nav_icon"></i>Request Maintenance<span class=""></span></a>
-            </li>
+          
 
             <li>
               <a href="complaint.php"><i class="fa fa-envelope-o nav_icon"></i>Incident Letter<span class=""></span></a>

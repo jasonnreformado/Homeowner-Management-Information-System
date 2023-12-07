@@ -86,13 +86,7 @@
             </li>
 
          <!-- Request Maintenance -->
-           <li>
-              <a href="readenq.php"><i class="fa fa-bell-o nav_icon"></i>Request Maintenance<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level collapse">
-                <li><a href="readenq.php">Read Request</a></li>
-                <li><a href="unreadenq.php">Unread Request</a></li>
-              </ul>
-            </li>
+         
 
 
             <li>

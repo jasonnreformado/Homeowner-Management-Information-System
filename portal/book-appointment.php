@@ -1,35 +1,40 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
-  header('location:logout.php');
-  } else{
 
-if(isset($_POST['submit']))
-  {
+if (strlen($_SESSION['bpmsuid'] == 0)) {
+    header('location:logout.php');
+} else {
+    if (isset($_POST['submit'])) {
+        $uid = $_SESSION['bpmsuid'];
+        $adate = $_POST['adate'];
+        $atime = $_POST['atime'];
+        $endtime = $_POST['endtime'];
+        $msg = $_POST['message'];
+        $aptnumber = mt_rand(100000000, 999999999);
 
-    $uid=$_SESSION['bpmsuid'];
-    $adate=$_POST['adate'];
-    $atime=$_POST['atime'];
-    $endtime=$_POST['endtime'];
-    $msg=$_POST['message'];
-    $aptnumber = mt_rand(100000000, 999999999);
-  
-    $query=mysqli_query($con,"insert into tblbook(UserID,AptNumber,AptDate,AptTime,endTime,Message) value('$uid','$aptnumber','$adate','$atime','$endtime','$msg')");
+        // Check if the selected date and time range is available
+        $checkQuery = mysqli_query($con, "SELECT * FROM tblbook WHERE AptDate = '$adate' AND (
+            ('$atime' >= AptTime AND '$atime' < endTime) OR
+            ('$endtime' > AptTime AND '$endtime' <= endTime) 
+        )");
 
-    if ($query) {
-$ret=mysqli_query($con,"select AptNumber from tblbook where tblbook.UserID='$uid' order by ID desc limit 1;");
-$result=mysqli_fetch_array($ret);
-$_SESSION['aptno']=$result['AptNumber'];
- echo "<script>window.location.href='thank-you.php'</script>";  
-  }
-  else
-    {
-      echo '<script>alert("Something Went Wrong. Please try again")</script>';
+        if (mysqli_num_rows($checkQuery) > 0) {
+            echo '<script>alert("Selected date and time slot is already booked. Please choose another slot.")</script>';
+        } else {
+            $query = mysqli_query($con, "INSERT INTO tblbook(UserID,AptNumber,AptDate,AptTime,endTime,Message) VALUES('$uid','$aptnumber','$adate','$atime','$endtime','$msg')");
+
+            if ($query) {
+                $ret = mysqli_query($con, "SELECT AptNumber FROM tblbook WHERE tblbook.UserID='$uid' ORDER BY ID DESC LIMIT 1;");
+                $result = mysqli_fetch_array($ret);
+                $_SESSION['aptno'] = $result['AptNumber'];
+                echo "<script>window.location.href='thank-you.php'</script>";
+            } else {
+                echo '<script>alert("Something Went Wrong. Please try again")</script>';
+            }
+        }
     }
-
-  
 }
 ?>
 
@@ -88,7 +93,7 @@ $(function () {
                   
                    
                     </div>
-               <?php } ?> </div>
+               <?php  ?> </div>
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <form method="post">
                         <div style="padding-top: 30px;">

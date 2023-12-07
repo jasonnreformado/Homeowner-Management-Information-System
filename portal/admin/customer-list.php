@@ -73,10 +73,12 @@ echo "<script>window.location.href='customer-list.php'</script>";
 
 <form action="" method="get" class="mb-4">
       <div class="input-group">
-        <input type="text" class="form-control" name="search" placeholder="Search by name or email">
-      
+        <input type="text" class="form-control" name="search" placeholder="Search by name or email"><br>
+		<br>
+		<a href="mail.php?addid=<?php echo $row['ID'];?>" class="btn btn-primary">Mail</a>
       </div>
     </form>
+	
 					<div class="table-responsive bs-example widget-shadow">
 						<h4>Homeowner's List:</h4>
 						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Name</th> <th>Mobile Number</th><th>Email</th><th>Address</th><th>Status</th> <th>RegistrationDate</th><th>Action</th> </tr> </thead> <tbody>
@@ -89,7 +91,7 @@ while ($row=mysqli_fetch_array($ret)) {
 
 						 <tr> <th scope="row"><?php echo $cnt;?></th> <td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td> <td><?php  echo $row['MobileNumber'];?></td><td><?php  echo $row['Email'];?></td> <td><?php  echo $row['address'];?></td> <td><?php  echo $row['status'];?></td> <td><?php  echo $row['RegDate'];?></td> 
 						 	<td> <a href="add-customer-services.php?addid=<?php echo $row['ID'];?>" class="btn btn-primary">Bill</a>
-							 <a href="mail.php?addid=<?php echo $row['ID'];?>" class="btn btn-primary">Mail</a>
+							
 					<a href="customer-list.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
 					
 						 		</td> </tr>   <?php 
