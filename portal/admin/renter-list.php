@@ -71,20 +71,18 @@ echo "<script>window.location.href='customer-list.php'</script>";
                         <a href="../signup.php" class="btn btn-secondary" style="background-color: blue; color: white;">
                             <i class="bi bi-plus-circle-fill"></i> Add New
                         </a>
-						<a href="mail.php?addid=<?php echo $row['ID']; ?>" class="btn btn-primary"style="background-color: blue; color: white;">Mail</a>
                     </div>
 
                     <form action="" method="get" class="mb-4">
                         <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search by name or email">
                             <select class="form-control" name="statusFilter" id="statusFilter">
                                 <option value="">All Status</option>
                                 <option value="Owner">Owner</option>
                                 <option value="Renter">Renter</option>
                             </select>
-							<br><br>
                             <button type="button" class="btn btn-primary" onclick="filterStatus()">Filter</button>
-
-                           
+                            <a href="mail.php?addid=<?php echo $row['ID']; ?>" class="btn btn-primary">Mail</a>
                         </div>
                     </form>
 
@@ -136,14 +134,10 @@ echo "<script>window.location.href='customer-list.php'</script>";
                                 ?>
                             </tbody>
                         </table>
-						
                     </div>
                 </div>
-				
             </div>
-			
         </div>
-		
         <!--footer-->
         <?php include_once('includes/footer.php'); ?>
         <!--//footer-->

@@ -1,4 +1,6 @@
 <?php
+session_start();
+error_reporting(0);
 require 'connection.php';
 $_SESSION["id"] = 1; // User's session
 $sessionId = $_SESSION["id"];
