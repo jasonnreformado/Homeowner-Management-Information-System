@@ -10,7 +10,9 @@ if(isset($_POST['submit']))
     $uid=$_SESSION['bpmsuid'];
     $fname=$_POST['firstname'];
     $lname=$_POST['lastname'];
-    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname' where ID='$uid'");
+	$mobilenumber=$_POST['mobilenumber'];
+	$email=$_POST['email'];
+    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname',Email='$email',MobileNumber='$mobilenumber' where ID='$uid'");
 
 
     if ($query) {
@@ -71,7 +73,7 @@ echo '<script>window.location.href=profile.php</script>';
 		 <?php include_once('includes/header.php');?>
 		<!-- //header-ends -->
 		<!-- main content start-->
-		<div id="page-wrapper">
+        <div id="page-wrapper">
 			<div class="main-page">
                 
 				<div class="tables">
@@ -103,7 +105,7 @@ while ($row=mysqli_fetch_array($ret)) {
                            
 						   <div style="padding-top: 30px;">
                             <label>Email address</label>
-                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  readonly="true">
+                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  required="true">
                         </div>
 
 						<div style="padding-top: 30px;">
