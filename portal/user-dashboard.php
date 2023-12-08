@@ -73,64 +73,71 @@ echo '<script>window.location.href=profile.php</script>';
 		 <?php include_once('includes/header.php');?>
 		<!-- //header-ends -->
 		<!-- main content start-->
-        <div id="page-wrapper">
-			<div class="main-page">
-                
-				<div class="tables">
-					<h3 class="title1">My Profile</h3>
+		<div id="page-wrapper">
+    <div class="main-page">
+        <div class="tables">
+            <h3 class="title1">My Profile</h3>
 
-					<!--content-->
-          <div class="map-content-9 mt-lg-0 mt-4">
-                
-                    <form method="post" name="signup" onsubmit="return checkpass();">
-<?php
-$uid=$_SESSION['bpmsuid'];
-$ret=mysqli_query($con,"select * from tbluser where ID='$uid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
+            <!--content-->
+            <div class="map-content-9 mt-lg-0 mt-4">
 
-?>
-                        <div style="padding-top: 30px;">
-                            <label>First Name</label>
-                            <input type="text" class="form-control" name="firstname" value="<?php  echo $row['FirstName'];?>" required="true"></div>
+            <?php include_once('index.php');?>
 
-                           <div style="padding-top: 30px;">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" name="lastname" value="<?php  echo $row['LastName'];?>" required="true">
-                        </div>
+
+                <form method="post" name="signup" onsubmit="return checkpass();">
+                    <?php
+                    $uid = $_SESSION['bpmsuid'];
+                    $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
+                    $cnt = 1;
+                    while ($row = mysqli_fetch_array($ret)) {
+                    ?>
+
+                       
 
                         <div style="padding-top: 30px;">
-                            <label>Mobile Number</label>
-                           <input type="text" class="form-control" name="mobilenumber" value="<?php  echo $row['MobileNumber'];?>"  readonly="true"></div>
-                           
-						   <div style="padding-top: 30px;">
-                            <label>Email address</label>
-                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  required="true">
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $row['FirstName']; ?>" required="true">
                         </div>
 
-						<div style="padding-top: 30px;">
-                            <label>Address</label>
-                            <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
+                        <div style="padding-top: 30px;">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $row['LastName']; ?>" required="true">
                         </div>
 
-						<div style="padding-top: 30px;">
-                            <label>Status</label>
-                            <input type="text" class="form-control" name="status" value="<?php  echo $row['status'];?>"  readonly="true">
+                        <div style="padding-top: 30px;">
+                            <label for="mobilenumber">Mobile Number</label>
+                            <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo $row['MobileNumber']; ?>" readonly="true">
                         </div>
 
-						
-                         <div style="padding-top: 30px;">
-                            <label>Registration Date</label>
-                           
-                           <input type="text" class="form-control" name="regdate" value="<?php  echo $row['RegDate'];?>"  readonly="true">
-                       </div>
-                     
-                      <?php }?>
-					  
-                        <button type="submit" class="btn btn-contact" name="submit">Save Change</button>
-                    </form>
-                </div>
+                        <div style="padding-top: 30px;">
+                            <label for="email">Email address</label>
+                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $row['Email']; ?>" required="true">
+                        </div>
+
+                        <div style="padding-top: 30px;">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" value="<?php echo $row['address']; ?>" readonly="true">
+                        </div>
+
+                        <div style="padding-top: 30px;">
+                            <label for="status">Status</label>
+                            <input type="text" class="form-control" id="status" name="status" value="<?php echo $row['status']; ?>" readonly="true">
+                        </div>
+
+                        <div style="padding-top: 30px;">
+                            <label for="regdate">Registration Date</label>
+                            <input type="text" class="form-control" id="regdate" name="regdate" value="<?php echo $row['RegDate']; ?>" readonly="true">
+                        </div>
+
+                    <?php } ?>
+
+                    <button type="submit" class="btn btn-contact" name="submit">Save Change</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+
 <!--content-->
 <br>
 		<!--footer-->
