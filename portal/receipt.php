@@ -2,14 +2,26 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
+
+if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
-  } else{
+} else {
+  $uid = $_SESSION['bpmsuid'];
 
-
-
-  ?>
-
+  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+  $cnt = 1;
+  
+  if ($row = mysqli_fetch_assoc($ret)) {
+    $firstname = $row['FirstName'];
+    $lastname = $row['LastName'];
+    $mobilenumber = $row['MobileNumber'];
+    $email = $row['Email'];
+    $profilePicture = $row['ProfilePicture'];
+    $address = $row['address'];
+    $status = $row['status'];
+    $regdate = $row['RegDate'];
+}
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -43,6 +55,14 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+    #profile-picture-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; /* Make it circular */
+      display: block;
+    }
+  </style>
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -111,7 +131,7 @@ $cnt=1;
 
 </section>
 <!--content-->
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<!--footer-->
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->

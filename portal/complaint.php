@@ -2,19 +2,32 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
+
+if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
-  } else{
+} else {
+  $uid = $_SESSION['bpmsuid'];
 
-
-
-  ?>
+  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+  $cnt = 1;
+  
+  if ($row = mysqli_fetch_assoc($ret)) {
+    $firstname = $row['FirstName'];
+    $lastname = $row['LastName'];
+    $mobilenumber = $row['MobileNumber'];
+    $email = $row['Email'];
+    $profilePicture = $row['ProfilePicture'];
+    $address = $row['address'];
+    $status = $row['status'];
+    $regdate = $row['RegDate'];
+}
+?>
 
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Villa Arcadia | Incident</title>
+<title>Villa Arcadia | Profiles</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -43,53 +56,70 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+    #profile-picture-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; /* Make it circular */
+      display: block;
+    }
+  </style>
 </head> 
 <body class="cbp-spmenu-push">
-	<div class="main-content">
-		<!--left-fixed -navigation-->
-		 <?php include_once('includes/sidebar.php');?>
-		<!--left-fixed -navigation-->
-		<!-- header-starts -->
-		 <?php include_once('includes/header.php');?>
-		<!-- //header-ends -->
-		<!-- main content start-->
-		<div id="page-wrapper">
-			<div class="main-page">
-                
-				<div class="tables">
-			
+  <div class="main-content">
+    <!--left-fixed -navigation-->
+    <?php include_once('includes/sidebar.php'); ?>
+    <!--left-fixed -navigation-->
+    <!-- header-starts -->
+    <?php include_once('includes/header.php'); ?>
+    <!-- //header-ends -->
+    <!-- main content start-->
+    <div id="page-wrapper">
+    <h3 class="title1">My Profile</h3>
+    <?php include_once('complaint-include.php');?>
+    
 
-					<!--content-->
-                    <?php include_once('complaint-include.php');?>
+          <!--content-->
+   
+       
+
+                   
+
+         
+          </div>
+        </div>
+      </div>
+    </div>
+
 <!--content-->
-<br><br><br><br><br><br><br>
+
 		<!--footer-->
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->
 	</div>
 	<!-- Classie -->
-	<script>
-    var menuLeft = document.getElementById('cbp-spmenu-s1'),
-        showLeftPush = document.getElementById('showLeftPush'),
-        body = document.body;
-
-    showLeftPush.onclick = function () {
-        classie.toggle(this, 'active');
-        classie.toggle(body, 'cbp-spmenu-push-toright');
-        classie.toggle(menuLeft, 'cbp-spmenu-open');
-        disableOther('showLeftPush');
-    };
-
-    function disableOther(button) {
-        if (button !== 'showLeftPush') {
-            classie.toggle(showLeftPush, 'disabled');
-        }
-    }
-</script>
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
 	<!--scrolling js-->
 	<script src="js/jquery.nicescroll.js"></script>
 	<script src="js/scripts.js"></script>
-	<script src="js/classie.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 
@@ -98,7 +128,24 @@ if (strlen($_SESSION['bpmsuid']==0)) {
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
-    
+
+    <script>
+    function previewProfilePicture(input) {
+      var preview = document.getElementById('profile-picture-preview');
+      var file = input.files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "<?php echo $profilePicture; ?>";
+      }
+    }
+  </script>
 </body>
 </html>
-<?php  } ?>
+<?php  }

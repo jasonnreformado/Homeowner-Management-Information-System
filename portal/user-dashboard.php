@@ -2,33 +2,89 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
+
+if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
-  } else{
-if(isset($_POST['submit']))
-  {
-    $uid=$_SESSION['bpmsuid'];
-    $fname=$_POST['firstname'];
-    $lname=$_POST['lastname'];
-	$mobilenumber=$_POST['mobilenumber'];
-	$email=$_POST['email'];
-    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname',Email='$email',MobileNumber='$mobilenumber' where ID='$uid'");
+} else {
+  $uid = $_SESSION['bpmsuid'];
 
+  if (isset($_POST['submit'])) {
+    $fname = $_POST['firstname'];
+    $lname = $_POST['lastname'];
+    $mobilenumber = $_POST['mobilenumber'];
+    $email = $_POST['email'];
+    
 
-    if ($query) {
- echo '<script>alert("Profile updated successully.")</script>';
-echo '<script>window.location.href=profile.php</script>';
-  }
-  else
-    {
-     
-      echo '<script>alert("Something Went Wrong. Please try again.")</script>';
+    // File upload handling
+    $target_dir = "uploads/";  // Specify your upload directory
+    $target_file = $target_dir . basename($_FILES["profilepicture"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+      $check = getimagesize($_FILES["profilepicture"]["tmp_name"]);
+      if ($check !== false) {
+        $uploadOk = 1;
+      } else {
+        echo '<script>alert("File is not an image.")</script>';
+        $uploadOk = 0;
+      }
     }
 
+    // Check if file already exists
+    
+
+    // Check file size
+    if ($_FILES["profilepicture"]["size"] > 500000) {
+      echo '<script>alert("Sorry, your file is too large.")</script>';
+      $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+      && $imageFileType != "gif") {
+      echo '<script>alert("Sorry, only JPG, JPEG, PNG & GIF files are allowed.")</script>';
+      $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+      echo '<script>alert("Sorry, your file was not uploaded.")</script>';
+    } else {
+      if (move_uploaded_file($_FILES["profilepicture"]["tmp_name"], $target_file)) {
+        $profilePicturePath = $target_file;
+
+        // Update user profile including the profile picture path
+        $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber', ProfilePicture='$profilePicturePath' WHERE ID='$uid'");
+
+        if ($query) {
+          echo '<script>alert("Profile updated successfully.")</script>';
+          echo '<script>window.location.href=profile.php</script>';
+        } else {
+          echo '<script>alert("Something Went Wrong. Please try again.")</script>';
+        }
+      } else {
+        echo '<script>alert("Sorry, there was an error uploading your file.")</script>';
+      }
+    }
+  }
+
+  // Fetch existing user profile information
+  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+  $cnt = 1;
+  
+  if ($row = mysqli_fetch_assoc($ret)) {
+    $firstname = $row['FirstName'];
+    $lastname = $row['LastName'];
+    $mobilenumber = $row['MobileNumber'];
+    $email = $row['Email'];
+    $profilePicture = $row['ProfilePicture'];
+    $address = $row['address'];
+    $status = $row['status'];
+    $regdate = $row['RegDate'];
 }
-
-
-  ?>
+?>
 
 
 <!DOCTYPE HTML>
@@ -63,83 +119,118 @@ echo '<script>window.location.href=profile.php</script>';
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+    #profile-picture-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    #profile-picture-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; /* Make it circular */
+      display: block;
+    }
+
+    #change-picture-button {
+      position: absolute;
+      bottom: 0;
+      background-color: gray; /* Set your button color */
+      color: #FFFFFF; /* Set your button text color */
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    #profilepicture {
+      display: none; /* Hide the actual file input */
+    }
+
+    #camera-icon {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 </head> 
 <body class="cbp-spmenu-push">
-	<div class="main-content">
-		<!--left-fixed -navigation-->
-		 <?php include_once('includes/sidebar.php');?>
-		<!--left-fixed -navigation-->
-		<!-- header-starts -->
-		 <?php include_once('includes/header.php');?>
-		<!-- //header-ends -->
-		<!-- main content start-->
-		<div id="page-wrapper">
-    <div class="main-page">
+  <div class="main-content">
+    <!--left-fixed -navigation-->
+    <?php include_once('includes/sidebar.php'); ?>
+    <!--left-fixed -navigation-->
+    <!-- header-starts -->
+    <?php include_once('includes/header.php'); ?>
+    <!-- //header-ends -->
+    <!-- main content start-->
+    <div id="page-wrapper">
+      <div class="main-page">
         <div class="tables">
-            <h3 class="title1">My Profile</h3>
+          <h3 class="title1">My Profile</h3>
 
-            <!--content-->
-            <div class="map-content-9 mt-lg-0 mt-4">
+          <!--content-->
+          <div class="map-content-9 mt-lg-0 mt-4">
+       
 
-            <?php include_once('index.php');?>
+          <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
+              <div id="profile-picture-container">
+                <img id="profile-picture-preview" src="<?php echo $profilePicture; ?>" alt="Profile Picture Preview">
+                <button type="button" id="change-picture-button" onclick="document.getElementById('profilepicture').click();">
+                <i class="fa fa-camera"></i>
+                </button>
+                <input type="file" class="form-control" id="profilepicture" name="profilepicture" onchange="previewProfilePicture(this);">
+              </div>
 
+              <div style="padding-top: 0px;">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname; ?>" required="true">
+              </div>
 
-                <form method="post" name="signup" onsubmit="return checkpass();">
-                    <?php
-                    $uid = $_SESSION['bpmsuid'];
-                    $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
-                    $cnt = 1;
-                    while ($row = mysqli_fetch_array($ret)) {
-                    ?>
+              <div style="padding-top: 30px;">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname; ?>" required="true">
+              </div>
 
-                       
+              <div style="padding-top: 30px;">
+                <label for="mobilenumber">Mobile Number</label>
+                <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo $mobilenumber; ?>" readonly="true">
+              </div>
 
-                        <div style="padding-top: 30px;">
-                            <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $row['FirstName']; ?>" required="true">
-                        </div>
+              <div style="padding-top: 30px;">
+                <label for="email">Email address</label>
+                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required="true">
+              </div>
 
-                        <div style="padding-top: 30px;">
-                            <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $row['LastName']; ?>" required="true">
-                        </div>
+             
 
-                        <div style="padding-top: 30px;">
-                            <label for="mobilenumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo $row['MobileNumber']; ?>" readonly="true">
-                        </div>
-
-                        <div style="padding-top: 30px;">
-                            <label for="email">Email address</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $row['Email']; ?>" required="true">
-                        </div>
-
-                        <div style="padding-top: 30px;">
-                            <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?php echo $row['address']; ?>" readonly="true">
-                        </div>
-
-                        <div style="padding-top: 30px;">
-                            <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" value="<?php echo $row['status']; ?>" readonly="true">
-                        </div>
-
-                        <div style="padding-top: 30px;">
-                            <label for="regdate">Registration Date</label>
-                            <input type="text" class="form-control" id="regdate" name="regdate" value="<?php echo $row['RegDate']; ?>" readonly="true">
-                        </div>
-
-                    <?php } ?>
-
-                    <button type="submit" class="btn btn-contact" name="submit">Save Change</button>
-                </form>
+             <div style="padding-top: 30px;">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="<?php echo $address; ?>" readonly="true">
             </div>
+
+            <div style="padding-top: 30px;">
+                <label for="status">Status</label>
+                <input type="text" class="form-control" id="status" name="status" value="<?php echo $status; ?>" readonly="true">
+            </div>
+
+            <div style="padding-top: 30px;">
+                <label for="regdate">Registration Date</label>
+                <input type="text" class="form-control" id="regdate" name="regdate" value="<?php echo $regdate; ?>" readonly="true">
+            </div>
+                    <?php } ?>
+                    <br>    
+                    <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
+
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
 <!--content-->
-<br>
+
 		<!--footer-->
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->
@@ -175,6 +266,24 @@ echo '<script>window.location.href=profile.php</script>';
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
+
+    <script>
+    function previewProfilePicture(input) {
+      var preview = document.getElementById('profile-picture-preview');
+      var file = input.files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "<?php echo $profilePicture; ?>";
+      }
+    }
+  </script>
 </body>
 </html>
-<?php  } ?>
+<?php   ?>

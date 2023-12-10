@@ -860,7 +860,7 @@ ul.dropdown-menu.drp-mnu li {
     float: right;
     width: 30%;
     text-align: center;
-	padding: 1.54em 1em;
+	padding: 1.70em 1em;
 	background-color:rgb(36, 112, 42);
 }
 .stats-left h5 {
@@ -873,7 +873,7 @@ ul.dropdown-menu.drp-mnu li {
     margin-top: 10px;
 }
 .stats-right label {
-    font-size: 2em;
+    font-size: 1em;
     color: #fff;
 }
 /*--charts--*/

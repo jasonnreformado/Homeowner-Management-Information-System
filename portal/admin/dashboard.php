@@ -67,9 +67,9 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 $totalcust=mysqli_num_rows($query1);
 ?>
 						<div class="stats-left ">
-							<h5></h5>
-							<h5>Total</h5>
-							<h4>Homeowners</h4>
+						
+							
+							<h4>Residents</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalcust;?></label>
@@ -83,8 +83,8 @@ $totalcust=mysqli_num_rows($query1);
 $totalappointment=mysqli_num_rows($query2);
 ?>
 						<div class="stats-left">
-						<h5>Book</h5>
-							<h4>Reservation</h4>
+					
+							<h4>Appointment</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalappointment;?></label>
@@ -133,7 +133,7 @@ endif;
 $totalser=mysqli_num_rows($query5);
 ?>
 						<div class="stats-left">
-						<h5>Total</h5>
+			
 							<h4>Officer</h4>
 						</div>
 						<div class="stats-right">
@@ -149,7 +149,7 @@ $totalser=mysqli_num_rows($query5);
 $totalaccapt=mysqli_num_rows($query3);
 ?>
 						<div class="stats-left">
-						<h5>Total</h5>
+				
 							<h4>Accepted</h4>
 						</div>
 
@@ -205,7 +205,7 @@ endif;
 $totalser=mysqli_num_rows($query5);
 ?>
 						<div class="stats-left">
-						<h5>Total</h5>
+			
 							<h4>Category</h4>
 						</div>
 						<div class="stats-right">
@@ -222,7 +222,7 @@ $totalser=mysqli_num_rows($query5);
 $totalrejapt=mysqli_num_rows($query4);
 ?>
 						<div class="stats-left ">
-						<h5>Total</h5>
+		
 							<h4>Rejected </h4>
 						</div>
 						<div class="stats-right">

@@ -2,31 +2,22 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
+
+if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
-  } else{
-if(isset($_POST['submit']))
-  {
-    $uid=$_SESSION['bpmsuid'];
-    $fname=$_POST['firstname'];
-    $lname=$_POST['lastname'];
-    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname' where ID='$uid'");
+} else {
 
 
-    if ($query) {
- echo '<script>alert("Profile updated successully.")</script>';
-echo '<script>window.location.href=profile.php</script>';
-  }
-  else
-    {
-     
-      echo '<script>alert("Something Went Wrong. Please try again.")</script>';
-    }
+  $uid = $_SESSION['bpmsuid'];
+  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+  $cnt = 1;
+  
+  if ($row = mysqli_fetch_assoc($ret)) {
+   
+    $profilePicture = $row['ProfilePicture'];
 
 }
-
-
-  ?>
+?>
 
 
 <!DOCTYPE HTML>
@@ -61,6 +52,14 @@ echo '<script>window.location.href=profile.php</script>';
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+    #profile-picture-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; /* Make it circular */
+      display: block;
+    }
+  </style>
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">

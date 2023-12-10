@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
- 
+
     </div>
     <div class="post-container">
         <br>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div class="sticky-header header-section ">
       <div class="header-left">
         <!--toggle button start-->
@@ -65,19 +68,22 @@ while($result=mysqli_fetch_array($ret1))
         <!--notification menu end -->
         <div class="profile_details">  
         <?php
-$adid=$_SESSION['bpmsaid'];
-$ret=mysqli_query($con,"select FirstName from tbluser where ID='$adid'");
-$row=mysqli_fetch_array($ret);
-$name=$row['FirstName'];
-
+ $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+ $cnt = 1;
+ if ($row = mysqli_fetch_assoc($ret)) {
+  $firstname = $row['FirstName'];
+ }
 ?> 
           <ul>
             <li class="dropdown profile_details_drop">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <div class="profile_img"> 
-                  <span class="prfil-img"><img src="assets/images/c1.JPG" alt="" width="50" height="50"> </span> 
+                <span class="prfil-img">
+                <img id="profile-picture-preview" src="<?php echo $profilePicture; ?>" alt="Profile Picture Preview" style="max-width: 50px; max-height: 50px;">
+                </span>
+
                   <div class="user-name">
-                    <p><?php echo $name; ?></p>
+                    <p><?php echo $firstname; ?></p>
                     <span>User</span>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
@@ -88,7 +94,7 @@ $name=$row['FirstName'];
               <ul class="dropdown-menu drp-mnu">
                 <li> <a href="change-password.php"><i class="fa fa-cog"></i> Settings</a> </li> 
                 <li> <a href="user-dashboard.php"><i class="fa fa-user"></i> Profile</a> </li> 
-                <li> <a href="user/index.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                <li> <a href="login.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
               </ul>
             </li>
           </ul>
@@ -97,3 +103,5 @@ $name=$row['FirstName'];
       </div>
       <div class="clearfix"> </div> 
     </div>
+
+    alt="" width="50" height="50">
