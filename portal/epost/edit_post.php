@@ -100,7 +100,7 @@
 
 
 <div class="post-container">
-<a class="create-new-button" href="create_post1.php">Create New</a>
+<a class="create-new-button" href="../epost/create_post1.php">Create New</a>
 
 <?php
 include('db_config.php');

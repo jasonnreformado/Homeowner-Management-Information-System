@@ -71,7 +71,8 @@ echo "<script>window.location.href='customer-list.php'</script>";
                         <a href="../signup.php" class="btn btn-secondary" style="background-color: blue; color: white;">
                             <i class="bi bi-plus-circle-fill"></i> Add New
                         </a>
-						<a href="mail.php?addid=<?php echo $row['ID']; ?>" class="btn btn-primary"style="background-color: blue; color: white;">Mail</a>
+						<a href="mail.php" class="btn btn-primary"style="background-color: blue; color: white;">
+                        <i class="bi bi-plus-circle-fill"></i> Mail</a>
                     </div>
 
                     <form action="" method="get" class="mb-4">

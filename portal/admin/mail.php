@@ -9,9 +9,7 @@ require './PHPMailer/src/Exception.php';
 require './PHPMailer/src/PHPMailer.php';
 require './PHPMailer/src/SMTP.php';
 
-if (strlen($_SESSION['bpmsuid']) == 0) {
-    header('location:logout.php');
-} else {
+
     if (isset($_POST['send'])) {
         $subject = $_POST['subject'];
         $message = $_POST['message'];
@@ -48,7 +46,7 @@ if (strlen($_SESSION['bpmsuid']) == 0) {
             echo "Error in SQL query: " . mysqli_error($con);
         }
     }
-}
+
 ?>
 <html>
 <head>
