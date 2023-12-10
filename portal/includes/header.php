@@ -84,7 +84,7 @@ while($result=mysqli_fetch_array($ret1))
 
                   <div class="user-name">
                     <p><?php echo $firstname; ?></p>
-                    <span>User</span>
+                    <span>Resident</span>
                   </div>
                   <i class="fa fa-angle-down lnr"></i>
                   <i class="fa fa-angle-up lnr"></i>
