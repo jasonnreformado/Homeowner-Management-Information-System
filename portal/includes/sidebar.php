@@ -47,7 +47,7 @@
 
            <!-- Profiles -->
             <li>
-              <a href="user-dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+              <a href="user-dashboard.php"><i class="fa fa-home nav_icon"></i> Profile</a>
             </li>
 
              <!-- Announcement -->

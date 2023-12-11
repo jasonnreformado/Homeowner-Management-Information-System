@@ -11,6 +11,8 @@ if(isset($_POST['submit']))
     $contno=$_POST['mobilenumber'];
     $email=$_POST['email'];
     $address=$_POST['address'];
+    $numplp=$_POST['numplp'];
+    $movein=$_POST['movein'];
     $status=$_POST['status'];
     $password=md5($_POST['password']);
 
@@ -21,7 +23,7 @@ if(isset($_POST['submit']))
 echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
     }
     else{
-    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address,status, Password) value('$fname', '$lname','$contno', '$email', '$address','$status', '$password' )");
+    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address,numplp,movein,status, Password) value('$fname', '$lname','$contno', '$email', '$address','$numplp','$movein','$status', '$password' )");
     if ($query) {
     
     echo "<script>alert('You have successfully registered.');</script>";
@@ -127,10 +129,19 @@ return true;
                         </div>
 
                         <div style="padding-top: 30px;">
+                            <label>Number of people living in the unit</label>
+                            <input type="text" class="form-control" class="form-control" placeholder="Number of people" required="" name="numplp" ></div>
+
+                        <div style="padding-top: 30px;">
+                            <label>Resident Move-in date</label>
+                            <input type="date" class="form-control" class="form-control" placeholder="Resident Move-in" required="" name="movein">
+                        </div>
+
+                        <div style="padding-top: 30px;">
                             <label>Status</label>
                             <input type="text" class="form-control" class="form-control" placeholder="Status" required="" name="status">
                         </div>
-                        
+
                          <div style="padding-top: 30px;">
                             <label>Password</label>
                            <input type="password" class="form-control" name="password" placeholder="Password" required="true">
@@ -140,7 +151,7 @@ return true;
                             <input type="password" class="form-control" name="repeatpassword" placeholder="Repeat password" required="true">
                         </div>
                       
-                        <button type="submit" class="btn btn-contact" name="submit">Signup</button>
+                        <button type="submit" class="btn btn-contact" name="submit">Create</button>
                     </form>
                 </div>
     </div>

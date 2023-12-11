@@ -13,6 +13,8 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     $lname = $_POST['lastname'];
     $mobilenumber = $_POST['mobilenumber'];
     $email = $_POST['email'];
+    $numplp = $_POST['numplp'];
+    $movein = $_POST['movein'];
     
 
     // File upload handling
@@ -56,11 +58,11 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
         $profilePicturePath = $target_file;
 
         // Update user profile including the profile picture path
-        $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber', ProfilePicture='$profilePicturePath' WHERE ID='$uid'");
+        $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber',numplp='$numplp',movein='$movein', ProfilePicture='$profilePicturePath' WHERE ID='$uid'");
 
         if ($query) {
           echo '<script>alert("Profile updated successfully.")</script>';
-          echo '<script>window.location.href=profile.php</script>';
+          echo '<script>window.location.href=user-dashboard.php</script>';
         } else {
           echo '<script>alert("Something Went Wrong. Please try again.")</script>';
         }
@@ -82,6 +84,8 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     $profilePicture = $row['ProfilePicture'];
     $address = $row['address'];
     $status = $row['status'];
+    $numplp = $row['numplp'];
+    $movein = $row['movein'];
     $regdate = $row['RegDate'];
 }
 ?>
@@ -167,7 +171,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     <!-- main content start-->
     <div id="page-wrapper">
       <div class="main-page">
-        <div class="tables">
+      <div class="tables" id="exampl">
           <h3 class="title1">My Profile</h3>
 
           <!--content-->
@@ -185,12 +189,12 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
               <div style="padding-top: 0px;">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname; ?>" required="true">
+                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname; ?>" readonly="true">
               </div>
 
               <div style="padding-top: 30px;">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname; ?>" required="true">
+                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname; ?>" readonly="true">
               </div>
 
               <div style="padding-top: 30px;">
@@ -200,10 +204,9 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
               <div style="padding-top: 30px;">
                 <label for="email">Email address</label>
-                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required="true">
+                <input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" readonly="true">
               </div>
 
-             
 
              <div style="padding-top: 30px;">
                 <label for="address">Address</label>
@@ -216,13 +219,26 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
             </div>
 
             <div style="padding-top: 30px;">
+                <label for="numplp">Number of people living in the unit</label>
+                <input type="text" class="form-control" id="numplp" name="numplp" value="<?php echo $numplp; ?>" readonly="true">
+            </div>
+
+            <div style="padding-top: 30px;">
+                <label for="movein">Resident Move-in date</label>
+                <input type="date" class="form-control" id="movein" name="movein" value="<?php echo $movein; ?>" readonly="true">
+            </div>
+
+
+            <div style="padding-top: 30px;">
                 <label for="regdate">Registration Date</label>
                 <input type="text" class="form-control" id="regdate" name="regdate" value="<?php echo $regdate; ?>" readonly="true">
             </div>
                     <?php } ?>
                     <br>    
                     <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
-
+                    <p style="margin-top:1%"  align="center">
+  <i class="fa fa-print fa-2x" style="cursor: pointer;"  OnClick="CallPrint(this.value)" ></i>
+</p>
             </form>
           </div>
         </div>
@@ -284,6 +300,17 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
       }
     }
   </script>
+    <script>
+function CallPrint(strid) {
+var prtContent = document.getElementById("exampl");
+var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+WinPrint.document.write(prtContent.innerHTML);
+WinPrint.document.close();
+WinPrint.focus();
+WinPrint.print();
+WinPrint.close();
+}
+</script>
 </body>
 </html>
 <?php   ?>
