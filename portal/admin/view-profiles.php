@@ -9,13 +9,20 @@ if(isset($_POST['submit']))
   {
     $uid=$_SESSION['bpmsuid'];
     $fname=$_POST['firstname'];
-    $lname=$_POST['lastname'];
-    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname' where ID='$uid'");
+	$lname=$_POST['lastname'];
+    $mobilenumber=$_POST['mobilenumber'];
+	$email=$_POST['email'];
+	$address=$_POST['address'];
+	$status=$_POST['status'];
+	$numplp=$_POST['numplp'];
+	$movein=$_POST['movein'];
+
+    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname',MobileNumber='$mobilenumber',Email='$email',address='$address',status='$status',numplp='$numplp',movein='$movein'where ID='$uid'");
 
 
     if ($query) {
  echo '<script>alert("Profile updated successully.")</script>';
-echo '<script>window.location.href=profile.php</script>';
+echo '<script>window.location.href=view-profiles.php</script>';
   }
   else
     {
@@ -61,6 +68,42 @@ echo '<script>window.location.href=profile.php</script>';
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+    #profile-picture-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    #profile-picture-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%; /* Make it circular */
+      display: block;
+    }
+
+    #change-picture-button {
+      position: absolute;
+      bottom: 0;
+      background-color: gray; /* Set your button color */
+      color: #FFFFFF; /* Set your button text color */
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    #profilepicture {
+      display: none; /* Hide the actual file input */
+    }
+
+    #camera-icon {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -75,19 +118,21 @@ echo '<script>window.location.href=profile.php</script>';
 			<div class="main-page">
                 
 				<div class="tables">
-					<h3 class="title1">My Profile</h3>
+					<h3 class="title1">Resident Information</h3>
 
 					<!--content-->
           <div class="map-content-9 mt-lg-0 mt-4">
                 
-                    <form method="post" name="signup" onsubmit="return checkpass();">
+		  <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
 <?php
 $uid=$_SESSION['bpmsuid'];
 $ret=mysqli_query($con,"select * from tbluser where ID='$uid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
-?>
+?>	
+
+
                         <div style="padding-top: 30px;">
                             <label>First Name</label>
                             <input type="text" class="form-control" name="firstname" value="<?php  echo $row['FirstName'];?>" required="true"></div>
@@ -99,16 +144,31 @@ while ($row=mysqli_fetch_array($ret)) {
 
                         <div style="padding-top: 30px;">
                             <label>Mobile Number</label>
-                           <input type="text" class="form-control" name="mobilenumber" value="<?php  echo $row['MobileNumber'];?>"  readonly="true"></div>
+                           <input type="text" class="form-control" name="mobilenumber" value="<?php  echo $row['MobileNumber'];?>"  required="true"></div>
                            
 						   <div style="padding-top: 30px;">
                             <label>Email address</label>
-                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  readonly="true">
+                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  required="true">
                         </div>
 
 						<div style="padding-top: 30px;">
                             <label>Address</label>
-                            <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  readonly="true">
+                            <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  required="true">
+                        </div>
+
+						<div style="padding-top: 30px;">
+                            <label>Status</label>
+                            <input type="text" class="form-control" name="status" value="<?php  echo $row['status'];?>"  required="true">
+                        </div>
+
+						<div style="padding-top: 30px;">
+                            <label>Number of people living in the unit</label>
+                            <input type="text" class="form-control" name="numplp" value="<?php  echo $row['numplp'];?>"  required="true">
+                        </div>
+
+						<div style="padding-top: 30px;">
+                            <label>Resident Move-in date</label>
+                            <input type="date" class="form-control" name="movein" value="<?php  echo $row['movein'];?>"  required="true">
                         </div>
 
 						
