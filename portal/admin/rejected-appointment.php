@@ -59,13 +59,13 @@ echo "<script>window.location.href='rejected-appointment.php'</script>";
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">Rejected Reservation</h3>
+					<h3 class="title1">Rejected Appointment</h3>
 					
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Rejected Reservation:</h4>
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Reservation Number</th> <th>Name</th><th> Contact #</th> <th> Date</th><th>Start Time</th><th>End Time</th><th>Message</th><th>Remarks</th>
+						<h4>Rejected Appointment:</h4>
+						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Appointment Number</th> <th>Name</th><th> Contact #</th> <th> Date</th><th>Start Time</th><th>End Time</th><th>Message</th><th>Remarks</th>
 							<th>Status</th><th>Action</th> </tr> </thead> <tbody>
 <?php
 $ret=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.Remark,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status='Rejected'");

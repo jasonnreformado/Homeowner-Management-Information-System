@@ -57,16 +57,16 @@
             
            <!-- Reservation  -->
               <li>
-              <a href="book-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Reservation<span class="fa arrow"></span></a>
+              <a href="book-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                 <li>
-                  <a href="book-appointment.php">Book Reservation</a>
+                  <a href="book-appointment.php">Book Appointment</a>
                 </li>
                 <li>
-                  <a href="appointment-detail.php">Reservation Details</a>
+                  <a href="appointment-detail.php">Appointment Details</a>
                 </li>
                 <li>
-                  <a href="booking-history.php">Reservation History</a>
+                  <a href="booking-history.php">Appointment History</a>
                 </li>
               </ul>
             </li>

@@ -63,12 +63,12 @@ $(function () {
             <div>
                 <div class="cont-details">
                    <div class="table-content table-responsive cart-table-content m-t-30">
-                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Reservation History</h4>
+                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment History</h4>
                         <table border="2" class="table">
                             <thead class="gray-bg" >
                                 <tr>
                                     <th>#</th>
-                                <th>Reservation Number</th>
+                                <th>Appointment Number</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>

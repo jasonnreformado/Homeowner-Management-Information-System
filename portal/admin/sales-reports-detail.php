@@ -12,8 +12,8 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Sam's Salon & Spa | Sales Reports</title>
-
+<title>Villa Arcadia | Expense Reports</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -54,7 +54,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">Sales Reports</h3>
+					<h3 class="title1">Expense Reports</h3>
 					
 					
 				
@@ -73,8 +73,8 @@ $m2=date("F",$month2);
 $y1=date("Y",$month1);
 $y2=date("Y",$month2);
     ?>
-<h4 class="header-title m-t-0 m-b-30">Sales Report Month Wise</h4>
-<h4 align="center" style="color:blue">Sales Report  from <?php echo $m1."-".$y1;?> to <?php echo $m2."-".$y2;?></h4>
+<h4 class="header-title m-t-0 m-b-30">Expense Report Month Wise</h4>
+<h4 align="center" style="color:blue">Expense Report  from <?php echo $m1."-".$y1;?> to <?php echo $m2."-".$y2;?></h4>
 <hr />
 
 						<table class="table table-bordered">  <thead>
@@ -153,7 +153,9 @@ $cnt++;
 					</div>
 				</div>
 			</div>
+		
 		</div>
+		
 		<!--footer-->
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->
@@ -184,6 +186,8 @@ $cnt++;
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
+
+
 </body>
 </html>
 <?php }  ?>

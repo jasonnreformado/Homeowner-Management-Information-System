@@ -67,19 +67,19 @@
             </li>
           
             <li>
-              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Reservation<span class="fa arrow"></span></a>
+              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                 <li>
-                  <a href="all-appointment.php">All Reservation</a>
+                  <a href="all-appointment.php">All Appointment</a>
                 </li>
                 <li>
-                  <a href="new-appointment.php">New Reservation</a>
+                  <a href="new-appointment.php">New Appointment</a>
                 </li>
                 <li>
-                  <a href="accepted-appointment.php">Accepted Reservation</a>
+                  <a href="accepted-appointment.php">Accepted Appointment</a>
                 </li>
                 <li>
-                  <a href="rejected-appointment.php">Rejected Reservation</a>
+                  <a href="rejected-appointment.php">Rejected Appointment</a>
                 </li>
               </ul>
               <!-- //nav-second-level -->
@@ -114,7 +114,7 @@
               <a href="bwdates-reports-ds.php"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                  <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
-                    <li><a href="sales-reports.php">Reports</a></li>
+                    <li><a href="sales-reports.php">Expense Reports</a></li>
               </ul>
             </li>
 

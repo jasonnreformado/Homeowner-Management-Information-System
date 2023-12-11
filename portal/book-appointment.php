@@ -97,7 +97,7 @@ $(function () {
                 <div class="map-content-9 mt-lg-0 mt-4">
                     <form method="post">
                         <div style="padding-top: 30px;">
-                            <label>Reservation Date</label>
+                            <label>Appointment Date</label>
                             <input type="date" class="form-control appointment_date" placeholder="Date" name="adate" id='adate' required="true"></div>
 
                         <div style="padding-top: 30px;">

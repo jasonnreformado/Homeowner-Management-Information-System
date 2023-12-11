@@ -88,15 +88,16 @@ while ($row=mysqli_fetch_array($ret)) {
                 </tr>
 
 				<tr>
-                	<th>Location    </th>
-                	<td><?php  echo $row['address'];?></td>
+                	<th>Time    </th>
+                	<td><?php  echo $row['time'];?></td>
 
                 	                	<th>Subject</th>
                 	<td><?php  echo $row['subject'];?></td>
                 </tr>
 
-				<th >Time</th>
-    <td colspan="4"><?php  echo $row['time'];?></td>
+
+	<th >Location</th>
+    <td colspan="4"><?php  echo $row['address'];?></td>
   </tr>
 
 			
