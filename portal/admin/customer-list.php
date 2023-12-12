@@ -127,7 +127,7 @@ echo "<script>window.location.href='customer-list.php'</script>";
                                         <td><?php echo $row['status']; ?></td>
                                         <td><?php echo $row['RegDate']; ?></td>
                                         <td>
-                                            <a href="view-profiles.php" class="btn btn-primary">View</a>
+                                        <a href="view-profiles.php?uid=<?php echo $row['ID']; ?>" class="btn btn-primary">View</a>
                                             <a href="add-customer-services.php?addid=<?php echo $row['ID']; ?>" class="btn btn-primary">Bill</a>
                                             <a href="customer-list.php?delid=<?php echo $row['ID']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
                                         </td>

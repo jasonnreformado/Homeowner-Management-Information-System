@@ -1,94 +1,88 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 
-if (strlen($_SESSION['bpmsuid'] == 0)) {
-  header('location:logout.php');
+if (empty($_SESSION['bpmsuid'])) {
+    header('location:logout.php');
 } else {
-  $uid = $_SESSION['bpmsuid'];
+    $uid = $_SESSION['bpmsuid'];
 
-  if (isset($_POST['submit'])) {
-    $fname = $_POST['firstname'];
-    $lname = $_POST['lastname'];
-    $mobilenumber = $_POST['mobilenumber'];
-    $email = $_POST['email'];
-    $numplp = $_POST['numplp'];
-    $movein = $_POST['movein'];
-    
+    if (isset($_POST['submit'])) {
+        $fname = $_POST['firstname'];
+        $lname = $_POST['lastname'];
+        $mobilenumber = $_POST['mobilenumber'];
+        $email = $_POST['email'];
+        $numplp = $_POST['numplp'];
+        $movein = $_POST['movein'];
 
-    // File upload handling
-    $target_dir = "uploads/";  // Specify your upload directory
-    $target_file = $target_dir . basename($_FILES["profilepicture"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // Check if image file is a actual image or fake image
-    if (isset($_POST["submit"])) {
-      $check = getimagesize($_FILES["profilepicture"]["tmp_name"]);
-      if ($check !== false) {
+        // File upload handling
+        $target_dir = "uploads/";  // Specify your upload directory
+        $target_file = $target_dir . basename($_FILES["profilepicture"]["name"]);
         $uploadOk = 1;
-      } else {
-        echo '<script>alert("File is not an image.")</script>';
-        $uploadOk = 0;
-      }
-    }
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check if file already exists
-    
-
-    // Check file size
-    if ($_FILES["profilepicture"]["size"] > 500000) {
-      echo '<script>alert("Sorry, your file is too large.")</script>';
-      $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-      && $imageFileType != "gif") {
-      echo '<script>alert("Sorry, only JPG, JPEG, PNG & GIF files are allowed.")</script>';
-      $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-      echo '<script>alert("Sorry, your file was not uploaded.")</script>';
-    } else {
-      if (move_uploaded_file($_FILES["profilepicture"]["tmp_name"], $target_file)) {
-        $profilePicturePath = $target_file;
-
-        // Update user profile including the profile picture path
-        $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber',numplp='$numplp',movein='$movein', ProfilePicture='$profilePicturePath' WHERE ID='$uid'");
-
-        if ($query) {
-          echo '<script>alert("Profile updated successfully.")</script>';
-          echo '<script>window.location.href=user-dashboard.php</script>';
-        } else {
-          echo '<script>alert("Something Went Wrong. Please try again.")</script>';
+        // Check if image file is a valid image
+        $check = getimagesize($_FILES["profilepicture"]["tmp_name"]);
+        if ($check === false) {
+            echo '<script>alert("File is not an image.")</script>';
+            $uploadOk = 0;
         }
-      } else {
-        echo '<script>alert("Sorry, there was an error uploading your file.")</script>';
-      }
-    }
-  }
 
-  // Fetch existing user profile information
-  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
-  $cnt = 1;
-  
-  if ($row = mysqli_fetch_assoc($ret)) {
-    $firstname = $row['FirstName'];
-    $lastname = $row['LastName'];
-    $mobilenumber = $row['MobileNumber'];
-    $email = $row['Email'];
-    $profilePicture = $row['ProfilePicture'];
-    $address = $row['address'];
-    $status = $row['status'];
-    $numplp = $row['numplp'];
-    $movein = $row['movein'];
-    $regdate = $row['RegDate'];
+        // Check file size
+        if ($_FILES["profilepicture"]["size"] > 500000) {
+            echo '<script>alert("Sorry, your file is too large.")</script>';
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        $allowedFormats = ["jpg", "jpeg", "png", "gif"];
+        if (!in_array($imageFileType, $allowedFormats)) {
+            echo '<script>alert("Sorry, only JPG, JPEG, PNG & GIF files are allowed.")</script>';
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo '<script>alert("Sorry, your file was not uploaded.")</script>';
+        } else {
+            if (move_uploaded_file($_FILES["profilepicture"]["tmp_name"], $target_file)) {
+                $profilePicturePath = $target_file;
+
+                // Update user profile including the profile picture path
+                $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber', numplp='$numplp', movein='$movein', ProfilePicture='$profilePicturePath' WHERE ID='$uid'");
+
+                if ($query) {
+                    echo '<script>alert("Profile updated successfully.")</script>';
+                    echo '<script>window.location.href="user-dashboard.php"</script>';
+                } else {
+                    echo '<script>alert("Something Went Wrong. Please try again.")</script>';
+                }
+            } else {
+                echo '<script>alert("Sorry, there was an error uploading your file.")</script>';
+            }
+        }
+    }
+
+    // Fetch existing user profile information
+    $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+    $cnt = 1;
+
+    if ($row = mysqli_fetch_assoc($ret)) {
+        $firstname = $row['FirstName'];
+        $lastname = $row['LastName'];
+        $mobilenumber = $row['MobileNumber'];
+        $email = $row['Email'];
+        $profilePicture = $row['ProfilePicture'];
+        $address = $row['address'];
+        $status = $row['status'];
+        $numplp = $row['numplp'];
+        $movein = $row['movein'];
+        $regdate = $row['RegDate'];
+    }
 }
 ?>
+
 
 
 <!DOCTYPE HTML>
@@ -233,7 +227,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
                 <label for="regdate">Registration Date</label>
                 <input type="text" class="form-control" id="regdate" name="regdate" value="<?php echo $regdate; ?>" readonly="true">
             </div>
-                    <?php } ?>
+                    <?php  ?>
                     <br>    
                     <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
                     <p style="margin-top:1%"  align="center">

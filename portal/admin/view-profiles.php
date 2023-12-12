@@ -1,46 +1,52 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsuid']==0)) {
- 
-  } else{
-if(isset($_POST['submit']))
-  {
-    $uid=$_SESSION['bpmsuid'];
-    $fname=$_POST['firstname'];
-	$lname=$_POST['lastname'];
-    $mobilenumber=$_POST['mobilenumber'];
-	$email=$_POST['email'];
-	$address=$_POST['address'];
-	$status=$_POST['status'];
-	$numplp=$_POST['numplp'];
-	$movein=$_POST['movein'];
 
-    $query=mysqli_query($con, "update tbluser set FirstName='$fname', LastName='$lname',MobileNumber='$mobilenumber',Email='$email',address='$address',status='$status',numplp='$numplp',movein='$movein'where ID='$uid'");
+if (empty($_SESSION['bpmsuid'])) {
+    // Redirect or handle the case where the user is not logged in
+} else {
+    $uid = $_SESSION['bpmsuid'];
 
+    if (isset($_POST['submit'])) {
+        $fname = mysqli_real_escape_string($con, $_POST['firstname']);
+        $lname = mysqli_real_escape_string($con, $_POST['lastname']);
+        $mobilenumber = mysqli_real_escape_string($con, $_POST['mobilenumber']);
+        $email = mysqli_real_escape_string($con, $_POST['email']);
+        $address = mysqli_real_escape_string($con, $_POST['address']);
+        $status = mysqli_real_escape_string($con, $_POST['status']);
+        $numplp = mysqli_real_escape_string($con, $_POST['numplp']);
+        $movein = mysqli_real_escape_string($con, $_POST['movein']);
 
-    if ($query) {
- echo '<script>alert("Profile updated successully.")</script>';
-echo '<script>window.location.href=view-profiles.php</script>';
-  }
-  else
-    {
-     
-      echo '<script>alert("Something Went Wrong. Please try again.")</script>';
+        $query = "UPDATE tbluser SET FirstName='$fname', LastName='$lname', MobileNumber='$mobilenumber', Email='$email', address='$address', status='$status', numplp='$numplp', movein='$movein' WHERE ID='$uid'";
+
+        $result = mysqli_query($con, $query);
+
+        if ($result) {
+            echo '<script>alert("Profile updated successfully.")</script>';
+            echo '<script>window.location.href="view-profiles.php"</script>';
+        } else {
+            echo '<script>alert("Something Went Wrong. Please try again.")</script>';
+        }
     }
-
 }
+?>
 
-
-  ?>
 
 
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>Villa Arcadia | Profiles</title>
-
+<script>
+    function printTable() {
+        var printContents = document.getElementById('printableTable').outerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = '<h3 class="title1 text-center">Resident Information</h3>' + printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -106,31 +112,28 @@ echo '<script>window.location.href=view-profiles.php</script>';
   </style>
 </head> 
 <body class="cbp-spmenu-push">
-	<div class="main-content">
-		<!--left-fixed -navigation-->
-		 <?php include_once('includes/sidebar.php');?>
-		<!--left-fixed -navigation-->
-		<!-- header-starts -->
-		 <?php include_once('includes/header.php');?>
-		<!-- //header-ends -->
-		<!-- main content start-->
-		<div id="page-wrapper">
-			<div class="main-page">
-                
-				<div class="tables">
-					<h3 class="title1">Resident Information</h3>
+    <div class="main-content">
+        <!--left-fixed -navigation-->
+        <?php include_once('includes/sidebar.php');?>
+        <!--left-fixed -navigation-->
+        <!-- header-starts -->
+        <?php include_once('includes/header.php');?>
+        <!-- //header-ends -->
+        <!-- main content start-->
+        <div id="page-wrapper">
+            <div class="main-page">
+                <div class="tables">
+                    <h3 class="title1 text-center">Resident Information</h3>
 
-					<!--content-->
-          <div class="map-content-9 mt-lg-0 mt-4">
-                
-		  <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
-<?php
-$uid=$_SESSION['bpmsuid'];
-$ret=mysqli_query($con,"select * from tbluser where ID='$uid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>	
+                    <!-- Add a table with an ID for printing -->
+                    <div class="map-content-9 mt-lg-0 mt-4" id="printableTable">
+                        <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
+                            <?php
+                            $uid = $_SESSION['bpmsuid'];
+                            $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
+                            $cnt = 1;
+                            while ($row = mysqli_fetch_array($ret)) {
+                            ?>
 
 
                         <div style="padding-top: 30px;">
@@ -179,17 +182,20 @@ while ($row=mysqli_fetch_array($ret)) {
                        </div>
                      
                       <?php }?>
-					  
-                        <button type="submit" class="btn btn-contact" name="submit">Save Change</button>
+					  <br>
+                      <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
                     </form>
                 </div>
     </div>
-<!--content-->
-<br>
-		<!--footer-->
-		 <?php include_once('includes/footer.php');?>
-        <!--//footer-->
-	</div>
+    <div class="text-center">
+                    <button onclick="printTable()" class="btn btn-info">Print</button>
+                </div>
+                <br>
+                <!--footer-->
+                <?php include_once('includes/footer.php');?>
+                <!--//footer-->
+            </div>
+        </div>
 	<!-- Classie -->
 		<script src="js/classie.js"></script>
 		<script>
@@ -221,6 +227,7 @@ while ($row=mysqli_fetch_array($ret)) {
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
+ 
 </body>
 </html>
-<?php  } ?>
+<?php   ?>
