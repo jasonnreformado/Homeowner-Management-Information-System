@@ -19,36 +19,47 @@ if(isset($_POST['login']))
     }
   }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
- 
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villa Arcadia | Login</title>
-
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-   <style>
-       nav {
-  background-color: #006400;
-    text-align: right;
-}
+    <style>
+        nav {
+            background-color: #006400;
+            text-align: right;
+        }
 
-nav a {
-    display: inline-block;
-    padding: 20px 20px;
-    text-decoration: none;
-    color: #fff;
-}
-h2 {
-    text-align: center;
-}
-   </style>
-  </head>
-  <body id="home">
+        nav a {
+            display: inline-block;
+            padding: 20px 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* Add your responsive styles here */
+        @media (max-width: 767px) {
+            nav {
+                text-align: center;
+            }
+            nav a {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body id="home">
 
 
 <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
@@ -136,8 +147,12 @@ while ($row=mysqli_fetch_array($ret)) {
                           <input type="password" class="form-control" name="password" placeholder="Password" required="true">
                         
                         </div>
-                        
                         <div class="twice-two" style="padding-top: 30px;">
+                          <a class="link--gray" style="color: #ab6aad;" href="#">No account? Please fill-up this form!</a>
+                        
+                        </div>
+                        
+                        <div class="twice-two" style="padding-top: 0px;">
                           <a class="link--gray" style="color: #ab6aad;" href="forgot-password.php">Forgot Password?</a>
                         
                         </div>
