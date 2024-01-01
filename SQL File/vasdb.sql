@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 01:54 PM
+-- Host: 127.0.0.1:3308
+-- Generation Time: Jan 01, 2024 at 08:35 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -95,8 +95,7 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`post_id`, `content`, `is_pinned`) VALUES
 (48, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
 (49, 'Meeting of homeowners maintenance. etc.', 1),
-(56, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
-(72, 'eqweqwe', 1);
+(56, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
 
 -- --------------------------------------------------------
 
@@ -118,8 +117,7 @@ CREATE TABLE `post_files` (
 INSERT INTO `post_files` (`file_id`, `post_id`, `file_path`, `description`) VALUES
 (55, 48, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
 (56, 49, '../uploads/b2144838607e6bbe3600f16541d1797f.jpg', ''),
-(68, 56, '../uploads/b8.jpg', ''),
-(79, 72, '../uploads/b8.jpg', '');
+(68, 56, '../uploads/b8.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -334,7 +332,7 @@ CREATE TABLE `tbluser` (
 
 INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`, `ProfilePicture`, `numplp`, `movein`) VALUES
 (20, 'Joana Marie', 'Capawa', 946843322, 'joanamarie.capawa@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Renter', 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', 2, '2023-12-12'),
-(24, 'Jason ', 'Reformado', 945263815, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-08 08:53:53', 'Block 5 and Lot 4', 'Owner', 'uploads/profile.jpg', 2, '2023-12-11'),
+(24, 'Jason ', 'Reformado', 945263815, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-08 08:53:53', 'Block 5 and Lot 4', 'Owner', 'uploads/admin.jpg', 2, '2023-12-11'),
 (25, 'Wilfred', 'Delos Reyes', 909984564, 'delosreyes@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-11 05:20:24', 'block 10 lot 4', 'Owner', '', NULL, NULL),
 (26, 'Jamaica Ella', 'Gonzaga', 945456813, 'gonzaga@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-11 05:20:50', 'Block 4 Lot 3', 'Renter', '', NULL, NULL),
 (30, 'test', 'test', 932132132, 'test@gmail.com', 'efe6398127928f1b2e9ef3207fb82663', '2023-12-11 15:35:06', 'Block 5 and Lot 4', 'Renter', 'uploads/admin.jpg', 3, '2020-02-11');
