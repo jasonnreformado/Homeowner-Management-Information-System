@@ -69,7 +69,7 @@ $totalcust=mysqli_num_rows($query1);
 						<div class="stats-left ">
 						
 							
-							<h4>Residents</h4>
+							<h4>Resident</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalcust;?></label>
@@ -107,7 +107,7 @@ $todysale+=$todays_sale;
  ?>
 						<div class="stats-left">
 							<h5>Today</h5>
-							<h4>Collection</h4>
+							<h5>Collection</h5>
 						</div>
 						<div class="stats-right">
 							<label> <?php 
@@ -177,7 +177,7 @@ $yesterdaysale+=$yesterdays_sale;
 ?>
 					   <div class="stats-left ">
 						   <h5>Yesterday</h5>
-						   <h4>Collection</h4>
+						   <h5>Collection</h5>
 					   </div>
 					   <div class="stats-right">
 						   <label> <?php 
@@ -254,7 +254,7 @@ $totalsale+=$total_sale;
  ?>
 						<div class="stats-left">
 							<h5>Total</h5>
-							<h4>Collection</h4>
+							<h5>Collection</h5>
 						</div>
 						<div class="stats-right">
 							<label><?php

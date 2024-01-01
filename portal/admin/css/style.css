@@ -865,7 +865,7 @@ ul.dropdown-menu.drp-mnu li {
 }
 .stats-left h5 {
     color: #fff;
-    font-size: 1em;
+    font-size: 1.3em;
 }
 .stats-left h4 {
     font-size: 2em;
@@ -878,7 +878,7 @@ ul.dropdown-menu.drp-mnu li {
 }
 /*--charts--*/
 .charts,.row {
-    margin: 2em 0 0;
+    margin: 1em 0 0;
 }
 .charts-grids {
     background-color: #fff;
