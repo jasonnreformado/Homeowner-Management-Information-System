@@ -69,7 +69,7 @@ $totalcust=mysqli_num_rows($query1);
 						<div class="stats-left ">
 						
 							
-							<h4>Resident</h4>
+							<h4>Residents</h4>
 						</div>
 						<div class="stats-right">
 							<label> <?php echo $totalcust;?></label>
