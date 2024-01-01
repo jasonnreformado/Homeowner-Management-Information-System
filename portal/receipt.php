@@ -77,7 +77,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 			<div class="main-page">
                 
 				<div class="tables">
-					<h3 class="title1">My Profile</h3>
+					<h3 class="title1">My Receipt</h3>
 
 					<!--content-->
                     <section class="w3l-contact-info-main" id="contact">
