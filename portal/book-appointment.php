@@ -77,7 +77,7 @@ $(function () {
 <ul class="breadcrumbs-custom-path">
     <li class="right-side propClone"><a href="user-dashboard.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
     <li class="active ">
-        Book Reservation</li>
+        Book Appointment</li>
 </ul>
 </div>
 </div>
@@ -95,24 +95,36 @@ $(function () {
                     </div>
                <?php  ?> </div>
                 <div class="map-content-9 mt-lg-0 mt-4">
-                    <form method="post">
-                        <div style="padding-top: 30px;">
-                            <label>Appointment Date</label>
-                            <input type="date" class="form-control appointment_date" placeholder="Date" name="adate" id='adate' required="true"></div>
+                <form method="post">
+    <div style="padding-top: 30px;">
+        <label>Appointment Date</label>
+        <input type="date" class="form-control appointment_date" placeholder="Date" name="adate" id='adate' required="true">
+    </div>
 
-                        <div style="padding-top: 30px;">
-                            <label>Start Time</label>
-                            <input type="time" class="form-control appointment_time" placeholder="Time" name="atime" id='atime' required="true"></div>
+    <div style="padding-top: 30px;">
+        <label>Start Time</label>
+        <input type="time" class="form-control appointment_time" placeholder="Time" name="atime" id='atime' required="true">
+    </div>
 
-                            <div style="padding-top: 30px;">
-                            <label>End Time</label>
-                            <input type="time" class="form-control appointment_time" placeholder="Time" name="endtime" id='endtime' required="true"></div>
-                            
+    <div style="padding-top: 30px;">
+        <label>End Time</label>
+        <input type="time" class="form-control appointment_time" placeholder="Time" name="endtime" id='endtime' required="true">
+    </div>
 
-                        <div style="padding-top: 30px;">
-                        <textarea class="form-control" id="message" name="message" placeholder="Message" required=""></textarea></div>
-                        <button type="submit" class="btn btn-contact" name="submit">Make an Appointment</button>
-                    </form>
+    <div style="padding-top: 30px;">
+        <label>Message ↓</label>
+        <select class="form-control" id="message" name="message" required="">
+            <option value="Basketball Court">Basketball Court</option>
+            <option value="Club House">Club House</option>
+            <option value="Table">Table</option>
+            <option value="Chairs">Chairs</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-contact" name="submit">Make an Appointment</button>
+</form>
+
                 </div>
     </div>
    

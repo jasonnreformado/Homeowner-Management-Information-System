@@ -109,10 +109,14 @@ while ($row=mysqli_fetch_array($ret)) {
 
               </table><?php $cnt=$cnt+1;} ?> 
 					</div>
+					<p style="margin-top:1%"  align="center">
+  <i class="fa fa-print fa-2x" style="cursor: pointer;"  OnClick="CallPrint(this.value)" ></i>
+</p>
 				</div>
 			</div>
 		</div>
 		<!--footer-->
+		
 		 <?php include_once('includes/footer.php');?>
         <!--//footer-->
 	</div>
@@ -142,6 +146,21 @@ while ($row=mysqli_fetch_array($ret)) {
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
+	<script>
+    function CallPrint() {
+        var prtContent = document.getElementById("page-wrapper").innerHTML;
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write('<html><head><title>Print</title>');
+        WinPrint.document.write('</head><body>');
+        WinPrint.document.write(prtContent);
+        WinPrint.document.write('</body></html>');
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+</script>
+
 </body>
 </html>
 <?php }  ?>
