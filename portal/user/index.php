@@ -66,7 +66,7 @@ nav a {
 <nav>
         <a href="index.php">Home</a>
         <a href="faqs.php">FAQs</a>
-        <a href="index.php">Officer</a>
+        <a href="officer.php">Officer</a>
         <a href="../login.php">Login
         </a>
     </nav>

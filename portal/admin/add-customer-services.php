@@ -2,28 +2,29 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsaid']==0)) {
-  header('location:logout.php');
-  } else{
-if(isset($_POST['submit'])){
 
+if (empty($_SESSION['bpmsaid'])) {
+    header('location:logout.php');
+} else {
+    if (isset($_POST['submit'])) {
+        $uid = intval($_GET['addid']);
+        $invoiceid = mt_rand(100000000, 999999999);
+        $sid = isset($_POST['sids']) ? $_POST['sids'] : [];
 
-$uid=intval($_GET['addid']);
-$invoiceid=mt_rand(100000000, 999999999);
-$sid=$_POST['sids'];
-for($i=0;$i<count($sid);$i++){
-   $svid=$sid[$i];
-$ret=mysqli_query($con,"insert into tblinvoice(Userid,ServiceId,BillingId) values('$uid','$svid','$invoiceid');");
+        foreach ($sid as $svid) {
+            $ret = mysqli_query($con, "INSERT INTO tblinvoice(Userid, ServiceId, BillingId) VALUES ('$uid', '$svid', '$invoiceid');");
+        }
 
-
-echo '<script>alert("Invoice created successfully. Invoice number is "+"'.$invoiceid.'")</script>';
-echo "<script>window.location.href ='invoices.php'</script>";
+        if ($ret) {
+            echo '<script>alert("Invoice created successfully. Invoice number is ' . $invoiceid . '")</script>';
+            echo '<script>window.location.href = "invoices.php"</script>';
+        } else {
+            // Handle database error
+            echo '<script>alert("Error creating invoice. Please try again.")</script>';
+        }
+    }
 }
-}
- 
-
-
-  ?>
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -69,14 +70,14 @@ echo "<script>window.location.href ='invoices.php'</script>";
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h3 class="title1">Assign Services</h3>
+					<h3 class="title1">Bill Payments</h3>
 					
 					
 				
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Assign Services:</h4>
+						<h4>Bill Payments:</h4>
 <form method="post">
-						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Name</th> <th> Bill</th> <th>Action</th> </tr> </thead> <tbody>
+						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th> Name</th> <th> Bill</th>  <th>Action</th> <th> </th>  </tr> </thead> <tbody>
 <?php
 $ret=mysqli_query($con,"select *from  tblservices");
 $cnt=1;
@@ -84,12 +85,21 @@ while ($row=mysqli_fetch_array($ret)) {
 
 ?>
 
- <tr> 
-<th scope="row"><?php echo $cnt;?></th> 
-<td><?php  echo $row['ServiceName'];?></td> 
-<td><?php  echo $row['Cost'];?></td> 
-<td><input type="checkbox" name="sids[]" value="<?php  echo $row['ID'];?>" ></td> 
-</tr>   
+<tr> 
+    <th scope="row"><?php echo $cnt;?></th> 
+    <td><?php  echo $row['ServiceName'];?></td> 
+    <td><?php  echo $row['Cost'];?></td> 
+   
+    <td>
+
+        <input type="checkbox" name="sids[]" value="<?php  echo $row['ID'];?>" >
+      
+    </td> 
+    <td>
+       
+        <a href="edit-services.php?editid=<?php echo $row['ID']; ?>" class="btn btn-warning btn-sm">Edit</a>
+    </td> 
+</tr> 
 <?php 
 $cnt=$cnt+1;
 }?>
@@ -138,4 +148,4 @@ $cnt=$cnt+1;
 	<script src="js/bootstrap.js"> </script>
 </body>
 </html>
-<?php }  ?>
+<?php   ?>

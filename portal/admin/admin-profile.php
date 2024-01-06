@@ -94,7 +94,7 @@ while ($row=mysqli_fetch_array($ret)) {
 				
 				
 			</div>
-		</div>
+		</div>	</div>
 		 <?php include_once('includes/footer.php');?>
 	</div>
 	<!-- Classie -->

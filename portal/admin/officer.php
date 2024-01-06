@@ -152,11 +152,11 @@ echo "<script>window.location.href='unreadenq.php'</script>";
 					
 		</div>
 		<!--footer-->
-    <br><br>
-		 <?php include_once('includes/footer.php');?>
+
+		
         <!--//footer-->
-	</div>
-	<!-- Classie -->
+	</div>	</div>
+	<!-- Classie --> <?php include_once('includes/footer.php');?>
 		<script src="js/classie.js"></script>
 		<script>
 			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),

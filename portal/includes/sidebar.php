@@ -79,12 +79,14 @@
             </li>
           
             <!-- Monthly Dues -->
-              <li>
-              <a href="#"><i class="fa fa-money nav_icon"></i>Monthly Dues<span></span></a>
-              </li>
+             
 
               <li>
               <a href="receipt.php"><i class="fa fa-money nav_icon"></i>Payment Receipt<span></span></a>
+              </li>
+
+              <li>
+              <a href="rules.php"><i class="fa fa-money nav_icon"></i>Rules and Regulations<span></span></a>
               </li>
 
 

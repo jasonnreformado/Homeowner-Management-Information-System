@@ -1,18 +1,29 @@
-<?php
+<?php 
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['bpmsaid']==0)) {
+
+if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
-  } else{
+} else {
 
+
+  $uid = $_SESSION['bpmsuid'];
+  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
+  $cnt = 1;
   
+  if ($row = mysqli_fetch_assoc($ret)) {
+   
+    $profilePicture = $row['ProfilePicture'];
 
-  ?>
+}
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Villa Arcadia | Reports</title>
+<title>Villa Arcadia | Announcement</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -41,6 +52,16 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+        .image-container {
+            display: flex;
+        }
+
+        .image-container img {
+            width: 48%; /* Set the width as needed */
+            margin-right: 2%; /* Adjust the margin as needed */
+        }
+    </style>
 </head> 
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -48,38 +69,26 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 		 <?php include_once('includes/sidebar.php');?>
 		<!--left-fixed -navigation-->
 		<!-- header-starts -->
-	 <?php include_once('includes/header.php');?>
+		 <?php include_once('includes/header.php');?>
 		<!-- //header-ends -->
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-				<div class="forms">
-					<h3 class="title1">b/w Monthly Reports</h3>
-					<div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
-						<div class="form-title">
-							<h4>Between dates reports:</h4>
-						</div>
-						<div class="form-body">
-							<form method="post" name="bwdatesreport"  action="bwdates-reports-details.php" enctype="multipart/form-data">
-								<p style="font-size:16px; color:red" align="center"> <?php if($msg){
-    echo $msg;
-  }  ?> </p>
-
-  
-							 <div class="form-group"> <label for="exampleInputEmail1">From Date</label> <input type="date" class="form-control1" name="fromdate" id="fromdate" value="" required='true'> </div> 
-							 <div class="form-group"> <label for="exampleInputPassword1">To Date</label><input type="date" class="form-control1" name="todate" id="todate" value="" required='true'> </div>
-							 
-							
-							
-							  <button type="submit" name="submit" class="btn btn-default">Submit</button> </form> 
-						</div>
-						
-					</div>
-				
-				
-			</div>
-		</div>	</div>
-		 <?php include_once('includes/footer.php');?>
+                
+				<div class="tables">
+					<h3 class="title1">Rules and Regulations</h3>
+          
+		<div class="image-container">
+        <img src="img/rules.jpg" alt="Image 1">
+        <img src="img/rules1.jpg" alt="Image 2">
+    </div>
+                 
+<!--content-->
+<br>
+		<!--footer-->
+			<!--footer-->
+            <?php include_once('includes/footer.php');?>
+        <!--//footer-->
 	</div>
 	<!-- Classie -->
 		<script src="js/classie.js"></script>
@@ -106,7 +115,12 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 	<script src="js/scripts.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
-   <script src="js/bootstrap.js"> </script>
+
+  <script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.js"> </script>
 </body>
 </html>
-<?php } ?>
+<?php  } ?>

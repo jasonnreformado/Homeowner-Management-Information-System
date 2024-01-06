@@ -112,7 +112,7 @@ h1 {
 
 body.loaded {
   transform: translateY(0); /* Slide in from the top */
-  transition: transform 1s ease-in-out;
+  
 }
 
 @keyframes fadeIn {

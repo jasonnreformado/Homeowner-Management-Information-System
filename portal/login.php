@@ -149,7 +149,7 @@ while ($row=mysqli_fetch_array($ret)) {
                         </div>
                         <div class="twice-two" style="padding-top: 30px;">
                           <a class="link--gray" style="color: #ab6aad;" href="https://forms.gle/E74R2QDrTMxzyKQn7">No account? Please fill-up this form!</a>
-                        
+                     
                         </div>
                         
                         <div class="twice-two" style="padding-top: 0px;">

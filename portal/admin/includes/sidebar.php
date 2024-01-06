@@ -6,8 +6,9 @@
     <title>Your Page Title</title>
     <style>
         /* Your existing styles here */
-        h5{
+        h6{
           color: black;
+          b
           font:  sans-serif;
         }
         /* Media query for responsive styles */
@@ -51,7 +52,7 @@
               <a href="dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
             </li>
            
-    
+            <h6><b>MANAGEMENT</b></h6>
             <li>
               <a href="customer-list.php" class="chart-nav"><i class="fa fa-users nav_icon"></i>Homeowner's Member</a>
             </li>
@@ -86,7 +87,7 @@
             </li>
 
          <!-- Request Maintenance -->
-         
+         <h6><b>SECURITY</b></h6>
 
 
             <li>
@@ -100,24 +101,27 @@
 
            
 
+           
+            <li>
+              <a href="manage-services.php" class="chart-nav"><i class="fa fa-pencil-square-o nav_icon"></i> Categories</a>
+            </li>
 
+        
             <li>
               <a href="invoices.php"><i class="fa fa-print nav_icon"></i>Invoice<span class=""></span></a>
             </li>
-
-           
-            <li>
-              <a href="manage-services.php" class="chart-nav"><i class="fa fa-pencil-square-o nav_icon"></i>Collection Categories</a>
-            </li>
-
+            <h6><b>MAINTENANCE</b></h6>
             <li>
               <a href="bwdates-reports-ds.php"><i class="fa fa-money nav_icon"></i>Monthly Collection Report<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
-                 <li><a href="bwdates-reports-ds.php"> B/w dates</a></li>
-                    <li><a href="sales-reports.php">Expense Reports</a></li>
+                 <li><a href="bwdates-reports-ds.php"> Collection Receipt</a></li>
+                    <li><a href="sales-reports.php">Expense</a></li>
               </ul>
             </li>
 
+            <li>
+              <a href="admin-profile.php"><i class="fa fa-user nav_icon"></i>Admin Profile<span class=""></span></a>
+            </li>
 
 
 
