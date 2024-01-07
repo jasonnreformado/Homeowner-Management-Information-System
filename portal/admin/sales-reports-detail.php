@@ -147,13 +147,16 @@ $cnt++;
               <td><?php  echo $ftotal;?></td>
    
                  
-                 
+			 
                 </tr></table>
                 <?php } ?>	
 					</div>
 				</div>
 			</div>
-		
+			<canvas id="expenseChart" width="400" height="200"></canvas>
+			<p style="margin-top:1%"  align="center">
+  <i class="fa fa-print fa-2x" style="cursor: pointer;"  OnClick="CallPrint(this.value)" ></i>
+</p>
 		</div>
 		
 		<!--footer-->
@@ -187,7 +190,67 @@ $cnt++;
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
 
+	<script>
+    var ctx = document.getElementById('expenseChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [<?php
+                $ret = mysqli_query($con, "SELECT DISTINCT CONCAT(month(PostingDate),'/',year(PostingDate)) AS label FROM tblinvoice WHERE date(PostingDate) BETWEEN '$fdate' AND '$tdate'");
+                $labels = array();
+                while ($row = mysqli_fetch_array($ret)) {
+                    $labels[] = "'" . $row['label'] . "'";
+                }
+                echo implode(",", $labels);
+            ?>],
+            datasets: [{
+                label: 'Sales',
+                data: [<?php
+                    $ret = mysqli_query($con, "SELECT SUM(Cost) AS totalprice FROM tblinvoice JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId WHERE date(tblinvoice.PostingDate) BETWEEN '$fdate' AND '$tdate' GROUP BY CONCAT(month(PostingDate),'/',year(PostingDate))");
+                    $data = array();
+                    while ($row = mysqli_fetch_array($ret)) {
+                        $data[] = $row['totalprice'];
+                    }
+                    echo implode(",", $data);
+                ?>],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<script>
+function CallPrint() {
+    var prtContent = document.getElementById("page-wrapper");
+    var chartCanvas = document.getElementById("expenseChart");
+    var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+    WinPrint.document.write('<html><head><title>Expense Reports</title>');
+    WinPrint.document.write('<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />');
+    WinPrint.document.write('<link rel="stylesheet" href="css/style.css" type="text/css" />');
+    WinPrint.document.write('</head><body>');
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.write('<canvas id="printedExpenseChart" width="400" height="200"></canvas>');
+    WinPrint.document.write('</body></html>');
+    WinPrint.document.close();
 
+    // Draw the chart on the new canvas in the print window
+    var printedChartCanvas = WinPrint.document.getElementById("printedExpenseChart");
+    var printedChartCtx = printedChartCanvas.getContext('2d');
+    printedChartCtx.drawImage(chartCanvas, 0, 0, chartCanvas.width, chartCanvas.height);
+
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+}
+</script>
 </body>
 </html>
 <?php }  ?>
