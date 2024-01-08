@@ -54,10 +54,10 @@ if (strlen($_SESSION['bpmsaid']==0)) {
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="forms">
-					<h3 class="title1">b/w Monthly Reports</h3>
+					<h3 class="title1">b/w Collection Receipt</h3>
 					<div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
 						<div class="form-title">
-							<h4>Between dates reports:</h4>
+							<h4>Between dates receipt:</h4>
 						</div>
 						<div class="form-body">
 							<form method="post" name="bwdatesreport"  action="bwdates-reports-details.php" enctype="multipart/form-data">

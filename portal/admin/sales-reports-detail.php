@@ -81,7 +81,7 @@ $y2=date("Y",$month2);
 <tr>
 <th>S.NO</th>
 <th>Month / Year </th>
-<th>Sales</th>
+<th>Total Collection</th>
 </tr>
 </thead>
 <?php
@@ -204,7 +204,7 @@ $cnt++;
                 echo implode(",", $labels);
             ?>],
             datasets: [{
-                label: 'Sales',
+                label: 'Collections',
                 data: [<?php
                     $ret = mysqli_query($con, "SELECT SUM(Cost) AS totalprice FROM tblinvoice JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId WHERE date(tblinvoice.PostingDate) BETWEEN '$fdate' AND '$tdate' GROUP BY CONCAT(month(PostingDate),'/',year(PostingDate))");
                     $data = array();
