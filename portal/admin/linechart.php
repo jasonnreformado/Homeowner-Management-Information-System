@@ -53,7 +53,15 @@
           itemclick: toggleDataSeries
         },
         data: [
-          
+          {
+            type: "line",
+            name: "Total Collections",
+            showInLegend: true,
+            legendMarkerType: "circle",
+            legendText: "Total Collections",
+            dataPoints: dataPointsTotal,
+            color: "red" // Customize the line color for total
+          },
           {
             type: "line",
             name: "Today Collections",
@@ -72,15 +80,6 @@
             dataPoints: dataPointsYesterday,
             color: "green" // Customize the line color for yesterday
           },
-          {
-            type: "line",
-            name: "Total Collections",
-            showInLegend: true,
-            legendMarkerType: "circle",
-            legendText: "Total Collections",
-            dataPoints: dataPointsTotal,
-            color: "red" // Customize the line color for total
-          },+
         ],
       });
 
