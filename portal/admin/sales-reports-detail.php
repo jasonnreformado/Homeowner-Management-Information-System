@@ -251,6 +251,7 @@ function CallPrint() {
     WinPrint.close();
 }
 </script>
+
 </body>
 </html>
 <?php }  ?>

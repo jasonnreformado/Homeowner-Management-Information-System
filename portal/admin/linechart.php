@@ -4,69 +4,84 @@
 <head>
   <script type="text/javascript">
     window.onload = function () {
+      <?php
+        // PHP code to fetch data for today
+        $dataPointsToday = array();
+        $cumulativeTotalToday = 0;
+        $query6 = mysqli_query($con, "SELECT tblinvoice.ServiceId as ServiceId, tblservices.Cost FROM tblinvoice JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId WHERE DATE(PostingDate) = CURDATE()");
+        while ($row6 = mysqli_fetch_array($query6)) {
+          $todays_sale = $row6['Cost'];
+          $cumulativeTotalToday += $todays_sale;
+          $dataPointsToday[] = array("y" => (float) $cumulativeTotalToday);
+        }
+
+        // PHP code to fetch data for yesterday
+        $dataPointsYesterday = array();
+        $cumulativeTotalYesterday = 0;
+        $query7 = mysqli_query($con, "SELECT tblinvoice.ServiceId as ServiceId, tblservices.Cost FROM tblinvoice JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId WHERE DATE(PostingDate) = CURDATE() - 1");
+        while ($row7 = mysqli_fetch_array($query7)) {
+          $yesterday_sale = $row7['Cost'];
+          $cumulativeTotalYesterday += $yesterday_sale;
+          $dataPointsYesterday[] = array("y" => (float) $cumulativeTotalYesterday);
+        }
+
+        // PHP code to fetch data for total
+        $dataPointsTotal = array();
+        $cumulativeTotalTotal = 0;
+        $query9 = mysqli_query($con, "SELECT tblinvoice.ServiceId as ServiceId, tblservices.Cost FROM tblinvoice JOIN tblservices ON tblservices.ID = tblinvoice.ServiceId");
+        while ($row9 = mysqli_fetch_array($query9)) {
+          $total_sale = $row9['Cost'];
+          $cumulativeTotalTotal += $total_sale;
+          $dataPointsTotal[] = array("y" => (float) $cumulativeTotalTotal);
+        }
+      ?>
+
+      // Convert PHP arrays to JavaScript
+      var dataPointsToday = <?php echo json_encode($dataPointsToday, JSON_NUMERIC_CHECK); ?>;
+      var dataPointsYesterday = <?php echo json_encode($dataPointsYesterday, JSON_NUMERIC_CHECK); ?>;
+      var dataPointsTotal = <?php echo json_encode($dataPointsTotal, JSON_NUMERIC_CHECK); ?>;
+
+      // Chart rendering code
       var chart = new CanvasJS.Chart("chartContainer", {
-        title: { text: "Daily Collection" },
-        axisX: { valueFormatString: "MMM DD", interval: 1, intervalType: "day" },
-        axisY: { includeZero: false },
-        data: [
-          {
-            name: "Nantucket",
-            type: "line",
-            showInLegend: true,
-            legendText: "Total Collections",
-            color: "blue",
-            dataPoints: [
-              { x: new Date(2024, 0, 6), y: 1200 },
-              { x: new Date(2024, 0, 7), y: 1500 },
-              { x: new Date(2024, 0, 8), y: 1800, indexLabel: "highest", markerColor: "red", markerType: "triangle" },
-              { x: new Date(2024, 0, 9), y: 1600 },
-              { x: new Date(2024, 0, 10), y: 1400 },
-              { x: new Date(2024, 0, 11), y: 1700 },
-              { x: new Date(2024, 0, 12), y: 1900 },
-              { x: new Date(2024, 0, 13), y: 2000 },
-            ]
-          },
-          {
-            name: "Nantucket",
-            type: "line",
-            showInLegend: true,
-            legendText: "Yesterday Collections",
-            color: "green",
-            dataPoints: [
-              { x: new Date(2024, 0, 6), y: 800 },
-              { x: new Date(2024, 0, 7), y: 900 },
-              { x: new Date(2024, 0, 8), y: 1100, indexLabel: "highest", markerColor: "red", markerType: "triangle" },
-              { x: new Date(2024, 0, 9), y: 1000 },
-              { x: new Date(2024, 0, 10), y: 950 },
-              { x: new Date(2024, 0, 11), y: 1200 },
-              { x: new Date(2024, 0, 12), y: 1300 },
-              { x: new Date(2024, 0, 13), y: 1400 },
-            ]
-          },
-          {
-            name: "Nantucket",
-            type: "line",
-            showInLegend: true,
-            legendText: "Today Collections",
-            color: "red",
-            dataPoints: [
-              { x: new Date(2024, 0, 6), y: 400 },
-              { x: new Date(2024, 0, 7), y: 600 },
-              { x: new Date(2024, 0, 8), y: 900, indexLabel: "highest", markerColor: "red", markerType: "triangle" },
-              { x: new Date(2024, 0, 9), y: 800 },
-              { x: new Date(2024, 0, 10), y: 700 },
-              { x: new Date(2024, 0, 11), y: 800 },
-              { x: new Date(2024, 0, 12), y: 1000 },
-              { x: new Date(2024, 0, 13), y: 1100 },
-            ]
-          }
-        ],
+        title: { text: "Collection Comparison" },
+        axisY: { title: "Total Collection", includeZero: false },
         legend: {
-          verticalAlign: "bottom",
-          horizontalAlign: "center",
+          verticalAlign: "bottom", // Change verticalAlign to "bottom"
+          horizontalAlign: "center", // Center the legend horizontally
+          fontSize: 14,
           cursor: "pointer",
           itemclick: toggleDataSeries
-        }
+        },
+        data: [
+          
+          {
+            type: "line",
+            name: "Today Collections",
+            showInLegend: true,
+            legendMarkerType: "circle",
+            legendText: "Today Collections",
+            dataPoints: dataPointsToday,
+            color: "blue" // Customize the line color for today
+          },
+          {
+            type: "line",
+            name: "Yesterday Collections",
+            showInLegend: true,
+            legendMarkerType: "circle",
+            legendText: "Yesterday Collections",
+            dataPoints: dataPointsYesterday,
+            color: "green" // Customize the line color for yesterday
+          },
+          {
+            type: "line",
+            name: "Total Collections",
+            showInLegend: true,
+            legendMarkerType: "circle",
+            legendText: "Total Collections",
+            dataPoints: dataPointsTotal,
+            color: "red" // Customize the line color for total
+          },+
+        ],
       });
 
       chart.render();
@@ -84,8 +99,6 @@
   <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </head>
 
-<body>
-  <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-</body>
+
 
 </html>
