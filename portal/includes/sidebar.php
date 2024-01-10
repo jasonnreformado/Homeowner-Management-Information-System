@@ -82,6 +82,9 @@
                         <a href="complaint.php"><i class="fa fa-envelope-o nav_icon"></i>Incident Letter<span></span></a>
                     </li>
 
+                    <li>
+                        <a href="#"><i class="fa fa-money nav_icon"></i>Account Balance<span></span></a>
+                    </li>
                     <!-- Payment Receipt -->
                     <li>
                         <a href="receipt.php"><i class="fa fa-money nav_icon"></i>Payment Receipt<span></span></a>

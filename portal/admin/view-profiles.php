@@ -134,59 +134,50 @@ if (empty($_SESSION['bpmsuid'])) {
                             $cnt = 1;
                             while ($row = mysqli_fetch_array($ret)) {
                             ?>
-
-
-                        <div style="padding-top: 30px;">
-                            <label>First Name</label>
-                            <input type="text" class="form-control" name="firstname" value="<?php  echo $row['FirstName'];?>" required="true"></div>
-
-                           <div style="padding-top: 30px;">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" name="lastname" value="<?php  echo $row['LastName'];?>" required="true">
-                        </div>
-
-                        <div style="padding-top: 30px;">
-                            <label>Mobile Number</label>
-                           <input type="text" class="form-control" name="mobilenumber" value="<?php  echo $row['MobileNumber'];?>"  required="true"></div>
-                           
-						   <div style="padding-top: 30px;">
-                            <label>Email address</label>
-                            <input type="text" class="form-control" name="email" value="<?php  echo $row['Email'];?>"  required="true">
-                        </div>
-
-						<div style="padding-top: 30px;">
-                            <label>Address</label>
-                            <input type="text" class="form-control" name="address" value="<?php  echo $row['address'];?>"  required="true">
-                        </div>
-
-						<div style="padding-top: 30px;">
-                            <label>Status</label>
-                            <input type="text" class="form-control" name="status" value="<?php  echo $row['status'];?>"  required="true">
-                        </div>
-
-						<div style="padding-top: 30px;">
-                            <label>Number of people living in the unit</label>
-                            <input type="text" class="form-control" name="numplp" value="<?php  echo $row['numplp'];?>"  required="true">
-                        </div>
-
-						<div style="padding-top: 30px;">
-                            <label>Resident Move-in date</label>
-                            <input type="date" class="form-control" name="movein" value="<?php  echo $row['movein'];?>"  required="true">
-                        </div>
-
-						
-                         <div style="padding-top: 30px;">
-                            <label>Registration Date</label>
-                           
-                           <input type="text" class="form-control" name="regdate" value="<?php  echo $row['RegDate'];?>"  readonly="true">
-                       </div>
-                     
-                      <?php }?>
-					  <br>
-                      <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
-                    </form>
+                            <table class="table">
+                                <tr>
+                                    <td><label>First Name</label></td>
+                                    <td><input type="text" class="form-control" name="firstname" value="<?php echo $row['FirstName'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Last Name</label></td>
+                                    <td><input type="text" class="form-control" name="lastname" value="<?php echo $row['LastName'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Mobile Number</label></td>
+                                    <td><input type="text" class="form-control" name="mobilenumber" value="<?php echo $row['MobileNumber'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Email address</label></td>
+                                    <td><input type="text" class="form-control" name="email" value="<?php echo $row['Email'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Address</label></td>
+                                    <td><input type="text" class="form-control" name="address" value="<?php echo $row['address'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Status</label></td>
+                                    <td><input type="text" class="form-control" name="status" value="<?php echo $row['status'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Number of people living in the unit</label></td>
+                                    <td><input type="text" class="form-control" name="numplp" value="<?php echo $row['numplp'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Resident Move-in date</label></td>
+                                    <td><input type="date" class="form-control" name="movein" value="<?php echo $row['movein'];?>" required="true"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Registration Date</label></td>
+                                    <td><input type="text" class="form-control" name="regdate" value="<?php echo $row['RegDate'];?>" readonly="true"></td>
+                                </tr>
+                            </table>
+                            <?php }?>
+                            <br>
+                            <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
+                        </form>
+                    </div>
                 </div>
-    </div>
     <div class="text-center">
                     <button onclick="printTable()" class="btn btn-info">Print</button>
                 </div>
