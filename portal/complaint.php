@@ -76,16 +76,16 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     <!-- main content start-->
     <div id="page-wrapper">
     <h3 class="title1">My Profile</h3>
-    <?php include_once('complaint-include.php');?>
+  
     
 
           <!--content-->
    
        
-
+          <?php include_once('complaint-include.php');?>
                    
 
-         
+          </div>
           </div>
         </div>
       </div>

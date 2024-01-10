@@ -17,51 +17,66 @@
         <div class="clearfix"> </div>
       </div>
       <div class="header-right">
-        <div class="profile_details_left"><!--notifications of menu start -->
-          <ul class="nofitications-dropdown">
-            <?php
-$ret1=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tblbook.ID as bid,tblbook.AptNumber from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status is null");
-$num=mysqli_num_rows($ret1);
+      <div class="profile_details_left">
+  <!-- Notifications menu start -->
+  <ul class="nofitications-dropdown">
+    <?php
+      // Get appointment notifications
+      $retAppointments = mysqli_query($con, "SELECT tbluser.FirstName, tbluser.LastName, tblbook.ID as bid, tblbook.AptNumber FROM tblbook JOIN tbluser ON tbluser.ID=tblbook.UserID WHERE tblbook.Status IS NULL");
+      $numAppointments = mysqli_num_rows($retAppointments);
 
-?>  
-            <li class="dropdown head-dpdn">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue"><?php echo $num;?></span></a>
+      // Get complaint notifications
+      $retComplaints = mysqli_query($con, "SELECT * FROM tblcomplaint WHERE IsRead IS NULL");
+      $numComplaints = mysqli_num_rows($retComplaints);
+
+      // Total unread notifications count
+      $totalUnreadNotifications = $numAppointments + $numComplaints;
+    ?>  
+    <li class="dropdown head-dpdn">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-bell"></i><span class="badge blue"><?php echo $totalUnreadNotifications; ?></span>
+      </a>
               
-              <ul class="dropdown-menu">
-                <li>
-                  <div class="notification_header">
-                    <h3>You have <?php echo $num;?> Notification</h3>
-                  </div>
-                </li>
-                <li>
-            
-                   <div class="notification_desc">
-                     <?php if($num>0){
-while($result=mysqli_fetch_array($ret1))
-{
+      <ul class="dropdown-menu">
+        <li>
+          <div class="notification_header">
+            <h3>You have <?php echo $totalUnreadNotifications; ?> Notifications</h3>
+          </div>
+        </li>
+        <li>
+          <div class="notification_desc">
+            <?php if ($totalUnreadNotifications > 0) {
+              // Display appointment notifications
+              while ($resultAppointment = mysqli_fetch_array($retAppointments)) {
             ?>
-                 <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['bid'];?>">New appointment received from <?php echo $result['FirstName'];?> <?php echo $result['LastName'];?> (<?php echo $result['AptNumber'];?>)</a>
-                 <hr />
-<?php }} else {?>
-    <a class="dropdown-item" href="all-appointment.php">No New Appointment Received</a>
-        <?php } ?>
-                           
-                  </div>
-                  <div class="clearfix"></div>  
-                 </a></li>
-                 
-                
-                 <li>
-                  <div class="notification_bottom">
-                    <a href="new-appointment.php">See all notifications</a>
-                  </div> 
-                </li>
-              </ul>
-            </li> 
-          
-          </ul>
-          <div class="clearfix"> </div>
-        </div>
+                <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $resultAppointment['bid']; ?>">New appointment received from <?php echo $resultAppointment['FirstName']; ?> <?php echo $resultAppointment['LastName']; ?> (<?php echo $resultAppointment['AptNumber']; ?>)</a>
+                <hr />
+            <?php
+              }
+              // Display complaint notifications
+              while ($resultComplaint = mysqli_fetch_array($retComplaints)) {
+            ?>
+                <a class="dropdown-item" href="view-complaint.php?viewid=<?php echo $resultComplaint['ID']; ?>">New complaint received from <?php echo $resultComplaint['FirstName']; ?> <?php echo $resultComplaint['LastName']; ?></a>
+                <hr />
+            <?php
+              }
+            } else {
+            ?>
+              <a class="dropdown-item" href="#">No New Notifications</a>
+            <?php } ?>
+          </div>
+          <div class="clearfix"></div>  
+        </li>
+        <li>
+          <div class="notification_bottom">
+            <a href="new-appointment.php">See all notifications</a>
+          </div> 
+        </li>
+      </ul>
+    </li> 
+  </ul>
+  <div class="clearfix"> </div>
+</div>
         <!--notification menu end -->
         <div class="profile_details">  
         <?php
@@ -92,8 +107,10 @@ $name=$row['AdminName'];
               </ul>
             </li>
           </ul>
+          
         </div>  
         <div class="clearfix"> </div> 
       </div>
       <div class="clearfix"> </div> 
     </div>
+    
