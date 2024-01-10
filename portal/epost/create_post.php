@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isPinned = isset($_POST['pin']) ? 1 : 0;
 
     // File upload logic
-    $targetDir = "../uploads/";
+    $targetDir = "uploads/";
     $filePaths = array();
 
     // Loop through each uploaded file

@@ -1,21 +1,149 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <!-- Add these lines in the head section of your HTML -->
  
-
     <title>Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .post-border {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .post {
+            margin-bottom: 10px;
+        }
+
+        .post p {
+            margin: 0;
+        }
+
+        .post a img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .post video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Add a bit of styling to the video controls */
+        .post video::-webkit-media-controls {
+            background-color: #333;
+        }
+
+        .post video::-webkit-media-controls-play-button {
+            background-color: #fff;
+        }
+
+        .post video::-webkit-media-controls-volume-slider {
+            background-color: #fff;
+        }
+
+        .post video::-webkit-media-controls-mute-button {
+            background-color: #fff;
+        }
+
+        .post video::-webkit-media-controls-timeline {
+            background-color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            margin: 10% auto;
+            padding: 20px;
+            background-color: #fefefe;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #modalDescriptionContainer {
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 20px; /* To prevent text from overlapping the scrollbar */
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
 
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalImageContainer">
+                <img id="modalImage" src="" alt="Modal Image">
+            </div>
+            <div id="modalDescriptionContainer">
+                <p id="modalDescription"></p>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Function to open the modal
+        function openModal(imagePath, description) {
+            var modal = document.getElementById("myModal");
+            var modalImage = document.getElementById("modalImage");
+            var modalDescription = document.getElementById("modalDescription");
+
+            modal.style.display = "block";
+            modalImage.src = imagePath;
+            modalDescription.innerHTML = description;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
+
     <div class="post-container">
-        <br>
         <?php
         include('db_config.php');
 
@@ -23,45 +151,29 @@
         $result = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($result)) {
-            
-            echo "<div class='post-border' style='border: 3px solid #ccc; padding: 50px; margin: 0 auto; text-align: center; width: 800px; height: 500px;'>";
+            echo "<div class='post-border' style='border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;'>";
             echo "<div class='post'>";
-            echo "<p style='color: black; font-family: Arial;'>{$row['content']}</p>";
-            // Display post content
-            
-
-
+            echo "<p>{$row['content']}</p>";
 
             // Display associated images or videos
             $postId = $row['post_id'];
-            $fileQuery = "SELECT file_path, description FROM post_files WHERE post_id = $postId";
+            $fileQuery = "SELECT file_path FROM post_files WHERE post_id = $postId";
             $fileResult = mysqli_query($conn, $fileQuery);
 
             while ($fileRow = mysqli_fetch_assoc($fileResult)) {
                 $file_path = $fileRow['file_path'];
                 $file_extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-                // Container for each image or video and its description
-                echo "<div class='media-container'>";
-
-                echo "<div class='post-media'>";
+            
                 if (in_array($file_extension, ['jpg', 'png', 'jpeg', 'gif'])) {
-                    // Display images
-                    echo "<img class='' data-src='{$file_path}' alt='Image'>";
+                    // Display clickable images with modal
+                    echo "<img src='{$file_path}' alt='Image' onclick='openModal(\"{$file_path}\", \"{$row['content']}\")'>";
                 } elseif (in_array($file_extension, ['mp4', 'avi', 'mov'])) {
                     // Display videos
-                    echo "<video class='lazy-load' data-src='{$file_path}' controls>";
+                    echo "<video width='200' height='150' controls>";
                     echo "<source src='{$file_path}' type='video/mp4'>";
                     echo "Your browser does not support the video tag.";
                     echo "</video>";
                 }
-                echo "</div>";
-
-                // Display image or video description
-                $description = $fileRow['description'];
-                echo "<p class='media-description'>$description</p>";
-
-                echo "</div>"; // Close media-container
             }
 
             echo "</div>";
@@ -69,42 +181,6 @@
         }
         ?>
     </div>
-
-    <script>
-        // Lazy load images and videos
-        document.addEventListener("DOMContentLoaded", function () {
-            var lazyloadImages = document.querySelectorAll(".lazy-load");
-            var lazyloadThrottleTimeout;
-
-            function lazyload() {
-                if (lazyloadThrottleTimeout) {
-                    clearTimeout(lazyloadThrottleTimeout);
-                }
-
-                lazyloadThrottleTimeout = setTimeout(function () {
-                    var scrollTop = window.pageYOffset;
-
-                    lazyloadImages.forEach(function (img) {
-                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                            img.src = img.dataset.src;
-                            img.classList.add("loaded");
-                        }
-                    });
-
-                    if (lazyloadImages.length === 0) {
-                        document.removeEventListener("scroll", lazyload);
-                        window.removeEventListener("resize", lazyload);
-                        window.removeEventListener("orientationChange", lazyload);
-                    }
-                }, 20);
-            }
-
-            document.addEventListener("scroll", lazyload);
-            window.addEventListener("resize", lazyload);
-            window.addEventListener("orientationChange", lazyload);
-
-            lazyload();
-        });
-    </script>
+    
 </body>
 </html>

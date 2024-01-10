@@ -11,16 +11,13 @@
             background-color: #f4f4f4;
         }
 
-      
-
         .post-container {
-         
             max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
-            position: relative; /* Added to position the button relative to the container */
+            position: relative;
         }
 
         .create-new-button {
@@ -65,6 +62,7 @@
             max-width: 100%;
             height: auto;
             margin-top: 10px;
+            display: block; /* Added display block for proper spacing */
         }
 
         button {
@@ -80,12 +78,10 @@
         }
 
         a {
-           
             margin-right: 10px;
             color: #333;
             text-decoration: none;
             padding: 5px 10px;
-           
         }
 
         a:hover {
@@ -97,33 +93,31 @@
 </head>
 <body>
 
-
-
 <div class="post-container">
-<a class="create-new-button" href="../epost/create_post1.php">Create New</a>
+    <a class="create-new-button" href="../epost/create_post1.php">Create New</a>
 
-<?php
-include('db_config.php');
+    <?php
+    include('db_config.php');
 
-$allowImageTypes = array('jpg', 'png', 'jpeg', 'gif');
-$allowVideoTypes = array('mp4', 'avi', 'mov');
+    $allowImageTypes = array('jpg', 'png', 'jpeg', 'gif');
+    $allowVideoTypes = array('mp4', 'avi', 'mov');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    handlePostEdit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && isset($_GET['id'])) {
-    $action = $_GET['action'];
-    $postId = $_GET['id'];
-
-    if ($action === 'edit') {
-        displayEditForm($postId);
-    } elseif ($action === 'delete') {
-        handlePostDelete($postId);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        handlePostEdit();
     }
-} else {
-    displayPosts();
-}
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && isset($_GET['id'])) {
+        $action = $_GET['action'];
+        $postId = $_GET['id'];
+
+        if ($action === 'edit') {
+            displayEditForm($postId);
+        } elseif ($action === 'delete') {
+            handlePostDelete($postId);
+        }
+    } else {
+        displayPosts();
+    }
 
 function handlePostEdit() {
     global $conn, $allowImageTypes, $allowVideoTypes;
@@ -160,7 +154,7 @@ function handlePostEdit() {
     }
 
     // Handle file upload logic for new images or videos
-    $targetDir = "../uploads/";
+    $targetDir = "uploads/";
     $filePaths = array();
 
     foreach ($_FILES['files']['name'] as $key => $fileName) {
@@ -243,7 +237,7 @@ function displayPosts() {
 
     while ($row = mysqli_fetch_assoc($result)) {
         $postId = $row['post_id'];
-        echo "<div class='post-border' style='border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;'>"; // Added a div with class 'post-border'
+        echo "<div class='post-border' style='border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;'>";
         echo "<div class='post'>";
         echo "<p>{$row['content']}</p>";
 
@@ -292,6 +286,8 @@ function displayExistingFiles($postId, $allowImageTypes, $allowVideoTypes, $edit
 ?>
 
 </div>
+
+
 
 </body>
 </html>

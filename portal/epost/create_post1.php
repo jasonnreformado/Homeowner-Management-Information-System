@@ -96,7 +96,7 @@
             <label for="pin"></label>
 
             <button type="submit">Post</button>
-            <a class="create-new-button" href="../admin/announcement.php">Back</a>
+            <button><a class="create-new-button" href="../admin/announcement.php">Back</a></button>
         
         </form>
     </div>
