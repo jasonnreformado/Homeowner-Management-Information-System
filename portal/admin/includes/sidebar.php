@@ -49,7 +49,7 @@
         <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
           <ul class="nav" id="side-menu">
             <li>
-              <a href="dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+              <a href="dashboard.php"><i class="fa fa-home nav_icon"></i>Dashboard <span class=""></span></a>
             </li>
            
             <h6><b>MANAGEMENT</b></h6>
@@ -86,6 +86,13 @@
               <!-- //nav-second-level -->
             </li>
 
+
+
+            <li>
+              <a href="monthly_record.php"><i class="fa fa-bullhorn nav_icon"></i>Account Balance <span class=""></span></a>
+             
+              <!-- /nav-second-level -->
+            </li>
          <!-- Request Maintenance -->
          <h6><b>SECURITY</b></h6>
 

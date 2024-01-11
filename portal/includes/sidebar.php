@@ -83,7 +83,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-money nav_icon"></i>Account Balance<span></span></a>
+                        <a href="view-monthly.php"><i class="fa fa-money nav_icon"></i>Account Balance<span></span></a>
                     </li>
                     <!-- Payment Receipt -->
                     <li>
