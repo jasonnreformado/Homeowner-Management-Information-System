@@ -70,7 +70,6 @@ echo "<script>window.location.href='invoices.php'</script>";
 								<th>#</th> 
 								<th>Invoice Id</th> 
 								<th>Customer Name</th> 
-						
 								<th>Invoice Date</th> 
 								<th>Action</th>
 							</tr> 
