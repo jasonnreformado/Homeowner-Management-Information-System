@@ -161,14 +161,7 @@ if (empty($_SESSION['bpmsuid'])) {
                             ?>
                             <table class="table">
                                 
-                                <tr>
-                                    <td><label>First Name</label></td>
-                                    <td><input type="text" class="form-control" name="firstname" value="<?php echo $row['FirstName'];?>" required="true"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Last Name</label></td>
-                                    <td><input type="text" class="form-control" name="lastname" value="<?php echo $row['LastName'];?>" required="true"></td>
-                                </tr>
+                               
                                 <tr>
                                 <td><label>Monthly of</label></td>
                                 <td>

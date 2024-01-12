@@ -14,14 +14,21 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
         $msg = $_POST['message'];
         $aptnumber = mt_rand(100000000, 999999999);
 
-        // Check if the selected date and time range is available
-        $checkQuery = mysqli_query($con, "SELECT * FROM tblbook WHERE AptDate = '$adate' AND (
+        // Check if the selected date and time range is available for the specific activity
+        $checkQuery = mysqli_query($con, "SELECT AptTime, endTime FROM tblbook WHERE AptDate = '$adate' AND (
             ('$atime' >= AptTime AND '$atime' < endTime) OR
             ('$endtime' > AptTime AND '$endtime' <= endTime) 
-        )");
+        ) AND Message = '$msg'");
 
         if (mysqli_num_rows($checkQuery) > 0) {
-            echo '<script>alert("Selected date and time slot is already booked. Please choose another slot.")</script>';
+            $bookedTimes = array();
+
+            while ($row = mysqli_fetch_assoc($checkQuery)) {
+                $bookedTimes[] = $row['AptTime'] . ' - ' . $row['endTime'];
+            }
+
+            $unavailableTimes = implode(', ', $bookedTimes);
+            echo '<script>alert("Selected date and time slot is already booked for ' . $msg . '. The unavailable times are: ' . $unavailableTimes . '. Please choose another slot.")</script>';
         } else {
             $query = mysqli_query($con, "INSERT INTO tblbook(UserID,AptNumber,AptDate,AptTime,endTime,Message) VALUES('$uid','$aptnumber','$adate','$atime','$endtime','$msg')");
 
@@ -37,6 +44,9 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     }
 }
 ?>
+
+<!-- Rest of your HTML code remains unchanged -->
+
 
 <!doctype html>
 <html lang="en">
