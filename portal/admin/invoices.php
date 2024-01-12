@@ -70,27 +70,23 @@ echo "<script>window.location.href='invoices.php'</script>";
 								<th>#</th> 
 								<th>Invoice Id</th> 
 								<th>Customer Name</th> 
-								<th>Description</th> 
+						
 								<th>Invoice Date</th> 
 								<th>Action</th>
 							</tr> 
 							</thead> <tbody>
 <?php
-$ret = mysqli_query($con, "SELECT DISTINCT tbluser.FirstName, tbluser.LastName, tblinvoice.BillingId, date(tblinvoice.PostingDate) as invoicedate, tblservices.ServiceDescription
-FROM tbluser
-JOIN tblinvoice ON tbluser.ID = tblinvoice.Userid
-JOIN tblservices ON tblinvoice.ServiceId = tblservices.ID
-ORDER BY tblinvoice.ID DESC");
+$ret=mysqli_query($con,"select distinct tbluser.FirstName,tbluser.LastName,tblinvoice.BillingId,date(tblinvoice.PostingDate) as invoicedate from  tbluser   
+join tblinvoice on tbluser.ID=tblinvoice.Userid  order by tblinvoice.ID desc");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
 
 						 <tr> 
-						 	<th scope="row"><?php echo $cnt;?></th> 
+						 <th scope="row"><?php echo $cnt;?></th> 
 						 	<td><?php  echo $row['BillingId'];?></td>
 						 	<td><?php  echo $row['FirstName'];?> <?php  echo $row['LastName'];?></td>
-							 <td><?php  echo $row['ServiceDescription'];?></td> 
 						 	<td><?php  echo $row['invoicedate'];?></td> 
 						 		<td><a href="view-invoice.php?invoiceid=<?php  echo $row['BillingId'];?>" class="btn btn-primary">View</a>
 <a href="invoices.php?delid=<?php echo $row['BillingId'];?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
