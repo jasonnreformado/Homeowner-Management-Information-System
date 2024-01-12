@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 12, 2024 at 12:19 PM
+-- Generation Time: Jan 12, 2024 at 06:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -96,7 +96,12 @@ INSERT INTO `posts` (`post_id`, `content`, `is_pinned`) VALUES
 (88, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
 (89, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
 (90, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
-(91, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
+(91, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(96, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(97, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(98, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(99, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1),
+(100, 'Starting Dec 20, 2023. Villa Arcadia declares that the street of every subdivision are no longer parking area. All cars must be inside their garages. Doing this to prevent delas on emergencies such as fire alert. etc', 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +124,12 @@ INSERT INTO `post_files` (`file_id`, `post_id`, `file_path`, `description`) VALU
 (95, 88, 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', ''),
 (96, 89, 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', ''),
 (97, 90, 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', ''),
-(98, 91, 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', '');
+(98, 91, 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', ''),
+(101, 96, 'uploads/32323.jpg', ''),
+(102, 97, 'uploads/32323.jpg', ''),
+(103, 98, 'uploads/32323.jpg', ''),
+(104, 99, 'uploads/32323.jpg', ''),
+(105, 100, 'uploads/32323.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -163,21 +173,6 @@ CREATE TABLE `tblbook` (
   `Status` varchar(250) DEFAULT NULL,
   `RemarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tblbook`
---
-
-INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTime`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
-(50, 22, 965615385, '2023-12-08', '15:05:00', '16:05:00', 'Club House', '2023-12-08 07:06:04', NULL, NULL, NULL),
-(51, 24, 850674945, '2023-12-11', '13:23:00', '14:23:00', 'Basketball Court', '2023-12-11 05:23:48', 'ok', 'Approved', '2024-01-08 14:16:59'),
-(52, 24, 694633362, '2024-01-01', '16:54:00', '18:54:00', 'urgent', '2024-01-01 07:54:26', 'e', 'Approved', '2024-01-01 08:08:42'),
-(53, 24, 249917292, '2024-01-17', '20:25:00', '22:25:00', 'follow-up', '2024-01-01 08:25:28', 'w', 'Rejected', '2024-01-01 08:26:31'),
-(54, 24, 618480622, '2024-01-16', '16:26:00', '19:26:00', 'Club House', '2024-01-01 08:26:48', 'wewq', 'Approved', '2024-01-10 13:27:19'),
-(55, 24, 908289384, '2024-01-08', '22:16:00', '23:16:00', 'Basketball Court', '2024-01-08 14:16:26', 'ewe', 'Approved', '2024-01-10 13:29:03'),
-(56, 24, 590543547, '2024-01-10', '21:31:00', '22:31:00', 'Club House', '2024-01-10 13:31:15', NULL, NULL, NULL),
-(57, 24, 438626544, '2024-01-11', '18:31:00', '19:32:00', '', '2024-01-11 10:32:05', NULL, NULL, NULL),
-(58, 24, 395484783, '2024-01-11', '00:32:00', '10:32:00', '', '2024-01-11 10:33:02', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,19 +235,6 @@ CREATE TABLE `tblinvoice` (
   `PostingDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `tblinvoice`
---
-
-INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate`) VALUES
-(132, 24, 33, 938935000, '2024-01-08 10:46:17'),
-(133, 24, 34, 938935000, '2024-01-08 10:46:17'),
-(136, 20, 33, 628434736, '2024-01-10 13:15:35'),
-(137, 20, 29, 393800540, '2024-01-12 11:14:39'),
-(138, 20, 30, 393800540, '2024-01-12 11:14:39'),
-(139, 20, 33, 393800540, '2024-01-12 11:14:39'),
-(140, 20, 34, 393800540, '2024-01-12 11:14:39');
-
 -- --------------------------------------------------------
 
 --
@@ -302,8 +284,7 @@ INSERT INTO `tblservices` (`ID`, `ServiceName`, `ServiceDescription`, `Cost`, `I
 (28, 'Basketball', 'Reservation', 150, 'b424718fec0f3d87f770ea20442528411701504697.jpg', '2023-12-02 08:11:37'),
 (29, 'Chairs', 'Borrow', 200, 'b424718fec0f3d87f770ea20442528411701504735.jpg', '2023-12-02 08:12:15'),
 (30, 'Table', 'Borrow', 100, 'b424718fec0f3d87f770ea20442528411701505108.jpg', '2023-12-02 08:18:28'),
-(33, 'Monthly', 'Bill', 4500, 'f4f2bb25b803d762595f833b8ee1d9481704531864.jpg', '2024-01-06 08:53:15'),
-(34, 'Property Bill', 'Bill', 10000, 'f4f2bb25b803d762595f833b8ee1d9481704532031.jpg', '2024-01-06 09:07:11');
+(33, 'Monthly', 'Bill', 4500, 'f4f2bb25b803d762595f833b8ee1d9481704531864.jpg', '2024-01-06 08:53:15');
 
 -- --------------------------------------------------------
 
@@ -336,7 +317,7 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`, `ProfilePicture`, `numplp`, `movein`, `monthly`, `total_fee`, `total_paid`, `balance`, `paid`) VALUES
-(20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', 5, '2024-01-11', 'January', 9500, 0, 9500, 0);
+(20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', 5, '2024-01-11', 'January', 10000, 0, 10000, 0);
 
 -- --------------------------------------------------------
 
@@ -463,13 +444,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `post_files`
 --
 ALTER TABLE `post_files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `tbladmin`
@@ -481,7 +462,7 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbook`
 --
 ALTER TABLE `tblbook`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `tblcomplaint`
@@ -499,7 +480,7 @@ ALTER TABLE `tblcontact`
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
