@@ -160,6 +160,7 @@ if (empty($_SESSION['bpmsuid'])) {
                             while ($row = mysqli_fetch_array($ret)) {
                             ?>
                             <table class="table">
+                                
                                 <tr>
                                     <td><label>First Name</label></td>
                                     <td><input type="text" class="form-control" name="firstname" value="<?php echo $row['FirstName'];?>" required="true"></td>
@@ -214,11 +215,9 @@ if (empty($_SESSION['bpmsuid'])) {
                             <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
                         </form>
                     </div>
+                    
                 </div>
-                <div class="text-center">
-                    <button onclick="printTable()" class="btn btn-info">Print</button>
-                </div>
-                <br>
+                </div>  </div>
                 <!--footer-->
                 <?php include_once('includes/footer.php');?>
                 <!--//footer-->

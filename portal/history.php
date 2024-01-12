@@ -134,10 +134,12 @@ $gtotal+=$subtotal;
 
 					</div>
 				</div>
-			</div>
+			</div></div>
+<br><br><br><br><br>
+			<?php include_once('includes/footer.php');?>
 		</div>
 		<!--footer-->
-		 <?php include_once('includes/footer.php');?>
+		
         <!--//footer-->
 	</div>
 	<!-- Classie -->
