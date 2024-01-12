@@ -43,7 +43,7 @@
 
       // Chart rendering code
       var chart = new CanvasJS.Chart("chartContainer", {
-        title: { text: "Collection Comparison" },
+        title: { text: "Monthly Collection " },
         axisY: { title: "Total Collection", includeZero: false },
         legend: {
           verticalAlign: "bottom", // Change verticalAlign to "bottom"
