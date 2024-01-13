@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 12, 2024 at 06:06 PM
+-- Generation Time: Jan 13, 2024 at 03:39 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -234,6 +234,19 @@ CREATE TABLE `tblinvoice` (
   `BillingId` int(11) DEFAULT NULL,
   `PostingDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tblinvoice`
+--
+
+INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate`) VALUES
+(145, 20, 30, 929458941, '2024-01-12 18:05:05'),
+(146, 20, 33, 929458941, '2024-01-12 18:05:05'),
+(147, 20, 27, 170805236, '2024-01-12 18:10:37'),
+(148, 20, 28, 170805236, '2024-01-12 18:10:37'),
+(149, 20, 29, 170805236, '2024-01-12 18:10:37'),
+(150, 20, 30, 170805236, '2024-01-12 18:10:37'),
+(151, 20, 33, 170805236, '2024-01-12 18:10:37');
 
 -- --------------------------------------------------------
 
@@ -480,7 +493,7 @@ ALTER TABLE `tblcontact`
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -498,7 +511,7 @@ ALTER TABLE `tblservices`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
