@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 13, 2024 at 03:39 AM
+-- Generation Time: Jan 14, 2024 at 08:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,34 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `vasdb`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `archivetbluser`
---
-
-CREATE TABLE `archivetbluser` (
-  `ID` int(10) NOT NULL,
-  `FirstName` varchar(120) DEFAULT NULL,
-  `LastName` varchar(250) DEFAULT NULL,
-  `MobileNumber` bigint(10) DEFAULT NULL,
-  `Email` varchar(120) DEFAULT NULL,
-  `Password` varchar(120) DEFAULT NULL,
-  `RegDate` timestamp NULL DEFAULT current_timestamp(),
-  `address` varchar(225) NOT NULL,
-  `status` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `archivetbluser`
---
-
-INSERT INTO `archivetbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`) VALUES
-(16, 'Jason', 'Reformado', 945263815, 'reformado@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:23:13', 'Block 4 Lot 5', 'Owner'),
-(17, 'Joana Marie', 'Capawa', 946843132, 'joanamarie.capawa@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:23:55', 'Block 4 Lot 5', 'Owner'),
-(18, 'Juan', 'Dela Cruz', 968735413, 'Juandelacruz@gmail.com', 'f25fcc0ab7321c34e50b93fee38da812', '2023-12-01 05:24:34', 'Block 10 Lot 6', 'Renter'),
-(20, 'Wilfred', 'Delos Reyes', 946843322, 'delosreyes@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Renter');
 
 -- --------------------------------------------------------
 
@@ -197,33 +169,6 @@ CREATE TABLE `tblcomplaint` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcontact`
---
-
-CREATE TABLE `tblcontact` (
-  `ID` int(10) NOT NULL,
-  `FirstName` varchar(200) DEFAULT NULL,
-  `LastName` varchar(200) DEFAULT NULL,
-  `Phone` bigint(10) DEFAULT NULL,
-  `Email` varchar(200) DEFAULT NULL,
-  `Message` mediumtext DEFAULT NULL,
-  `EnquiryDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `IsRead` int(5) DEFAULT NULL,
-  `address` varchar(225) NOT NULL,
-  `subject` varchar(30) NOT NULL,
-  `time` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tblcontact`
---
-
-INSERT INTO `tblcontact` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`, `time`) VALUES
-(34, 'Jason', 'Reformado', 925458136, 'reformado@gmail.com', 'may tagas ng tubo sa loob ng bahay namin', '2023-12-03 11:50:35', 1, 'Block 4 Lot 5', 'Water', '19:50:00');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tblinvoice`
 --
 
@@ -332,35 +277,9 @@ CREATE TABLE `tbluser` (
 INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`, `ProfilePicture`, `numplp`, `movein`, `monthly`, `total_fee`, `total_paid`, `balance`, `paid`) VALUES
 (20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', 5, '2024-01-11', 'January', 10000, 0, 10000, 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_user`
---
-
-CREATE TABLE `tb_user` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `image` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tb_user`
---
-
-INSERT INTO `tb_user` (`id`, `name`, `image`) VALUES
-(1, 'David', 'David - 2023.12.10 - 02.27.53pm.jpg');
-
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `archivetbluser`
---
-ALTER TABLE `archivetbluser`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID` (`ID`);
 
 --
 -- Indexes for table `employees`
@@ -400,12 +319,6 @@ ALTER TABLE `tblcomplaint`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `tblcontact`
---
-ALTER TABLE `tblcontact`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
@@ -432,20 +345,8 @@ ALTER TABLE `tbluser`
   ADD KEY `ID` (`ID`);
 
 --
--- Indexes for table `tb_user`
---
-ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `archivetbluser`
---
-ALTER TABLE `archivetbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -484,12 +385,6 @@ ALTER TABLE `tblcomplaint`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT for table `tblcontact`
---
-ALTER TABLE `tblcontact`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
@@ -512,12 +407,6 @@ ALTER TABLE `tblservices`
 --
 ALTER TABLE `tbluser`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `tb_user`
---
-ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
