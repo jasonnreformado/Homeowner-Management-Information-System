@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 14, 2024 at 08:03 AM
+-- Generation Time: Jan 16, 2024 at 06:47 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -145,6 +145,13 @@ CREATE TABLE `tblbook` (
   `Status` varchar(250) DEFAULT NULL,
   `RemarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tblbook`
+--
+
+INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTime`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
+(74, 20, 140376539, '2024-01-14', '23:06:00', '12:06:00', 'Basketball Court', '2024-01-14 15:06:12', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -376,7 +383,7 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbook`
 --
 ALTER TABLE `tblbook`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `tblcomplaint`

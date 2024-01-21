@@ -60,22 +60,22 @@
                     </li>
 
                     <!-- Reservation  -->
-                    <li>
-                        <a href="book-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="book-appointment.php">Book Appointment</a>
-                            </li>
-                            <li>
-                                <a href="appointment-detail.php">Appointment Details</a>
-                            </li>
-                            <li>
-                                <a href="booking-history.php">Appointment History</a>
-                            </li>
-                            
-                        </ul>
-                        
-                    </li>
+                    <ul class="nav">
+        <li>
+            <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+                <li>
+                    <a href="book-appointment.php">Book Appointment</a>
+                </li>
+                <li>
+                    <a href="appointment-detail.php">Appointment Details</a>
+                </li>
+                <li>
+                    <a href="booking-history.php">Appointment History</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
                     <!-- Incident Letter -->
                     <li>
@@ -113,6 +113,18 @@
         $(document).ready(function(){
             $("#menu-button").click(function(){
                 $(".cbp-spmenu").slideToggle();
+            });
+        });
+    </script>
+      <script>
+        $(document).ready(function () {
+            // Hide the second level initially
+            $('.nav-second-level').hide();
+
+            // Add click event to the first level link
+            $('.nav > li > a').click(function () {
+                // Toggle the visibility of the second level
+                $(this).next('.nav-second-level').slideToggle();
             });
         });
     </script>
