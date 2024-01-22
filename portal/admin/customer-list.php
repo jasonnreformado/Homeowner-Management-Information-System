@@ -144,12 +144,12 @@ echo "<script>window.location.href='customer-list.php'</script>";
 				
             </div>
 			
-        </div>
-		
+            </div>
         <!--footer-->
         <?php include_once('includes/footer.php'); ?>
         <!--//footer-->
     </div>
+  
     <!-- Classie -->
     <script src="js/classie.js"></script>
     <script>

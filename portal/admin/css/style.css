@@ -139,12 +139,14 @@ button#showLeftPush:hover {
 .sidebar ul li a {
     color: #FFFFFF;
     font-size: 1em;
+    font-family: 'Helvetica';
+
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     background-color: transparent;
-    color: #F2B33F;
+    color: #16b8aa;
 }
 .sidebar .arrow {
     float: right;

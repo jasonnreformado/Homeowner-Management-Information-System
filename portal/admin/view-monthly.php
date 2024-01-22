@@ -186,11 +186,11 @@ if (empty($_SESSION['bpmsuid'])) {
                                 </tr>
                                 <tr>
                                     <td><label>Total Paid</label></td>
-                                    <td><input type="text" class="form-control" name="total_paid" value="<?php echo $row['total_paid'];?>" required="true"></td>
+                                    <td><input type="text" class="form-control" name="total_paid" value="<?php echo $row['total_paid'];?>" readonly="true"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Balance</label></td>
-                                    <td><input type="text" class="form-control" name="balance" id="balance" value="<?php echo $row['balance'];?>" required="true"></td>
+                                    <td><input type="text" class="form-control" name="balance" id="balance" value="<?php echo $row['balance'];?>" readonly="true"></td>
                                 </tr>
 
                                 <tr>
