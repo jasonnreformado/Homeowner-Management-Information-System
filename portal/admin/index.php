@@ -34,7 +34,7 @@
 
                 <div class="col-md-6 right">
                     <div class="input-box">
-                        <header>Sign In</header>
+                        <header><h3>Sign In</h3></header>
                         <form role="form" method="post" action="">
                             <p style="font-size: 16px; color: red" align="center">
                                 <?php
