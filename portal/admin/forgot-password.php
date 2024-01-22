@@ -57,11 +57,12 @@ if(isset($_POST['submit']))
 	<div class="main-content">
 		
 		<!-- main content start-->
-		<div style="background-color: #F1F1F1; height:800px;">			<div class="main-page login-page ">
-				<h3 class="title1">Forgot Page</h3>
+		<div style="background-color: #F1F1F1; height:800px;">			
+		<div class="main-page login-page "><br><br><br><br><br><br><br><br>
+				<h3 class="title1"></h3>
 				<div class="widget-shadow">
 					<div class="login-top">
-						<h4>Welcome back to AFBS AdminPanel ! </h4>
+						<h4>Forget your password! </h4>
 					</div>
 					<div class="login-body">
 						<form role="form" method="post" action="">
