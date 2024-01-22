@@ -1,3 +1,5 @@
+# saved
+
 <?php
 session_start();
 error_reporting(0);
@@ -273,8 +275,8 @@ endif;
 				</div>
 			
 					</div>	<br>	
-				
-					<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+					<div id="barChartContainer" style="height: 300px; width: 30%;"></div>
+					<div id="chartContainer" style="height: 300px; width: 50%;"></div>
 					
                 <!-- ... (existing content) ... -->
 			
@@ -321,6 +323,36 @@ endif;
    <script src="js/bootstrap.js"> </script>
    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
+<script>
+// Assuming you have the resident and officer counts in variables $totalcust and $totalser
 
+window.onload = function () {
+    var chart = new CanvasJS.Chart("barChartContainer", {
+        theme: "light2",
+        animationEnabled: true,
+        title: {
+            text: ""
+        },
+        axisX: {
+            title: "Count"
+        },
+        axisY: {
+            title: "Count"
+        },
+        data: [
+            {
+                type: "column", // Change type to "column" for vertical bars
+                dataPoints: [
+                    { label: "Residents", y: <?php echo $totalcust; ?> },
+                    { label: "Officers", y: <?php echo $totalser; ?> }
+                    // Add more dataPoints if needed
+                ]
+            }
+        ]
+    });
+
+    chart.render();
+}
+</script>
 </body>
 </html>

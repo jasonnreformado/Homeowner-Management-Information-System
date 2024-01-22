@@ -5,7 +5,7 @@
         <!--toggle button end-->
         <!--logo -->
         <div class="logo">
-          <a href="#">
+          <a >
             <img src="images/logo.png" width="100px" class="img-responsive ">
             <span>AdminPanel</span>
           </a>

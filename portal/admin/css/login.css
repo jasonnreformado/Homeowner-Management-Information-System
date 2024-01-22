@@ -3,24 +3,34 @@
 
 *{
     font-family: 'Poppins', sans-serif;
+    
 }
 .wrapper{
     background: #ffffff;
     padding: 0 20px 0 20px;
-}
-.main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-.side-image{
     background-image: url("../images/b8.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 10px 0 0 10px;
     position: relative;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    opacity: 0.9;
+    
+}
+.side-image{
+    background-image: url("../images/aa.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px 0 0 10px;
+    position: relative;
+    opacity: 0.8 ;
 }
 .row{
   width:  900px;

@@ -9,8 +9,7 @@ if (empty($_SESSION['bpmsuid'])) {
     $uid = $_SESSION['bpmsuid'];
 
     if (isset($_POST['submit'])) {
-        $fname = mysqli_real_escape_string($con, $_POST['firstname']);
-        $lname = mysqli_real_escape_string($con, $_POST['lastname']);
+        
         $monthly = mysqli_real_escape_string($con, $_POST['monthly']);
         $total_fee = mysqli_real_escape_string($con, $_POST['total_fee']);
         $total_paid = mysqli_real_escape_string($con, $_POST['total_paid']);
@@ -18,7 +17,7 @@ if (empty($_SESSION['bpmsuid'])) {
         $paid = mysqli_real_escape_string($con, $_POST['paid']);
         
 
-        $query = "UPDATE tbluser SET FirstName='$fname', LastName='$lname', monthly='$monthly', total_fee='$total_fee', total_paid='$total_paid', balance='$balance',paid='$paid' WHERE ID='$uid'";
+        $query = "UPDATE tbluser SET  monthly='$monthly', total_fee='$total_fee', total_paid='$total_paid', balance='$balance',paid='$paid' WHERE ID='$uid'";
 
         $result = mysqli_query($con, $query);
 
