@@ -91,9 +91,7 @@
                     </li>
 
                     <!-- Rules and Regulations -->
-                    <li>
-                        <a href="rules.php"><i class="fa fa-money nav_icon"></i>Rules and Regulations<span></span></a>
-                    </li>
+                   
 
                 </ul>
                 <div class="clearfix"> </div>
