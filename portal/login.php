@@ -73,7 +73,7 @@ if(isset($_POST['btnlogin']))
         }
         .edit-profile {
         /* Set the opacity to your preferred value (0.8 in this example) */
-        opacity: 0.9;
+        opacity: 0.8;
         /* You can also add other styling properties as needed */
         border-radius: 10px;
         background-color: #f0f0f0;
@@ -91,9 +91,9 @@ if(isset($_POST['btnlogin']))
 
     .widget-box {
         /* Set the opacity to your preferred value (0.8 in this example) */
-        opacity: 0.9;
+        opacity: 0.85;
         /* You can also add other styling properties as needed */
-        border-radius: 10px;
+        border-radius: 30px;
         background-color: #f0f0f0;
         padding: 20px;
     }
