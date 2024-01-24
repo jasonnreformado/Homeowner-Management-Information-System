@@ -125,43 +125,38 @@ if (empty($_SESSION['bpmsuid'])) {
                     <h3 class="title1 text-center">Account Balance</h3>
 
                     <!-- Add a table with an ID for printing -->
-                    <div class="map-content-9 mt-lg-0 mt-4" id="printableTable">
-                        <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
-                            <?php
-                            $uid = $_SESSION['bpmsuid'];
-                            $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
-                            $cnt = 1;
-                            while ($row = mysqli_fetch_array($ret)) {
-                            ?>
-                            <table class="table">
-                               
-                                <tr>
-                                    <td><label>Month of</label></td>
-                                    <td><input type="text" class="form-control" name="monthly" value="<?php echo $row['monthly'];?>" readonly="true"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Total Fee</label></td>
-                                    <td><input type="text" class="form-control" name="total_fee" value="<?php echo $row['total_fee'];?>" readonly="true"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Total Paid</label></td>
-                                    <td><input type="text" class="form-control" name="total_paid" value="<?php echo $row['total_paid'];?>" readonly="true"></td>
-                                </tr>
-                                <tr>
-    <td><label>Balance</label></td>
-    <td><input type="text" class="form-control" name="balance" value="<?php echo $row['balance'];?>" readonly="true" style="color: red;"></td>
-</tr>
+                    <div class="map-content-9 mt-lg-0 mt-3" id="printableTable">
+    <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
+        <?php
+        $uid = $_SESSION['bpmsuid'];
+        $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
+        $cnt = 1;
+        while ($row = mysqli_fetch_array($ret)) {
+        ?>
+        <table class="table" style="width: 70%; margin: auto; border-collapse: collapse; border: 1px solid #ddd; margin-top: 20px;">
+            <tr>
+                <td style="padding: 10px;"><label>Month of</label></td>
+                <td style="padding: 10px;"><input type="text" class="form-control" name="monthly" value="<?php echo $row['monthly'];?>" readonly="true"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label>Total Fee</label></td>
+                <td style="padding: 10px;"><input type="text" class="form-control" name="total_fee" value="<?php echo $row['total_fee'];?>" readonly="true"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label>Total Paid</label></td>
+                <td style="padding: 10px;"><input type="text" class="form-control" name="total_paid" value="<?php echo $row['total_paid'];?>" readonly="true"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label>Balance</label></td>
+                <td style="padding: 10px;"><input type="text" class="form-control" name="balance" value="<?php echo $row['balance'];?>" readonly="true" style="color: red;"></td>
+            </tr>
+        </table>
+        <?php }?>
+    </form>
+</div>
 
-
-                               
-                            </table>
-                            <?php }?>
-                           
-                          
-                        </form>
                         
-                    </div>
-                </div>
+                  
             
             </div>      
             <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>

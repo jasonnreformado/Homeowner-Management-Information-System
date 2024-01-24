@@ -230,7 +230,7 @@ if(isset($_POST['btnlogin']))
         <div class="seperator"></div>
         <div class="col-12 m-t20">
             <div class="ml-auto m-b5" style="font-family:  Times New Roman;">
-                Don't have an account? <a href="https://forms.gle/E74R2QDrTMxzyKQn7">Register here</a>
+                Don't have an account? <a href="https://forms.gle/E74R2QDrTMxzyKQn7">Click here</a>
             </div>
         </div>
     </div>
@@ -251,7 +251,7 @@ if(isset($_POST['btnlogin']))
         </div>
         <div class="widget-inner">						
             <ul style="padding-left: 15px;">
-                <li style="padding-bottom: 15px;"><strong>Creating Account</strong>
+                <li style="padding-bottom: 15px; font-family:  Times New Roman;  font-size: 18px;"><strong>Creating Account</strong>
                     <ul style="padding-left: 50px;text-align:left;">										
                         <li>Provide the requested information to admin</li>
                         <li>Make sure to provide working email address</li>
@@ -260,7 +260,7 @@ if(isset($_POST['btnlogin']))
                        
                     </ul>
                 </li>
-                <li style="padding-bottom: 15px;"><strong>Trouble logging into your account?</strong>
+                <li style="padding-bottom: 15px; font-family:  Times New Roman;  font-size: 18px;"><strong>Trouble logging into your account?</strong>
                     <ul style="padding-left: 50px;text-align:left;">										
                         <li>Account must be activated</li>
                         <li>Make sure to enter valid email address and password</li>
