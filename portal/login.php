@@ -1,29 +1,25 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-
+error_reporting(0);
 include('includes/dbconnection.php');
+error_reporting(0);
 
-if (isset($_POST['btnlogin'])) {
+if(isset($_POST['btnlogin']))
+{
     $emailcon = $_POST['emailcont'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = md5($_POST['password']);
+    $query = mysqli_query($con, "SELECT ID FROM tbluser WHERE (Email='$emailcon' OR MobileNumber='$emailcon') AND Password='$password'");
+    $ret = mysqli_fetch_array($query);
 
-    $query = mysqli_prepare($con, "SELECT ID FROM tbluser WHERE (Email=? OR MobileNumber=?) AND Password=?");
-    mysqli_stmt_bind_param($query, "ss", $emailcon, $emailcon, $password);
-    mysqli_stmt_execute($query);
-    mysqli_stmt_store_result($query);
-
-    if (mysqli_stmt_num_rows($query) > 0) {
-        mysqli_stmt_bind_result($query, $userId);
-        mysqli_stmt_fetch($query);
-
-        $_SESSION['bpmsuid'] = $userId;
+    if($ret > 0)
+    {
+        $_SESSION['bpmsuid'] = $ret['ID'];
         header('location:user-dashboard.php');
-    } else {
+    }
+    else
+    {
         echo "<script>alert('Invalid Details.');</script>";
     }
-
-    mysqli_stmt_close($query);
 }
 ?>
 <!DOCTYPE html>
@@ -61,7 +57,7 @@ if (isset($_POST['btnlogin'])) {
 	
 	<!-- TYPOGRAPHY ============================================= -->
 	<link rel="stylesheet" type="text/css" href="assets/css/typography.css">
-	
+    <link rel="stylesheet" href="assets/css/style-starter.css">
 	<!-- STYLESHEETS ============================================= -->
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
@@ -321,7 +317,7 @@ if (isset($_POST['btnlogin'])) {
                        
                     </ul>
                 </li>
-                <li style="padding-bottom: 15px; font-family:  Times New Roman;  font-size: 18px;"><strong>Trouble logging into your account?</strong>
+                <li style="padding-bottom: 15px; font-family:  Times New Roman;  font-size: 18px;"><Strong>Trouble logging into your account?</Strong>
                     <ul style="padding-left: 50px;text-align:left;">										
                         <li>Account must be activated</li>
                         <li>Make sure to enter valid email address and password</li>
@@ -356,7 +352,7 @@ if (isset($_POST['btnlogin'])) {
         <div class="col-lg-7 m-b30">
     <div class="widget-box">
         <div class="wc-title">
-            <h4><i class="fa fa-info-circle"></i> Website Guide</h4>
+            <h4><i class="fa fa-info-circle"></i> Our Location</h4>
         </div>
         <div class="widget-inner">
             <ul style="padding-left: 15px;">
