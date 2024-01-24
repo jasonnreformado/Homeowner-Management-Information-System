@@ -173,10 +173,10 @@ if(isset($_POST['btnlogin']))
                         </a>
                     </li>
                     <li>
-                        <a href="rules.php" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-map"></i></span>
-                            <span class="ttr-label"> Map</span>
-                        </a>
+                    <a href="#" class="ttr-material-button" id="mapButton">
+                    <span class="ttr-icon"><i class="fa fa-map"></i></span>
+                    <span class="ttr-label"> Map</span>
+                </a>
                     </li>	
                 </ul>
 
@@ -204,6 +204,61 @@ if(isset($_POST['btnlogin']))
             width: 45%; /* Set the width as needed */
             margin-right: 2%; /* Adjust the margin as needed */
         }
+        .ttr-sidebar {
+    opacity: 0.8; /* Set the desired opacity value between 0 (completely transparent) and 1 (fully opaque) */
+    /* Add other styling properties as needed */
+}
+.image-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    max-width: 95%; /* Adjust as needed */
+    max-height: 95%; /* Adjust as needed */
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px;
+    cursor: move;
+}
+
+.image-popup img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: grab;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+
+.zoom-buttons {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.zoom-buttons button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#popupImage {
+    cursor: grab;
+  
+}
     </style>
 </head> 
 <body class="cbp-spmenu-push">
@@ -222,7 +277,10 @@ if(isset($_POST['btnlogin']))
         <img src="img/rules1.jpg" alt="Image 2">
     </div>
 
-
+    <div class="image-popup" id="imagePopup">
+    <span class="close-button" onclick="closeImagePopup()">&times;</span>
+    <img id="popupImage" src="assets/images/map.png" alt="Popup Image">
+</div>
 
              
 
@@ -236,4 +294,84 @@ if(isset($_POST['btnlogin']))
     <script src='assets/vendors/scrollbar.min.js'></script>
     <script src="assets/vendors/chart.min.js"></script>
     <script src="assets/js/admin.js"></script></body>
+
+    <script>
+    // JavaScript for handling the click event and showing the image popup
+    document.getElementById('mapButton').addEventListener('click', function() {
+        // Show the image popup
+        document.getElementById('imagePopup').style.display = 'block';
+    });
+
+</script>
+<script>
+   var currentZoomLevel = 1.0;
+var zoomStep = 0.1;
+var isDragging = false;
+var dragStartX, dragStartY, initialX, initialY;
+
+function showImagePopup() {
+    document.getElementById('imagePopup').style.display = 'block';
+}
+
+function closeImagePopup() {
+    var image = document.getElementById('popupImage');
+    document.getElementById('imagePopup').style.display = 'none';
+    currentZoomLevel = 1.0;
+    isDragging = false;
+    image.style.transform = 'scale(' + currentZoomLevel + ')';
+    image.style.left = '0px';
+    image.style.top = '0px';
+}
+
+function handleZoom(event) {
+    event.preventDefault();
+    var image = document.getElementById('popupImage');
+    var deltaY = event.deltaY || event.detail || event.wheelDelta;
+
+    if (deltaY > 0) {
+        currentZoomLevel -= zoomStep;
+    } else {
+        currentZoomLevel += zoomStep;
+    }
+
+    image.style.transform = 'scale(' + currentZoomLevel + ')';
+}
+
+function handleDragStart(event) {
+    if (currentZoomLevel > 1.0) {
+        return;
+    }
+    isDragging = true;
+    dragStartX = event.clientX;
+    dragStartY = event.clientY;
+    initialX = dragStartX - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).left);
+    initialY = dragStartY - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).top);
+}
+
+function handleDragMove(event) {
+    if (!isDragging) return;
+    var image = document.getElementById('popupImage');
+    var offsetX = event.clientX - dragStartX;
+    var offsetY = event.clientY - dragStartY;
+    var newLeft = initialX + offsetX;
+    var newTop = initialY + offsetY;
+
+    image.style.left = newLeft + 'px';
+    image.style.top = newTop + 'px';
+}
+
+function handleDragEnd() {
+    isDragging = false;
+}
+
+document.getElementById('mapButton').addEventListener('click', function () {
+    showImagePopup();
+});
+
+document.getElementById('popupImage').addEventListener('wheel', handleZoom);
+document.getElementById('popupImage').addEventListener('mousedown', handleDragStart);
+document.addEventListener('mousemove', handleDragMove);
+document.addEventListener('mouseup', handleDragEnd);
+
+</script>
 </html>

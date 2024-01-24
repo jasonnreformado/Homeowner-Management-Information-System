@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 error_reporting(0);
 include('includes/dbconnection.php');
 error_reporting(0);
@@ -59,8 +59,7 @@ $(function () {
 
 <!-- breadcrumbs //-->
 <section class="w3l-contact-info-main" id="contact">
-    <div class="contact-sec	">
-        <div class="container">
+  
 
             <div class="d-grid contact-view">
                 <div class="cont-details">
@@ -108,12 +107,7 @@ while ($row=mysqli_fetch_array($ret)) {
                         </div>
                     </div>
                <?php } ?> </div>
-                <div class="map-content-5 mt-lg-0 mt-2">
-                <h5>Our Location</h5>
-<div class="google-map">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d965.989171979577!2d120.92626625042884!3d14.429659669586915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d2ec4efc7d11%3A0xc6f88a73d2461f84!2sVilla%20Arcadia!5e0!3m2!1sen!2sus!4v1701861144351!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-    </div>
+               
    
     </div></div>
 </section>

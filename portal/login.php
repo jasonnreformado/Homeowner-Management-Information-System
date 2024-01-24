@@ -1,25 +1,29 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
+
 include('includes/dbconnection.php');
-error_reporting(0);
 
-if(isset($_POST['btnlogin']))
-{
+if (isset($_POST['btnlogin'])) {
     $emailcon = $_POST['emailcont'];
-    $password = md5($_POST['password']);
-    $query = mysqli_query($con, "SELECT ID FROM tbluser WHERE (Email='$emailcon' OR MobileNumber='$emailcon') AND Password='$password'");
-    $ret = mysqli_fetch_array($query);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    if($ret > 0)
-    {
-        $_SESSION['bpmsuid'] = $ret['ID'];
+    $query = mysqli_prepare($con, "SELECT ID FROM tbluser WHERE (Email=? OR MobileNumber=?) AND Password=?");
+    mysqli_stmt_bind_param($query, "ss", $emailcon, $emailcon, $password);
+    mysqli_stmt_execute($query);
+    mysqli_stmt_store_result($query);
+
+    if (mysqli_stmt_num_rows($query) > 0) {
+        mysqli_stmt_bind_result($query, $userId);
+        mysqli_stmt_fetch($query);
+
+        $_SESSION['bpmsuid'] = $userId;
         header('location:user-dashboard.php');
-    }
-    else
-    {
+    } else {
         echo "<script>alert('Invalid Details.');</script>";
     }
+
+    mysqli_stmt_close($query);
 }
 ?>
 <!DOCTYPE html>
@@ -48,7 +52,7 @@ if(isset($_POST['btnlogin']))
 	<!-- FAVICONS ICON ============================================= -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
 
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<!-- PAGE TITLE HERE ============================================= -->
 	<title>Resident Portal - Villa Arcadia Subdivision</title>
 
@@ -159,7 +163,7 @@ if(isset($_POST['btnlogin']))
    
 		
 </head>
-<body class="ttr-opened-sidebar ttr-pinned-sidebar" >
+<body class="ttr-opened-sidebar ttr-pinned-sidebar">
 	
 	<!-- header start -->
 	<header class="ttr-header">
@@ -254,6 +258,7 @@ if(isset($_POST['btnlogin']))
             </div>		
 			<div class="row">
 				<div class="col-lg-5 m-b30">
+
 					<div class="widget-box">				
 						<div class="wc-title ">
 							<h4><i class="fa fa-sign-in"></i> Login your account</h4>
@@ -328,11 +333,48 @@ if(isset($_POST['btnlogin']))
             </ol>
         </div>
     </div>
+  
 </div>
-			</div>
-		</div>
-	</main>
 
+
+
+			</div>
+            
+        <div class="row">
+  
+
+    <div class="col-lg-5 m-b30 ">
+        <div class="widget-box">
+            <div class="wc-title">
+                <h4><i class="fa fa-info-circle"></i> Contact Us</h4>
+            </div>
+            <div class="widget-inner">
+                <?php include_once('aboutus.php');?>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-7 m-b30">
+    <div class="widget-box">
+        <div class="wc-title">
+            <h4><i class="fa fa-info-circle"></i> Website Guide</h4>
+        </div>
+        <div class="widget-inner">
+            <ul style="padding-left: 15px;">
+                <div class="map-content-5 mt-lg-0 mt-8">
+                    <div class="google-map">
+                       
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d965.989171979577!2d120.92626625042884!3d14.429659669586915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d2ec4efc7d11%3A0xc6f88a73d2461f84!2sVilla%20Arcadia!5e0!3m2!1sen!2sus!4v1701861144351!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <hr>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+    
     <div class="ttr-overlay"></div>
 
 
@@ -343,7 +385,11 @@ if(isset($_POST['btnlogin']))
     <script src="assets/vendors/js/bootstrap.min.js"></script>
     <script src='assets/vendors/scrollbar.min.js'></script>
     <script src="assets/vendors/chart.min.js"></script>
-    <script src="assets/js/admin.js"></script></body>
+    <script src="assets/js/admin.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
 
     <script>
     // JavaScript for handling the click event and showing the image popup
