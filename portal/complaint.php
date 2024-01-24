@@ -75,7 +75,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
     <!-- //header-ends -->
     <!-- main content start-->
     <div id="page-wrapper">
-    <h3 class="title1">My Profile</h3>
+  
   
     
 
