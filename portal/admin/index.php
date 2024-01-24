@@ -12,6 +12,7 @@
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofNl3KVgsfNHDGjaaH9x1BQn5uqF04hj0"
         crossorigin="anonymous">
 		<link href="css/font-awesome.css" rel="stylesheet"> 
+        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.png" />
     <title>Login</title>
     <style>
         .show-password {
