@@ -72,53 +72,53 @@ echo "<script>window.location.href='customer-list.php'</script>";
                   
 
                     <div class="table-responsive bs-example widget-shadow">
-                        <h4>Homeowner's Account Balance:</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Month of</th>
-                                    <th>Total Fee</th>
-                                    <th>Total Paid</th>
-                                    <th>Balance</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $statusFilter = isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '';
+    <h4>Homeowner's Account Balance:</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+              
+                <th>Total Fee</th>
+                <th>Total Paid</th>
+                <th>Balance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $statusFilter = isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '';
 
-                                $query = "SELECT * FROM tbluser";
-                                if (!empty($statusFilter)) {
-                                    $query .= " WHERE status = '$statusFilter'";
-                                }
+            $query = "SELECT * FROM tbluser";
+            if (!empty($statusFilter)) {
+                $query .= " WHERE status = '$statusFilter'";
+            }
 
-                                $ret = mysqli_query($con, $query);
+            $ret = mysqli_query($con, $query);
 
-                                $cnt = 1;
-                                while ($row = mysqli_fetch_array($ret)) {
-                                ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $cnt; ?></th>
-                                        <td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td>
-                                        <td><?php echo $row['monthly']; ?></td>
-                                        <td><?php echo $row['total_fee']; ?></td>
-                                        <td><?php echo $row['total_paid']; ?></td>
-                                        <td><?php echo $row['balance']; ?></td>
+            $cnt = 1;
+            while ($row = mysqli_fetch_array($ret)) {
+            ?>
+                <tr>
+                    <th scope="row"><?php echo $cnt; ?></th>
+                    <td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td>
+                    
+                    <td><?php echo $row[$row['monthly'].'_total_fee']; ?></td>
+                    <td><?php echo $row[$row['monthly'].'_total_paid']; ?></td>
+                    <td><?php echo $row[$row['monthly'].'_balance']; ?></td>
 
-                                        <td>
-                                        <a href="view-monthly.php?uid=<?php echo $row['ID']; ?>" class="btn btn-primary">Manage Balance</a>
-                                        
-                                           
-                                        </td>
-                                    </tr>
-                                <?php
-                                    $cnt = $cnt + 1;
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                    <td>
+                        <a href="view-monthly.php?uid=<?php echo $row['ID']; ?>" class="btn btn-primary">Manage Balance</a>
+                    </td>
+                </tr>
+            <?php
+                $cnt = $cnt + 1;
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
 						
                     </div>
                 </div>

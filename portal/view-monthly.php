@@ -5,30 +5,7 @@ include('includes/dbconnection.php');
 
 if (empty($_SESSION['bpmsuid'])) {
     // Redirect or handle the case where the user is not logged in
-} else {
-    $uid = $_SESSION['bpmsuid'];
-
-    if (isset($_POST['submit'])) {
-        $fname = mysqli_real_escape_string($con, $_POST['firstname']);
-        $lname = mysqli_real_escape_string($con, $_POST['lastname']);
-        $monthly = mysqli_real_escape_string($con, $_POST['monthly']);
-        $total_fee = mysqli_real_escape_string($con, $_POST['total_fee']);
-        $total_paid = mysqli_real_escape_string($con, $_POST['total_paid']);
-        $balance = mysqli_real_escape_string($con, $_POST['balance']);
-  
-
-        $query = "UPDATE tbluser SET FirstName='$fname', LastName='$lname', monthly='$monthly', total_fee='$total_fee', total_paid='$total_paid', balance='$balance' WHERE ID='$uid'";
-
-        $result = mysqli_query($con, $query);
-
-        if ($result) {
-            echo '<script>alert("Profile updated successfully.")</script>';
-            echo '<script>window.location.href="monthly_record.php"</script>';
-        } else {
-            echo '<script>alert("Something Went Wrong. Please try again.")</script>';
-        }
-    }
-}
+} else 
 ?>
 
 
@@ -125,35 +102,65 @@ if (empty($_SESSION['bpmsuid'])) {
                     <h3 class="title1 text-center">Account Balance</h3>
 
                     <!-- Add a table with an ID for printing -->
-                    <div class="map-content-9 mt-lg-0 mt-3" id="printableTable">
-    <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
-        <?php
-        $uid = $_SESSION['bpmsuid'];
-        $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
-        $cnt = 1;
-        while ($row = mysqli_fetch_array($ret)) {
-        ?>
-        <table class="table" style="width: 70%; margin: auto; border-collapse: collapse; border: 1px solid #ddd; margin-top: 20px;">
-            <tr>
-                <td style="padding: 10px;"><label>Month of</label></td>
-                <td style="padding: 10px;"><input type="text" class="form-control" name="monthly" value="<?php echo $row['monthly'];?>" readonly="true"></td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;"><label>Total Fee</label></td>
-                <td style="padding: 10px;"><input type="text" class="form-control" name="total_fee" value="<?php echo $row['total_fee'];?>" readonly="true"></td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;"><label>Total Paid</label></td>
-                <td style="padding: 10px;"><input type="text" class="form-control" name="total_paid" value="<?php echo $row['total_paid'];?>" readonly="true"></td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;"><label>Balance</label></td>
-                <td style="padding: 10px;"><input type="text" class="form-control" name="balance" value="<?php echo $row['balance'];?>" readonly="true" style="color: red;"></td>
-            </tr>
-        </table>
-        <?php }?>
-    </form>
-</div>
+<main class="ttr-wrapper">
+    <div class="container-fluid">
+        <div class="row">               
+            <div class="col-lg-12 m-b30">                  
+                <div class="widget-box">				
+                    <div class="widget-inner">    
+                        <div class="table-responsive">     
+                            <small>                    
+                                <table id="enrolledsubjects" class="table table-striped table-bordered " style="width:100%; ">
+                                    <thead class="bg-success">
+                                    <tr class="text-center">
+                                    <td class="align-middle font-weight-bold">Monthly of</td>
+                                    <td class="align-middle font-weight-bold">Total Fee</td>				
+                                    <td class="align-middle font-weight-bold">Total Paid</td>
+                                    <td class="align-middle font-weight-bold">Balance</td>
+                                </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $uid = $_SESSION['bpmsuid'];
+                                        $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
+                                        while ($row = mysqli_fetch_array($ret)) {
+                                        ?>
+                                            <tr class="text-center">
+                                                <td class="align-middle">January</td>
+                                                <td class="align-middle"><?php echo $row['January_total_fee']; ?></td>
+                                                <td class="align-middle"><?php echo $row['January_total_paid']; ?></td>
+                                                <td class="align-middle text-danger"><b><?php echo $row['January_balance']; ?></b></td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td class="align-middle">February</td>
+                                                <td class="align-middle"><?php echo $row['February_total_fee']; ?></td>
+                                                <td class="align-middle"><?php echo $row['February_total_paid']; ?></td>
+                                                <td class="align-middle text-danger"><b><?php echo $row['February_balance']; ?></b></td>
+                                            </tr>
+
+                                            <tr class="text-center">
+                                                <td class="align-middle">March</td>
+                                                <td class="align-middle"><?php echo $row['March_total_fee']; ?></td>
+                                                <td class="align-middle"><?php echo $row['March_total_paid']; ?></td>
+                                                <td class="align-middle text-danger"><b><?php echo $row['March_balance']; ?></b></td>
+                                            </tr>
+
+                                        
+                                           
+                                           
+
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
 
                         
                   
