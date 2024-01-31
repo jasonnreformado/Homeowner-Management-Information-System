@@ -1,1 +1,5 @@
-Currently in progress #####
+                                            Homeowner Management Information System 
+
+
+
+                                                  Developed by Jason Reformado
