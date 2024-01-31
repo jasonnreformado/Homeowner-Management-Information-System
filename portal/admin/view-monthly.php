@@ -9,14 +9,12 @@ if (empty($_SESSION['bpmsuid'])) {
     $uid = $_SESSION['bpmsuid'];
 
     if (isset($_POST['submit'])) {
-
-        $monthly = mysqli_real_escape_string($con, $_POST['monthly']);
-        $total_fee = mysqli_real_escape_string($con, $_POST[$monthly.'_total_fee']);
-        $total_paid = mysqli_real_escape_string($con, $_POST[$monthly.'_total_paid']);
-        $balance = mysqli_real_escape_string($con, $_POST[$monthly.'_balance']);
+        $selectedMonth = mysqli_real_escape_string($con, $_POST['monthly']);
+        $total_fee = mysqli_real_escape_string($con, $_POST[$selectedMonth.'_total_fee']);
+        $balance = mysqli_real_escape_string($con, $_POST[$selectedMonth.'_balance']);
         $paid = mysqli_real_escape_string($con, $_POST['paid']);
 
-        $query = "UPDATE tbluser SET {$monthly}_total_fee='$total_fee', {$monthly}_total_paid='$total_paid', {$monthly}_balance='$balance', paid='$paid' WHERE ID='$uid'";
+        $query = "UPDATE tbluser SET {$selectedMonth}_total_fee='$total_fee', {$selectedMonth}_balance='$balance', paid='$paid' WHERE ID='$uid'";
 
         $result = mysqli_query($con, $query);
 
@@ -31,25 +29,20 @@ if (empty($_SESSION['bpmsuid'])) {
     // Check if the "Paid" button is clicked
     if (isset($_POST['mark_as_paid'])) {
         $paid = mysqli_real_escape_string($con, $_POST['paid']);
-    
-        // Fetch the selected month from the form
         $monthly = mysqli_real_escape_string($con, $_POST['monthly']);
-    
-        // Fetch current balance and total_paid values from the database
+
         $fetchQuery = "SELECT {$monthly}_balance, {$monthly}_total_paid FROM tbluser WHERE ID='$uid'";
         $fetchResult = mysqli_query($con, $fetchQuery);
         $fetchRow = mysqli_fetch_assoc($fetchResult);
         $currentBalance = $fetchRow["{$monthly}_balance"];
         $currentTotalPaid = $fetchRow["{$monthly}_total_paid"];
-    
-        // Calculate new values
+
         $newTotalPaid = $currentTotalPaid + $paid;
         $newBalance = $currentBalance - $paid;
-    
-        // Update the database with new values
+
         $updateQuery = "UPDATE tbluser SET {$monthly}_total_paid='$newTotalPaid', {$monthly}_balance='$newBalance', paid='0' WHERE ID='$uid'";
         $updateResult = mysqli_query($con, $updateQuery);
-    
+
         if ($updateResult) {
             echo '<script>alert("Payment marked as paid successfully.")</script>';
             echo '<script>window.location.href="monthly_record.php"</script>';
@@ -57,7 +50,6 @@ if (empty($_SESSION['bpmsuid'])) {
             echo '<script>alert("Something Went Wrong. Please try again.")</script>';
         }
     }
-    
 }
 ?>
 
@@ -131,6 +123,26 @@ if (empty($_SESSION['bpmsuid'])) {
       width: 20px;
       height: 20px;
     }
+
+    .table {
+        width: 200%;
+      
+        margin-bottom: 440px;
+    }
+
+    .table td, .table th {
+      
+        padding: 55px;
+        text-align: left;
+    }
+
+    
+
+    .form-control {
+        width: 300%;
+        box-sizing: border-box;
+    }
+ 
   </style>
 </head> 
 <body class="cbp-spmenu-push">
@@ -142,36 +154,89 @@ if (empty($_SESSION['bpmsuid'])) {
         <?php include_once('includes/header.php');?>
         <!-- //header-ends -->
         <!-- main content start-->
+        
         <div id="page-wrapper">
-    <div class="main-page">
-        <div class="tables">
-            <h3 class="title1 text-center">Account Balance</h3>
-            <div class="map-content-9 mt-lg-0 mt-4" id="printableTable">
-                <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
-                    <?php
-                    $uid = $_SESSION['bpmsuid'];
-                    $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
-                    $cnt = 1;
-                    while ($row = mysqli_fetch_array($ret)) {
-                    ?>
-                    <table class="table" id="januaryForm" style="display:none;">
-                        <!-- January Form -->
-                        <input type="hidden" name="monthly" value="January">
-                        <tr>
-                            <td><label>January Total Fee</label></td>
-                            <td><input type="text" class="form-control" name="january_total_fee" value="<?php echo $row['January_total_fee']; ?>" required="true"></td>
-                        </tr>
-                        <tr>
-                            <td><label>January Total Paid</label></td>
-                            <td><input type="text" class="form-control" name="january_total_paid" value="<?php echo $row['January_total_paid']; ?>" readonly="true"></td>
-                        </tr>
-                        <tr>
-                            <td><label>January Balance</label></td>
-                            <td><input type="text" class="form-control" name="january_balance" value="<?php echo $row['January_balance']; ?>" readonly="true"></td>
-                        </tr>
-                       
-                        <!-- ... (existing code for January) ... -->
-                    </table>
+        <form action="" method="post">
+    <table>
+        <tr>
+            <td><label>Select Month:</label></td>
+            <td>
+            <select class="form-control" name="monthly" id="monthlySelector" onchange="showForm()" required="true">
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <!-- Add other months as needed -->
+                        </select>
+            </td>
+        </tr>
+
+        <tr class="January-fields month-fields" style="<?php echo ($row['monthly'] == 'January') ? '' : 'display: none;'; ?>">
+            <!-- Your January fields -->
+        </tr>
+
+        <tr class="February-fields month-fields" style="<?php echo ($row['monthly'] == 'February') ? '' : 'display: none;'; ?>">
+            <!-- Your February fields -->
+        </tr>
+
+        <tr class="March-fields month-fields" style="<?php echo ($row['monthly'] == 'March') ? '' : 'display: none;'; ?>">
+            <!-- Your February fields -->
+        </tr>
+
+        <!-- Add similar sections for other months -->
+
+        
+        <tr>
+                                    <td><label>Total Fee</label></td>
+                                    <td><input type="text" class="form-control" name="January_total_fee" id="total_January_total_feefee" value="<?php echo $row['January_total_fee'];?>"  oninput="updateBalance(this.value)"></td>
+                                </tr>
+                               
+                                <tr>
+                                    <td><label>Balance</label></td>
+                                    <td><input type="text" class="form-control" name="January_balance" id="January_balance" value="<?php echo $row['January_balance'];?>" readonly="true"></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>input payment</label></td>
+                                    <td><input type="text" class="form-control" name="paid" id="paid" value="<?php echo $row['paid'];?>" ></td>
+                                </tr>
+
+        <!-- Add other common fields -->
+
+        <br>
+        <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
+        <button type="submit" class="btn btn-success" name="mark_as_paid">Paid</button>
+        <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
+    </table>
+</form>
+
+
+   <div class="container">
+    <div class="tables">
+        <div class="map-content-10 mt-lg-0 mt-4" id="printableTable">
+            <form method="post" name="signup" onsubmit="return checkpass();" enctype="multipart/form-data">
+                <?php
+                $uid = $_SESSION['bpmsuid'];
+                $ret = mysqli_query($con, "select * from tbluser where ID='$uid'");
+                $cnt = 1;
+                while ($row = mysqli_fetch_array($ret)) {
+                ?>
+                <table class="table" id="januaryForm" style="display:none;">
+                    <!-- January Form -->
+                    <input type="hidden" name="monthly" value="January">
+                    <tr>
+                        <td><label>January Total Fee</label></td>
+                        <td><input type="text" class="form-control" name="january_total_fee" value="<?php echo $row['January_total_fee']; ?>" required="true"></td>
+                    </tr>
+                    <tr>
+                        <td><label>January Total Paid</label></td>
+                        <td><input type="text" class="form-control" name="january_total_paid" value="<?php echo $row['January_total_paid']; ?>" readonly="true"></td>
+                    </tr>
+                    <tr>
+                        <td><label>January Balance</label></td>
+                        <td><input type="text" class="form-control" name="january_balance" value="<?php echo $row['January_balance']; ?>" readonly="true"></td>
+                    </tr>
+                    <!-- ... (existing code for January) ... -->
+                </table>
 
                     <table class="table" id="februaryForm" style="display:none;">
                         <!-- February Form -->
@@ -208,6 +273,10 @@ if (empty($_SESSION['bpmsuid'])) {
                     </tr>
                     <!-- ... (existing code for March) ... -->
                 </table>
+                </form>
+        </div>
+    </div>
+</div>
 
                 
 
@@ -238,56 +307,15 @@ if (empty($_SESSION['bpmsuid'])) {
                         }
                     </script>
 
-<form action="" method="post">
-    <table>
-        <tr>
-            <td><label>Select Month:</label></td>
-            <td>
-                <select class="form-control" name="monthly" id="monthlySelector" onchange="showForm()" required="true">
-                    <option value="January" <?php if($row['monthly'] == 'January') echo 'selected'; ?>>January</option>
-                    <option value="February" <?php if($row['monthly'] == 'February') echo 'selected'; ?>>February</option>
-                    <option value="March" <?php if($row['monthly'] == 'March') echo 'selected'; ?>>March</option>
-                    <!-- Add other months as needed -->
-                </select>
-            </td>
-        </tr>
 
-        <tr class="January-fields month-fields" style="<?php echo ($row['monthly'] == 'January') ? '' : 'display: none;'; ?>">
-            <!-- Your January fields -->
-        </tr>
-
-        <tr class="February-fields month-fields" style="<?php echo ($row['monthly'] == 'February') ? '' : 'display: none;'; ?>">
-            <!-- Your February fields -->
-        </tr>
-
-        <tr class="March-fields month-fields" style="<?php echo ($row['monthly'] == 'March') ? '' : 'display: none;'; ?>">
-            <!-- Your February fields -->
-        </tr>
-
-        <!-- Add similar sections for other months -->
-
-        <tr>
-            <td><label>Input Payment</label></td>
-            <td><input type="text" class="form-control" name="paid" id="paid" value="<?php echo $row['paid']; ?>" required="true"></td>
-        </tr>
-
-        <!-- Add other common fields -->
-
-        <br>
-        <button type="submit" class="btn btn-primary" name="submit">Save Change</button> <br><br>
-        <button type="submit" class="btn btn-success" name="mark_as_paid">Paid</button><br><br>
-        <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
-    </table>
-</form>
 
 <script>
 function showForm() {
-    // Get the selected month from the dropdown
-    var selectedMonth = document.getElementById("monthlySelector").value;
+    var selectedMonth = document.getElementById('monthlySelector').value;
+    var allMonthFields = document.querySelectorAll('.month-fields');
 
     // Hide all month-related fields initially
-    var allMonthsFields = document.querySelectorAll('.month-fields');
-    allMonthsFields.forEach(function(monthField) {
+    allMonthFields.forEach(function(monthField) {
         monthField.style.display = 'none';
     });
 
@@ -322,7 +350,7 @@ function showForm() {
 
     function updateBalance(totalFee) {
         // Update the "Balance" field to have the same value as the "Total Fee"
-        document.getElementById('balance').value = totalFee;
+        document.getElementById('January_balance').value = totalFee;
     }
 
     function showForm() {
