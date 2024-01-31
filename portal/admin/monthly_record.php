@@ -78,10 +78,10 @@ echo "<script>window.location.href='customer-list.php'</script>";
             <tr>
                 <th>#</th>
                 <th>Name</th>
-              
-                <th>Total Fee</th>
-                <th>Total Paid</th>
-                <th>Balance</th>
+                <th>Address</th>
+                <th>Email</th>
+                
+                
                 <th>Action</th>
             </tr>
         </thead>
@@ -102,10 +102,9 @@ echo "<script>window.location.href='customer-list.php'</script>";
                 <tr>
                     <th scope="row"><?php echo $cnt; ?></th>
                     <td><?php echo $row['FirstName']; ?> <?php echo $row['LastName']; ?></td>
-                    
-                    <td><?php echo $row[$row['monthly'].'_total_fee']; ?></td>
-                    <td><?php echo $row[$row['monthly'].'_total_paid']; ?></td>
-                    <td><?php echo $row[$row['monthly'].'_balance']; ?></td>
+                    <td><?php echo $row['address']; ?></td>
+                    <td><?php echo $row['Email']; ?></td>
+                   
 
                     <td>
                         <a href="view-monthly.php?uid=<?php echo $row['ID']; ?>" class="btn btn-primary">Manage Balance</a>

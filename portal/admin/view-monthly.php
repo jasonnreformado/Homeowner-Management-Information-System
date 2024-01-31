@@ -274,8 +274,8 @@ if (empty($_SESSION['bpmsuid'])) {
         <!-- Add other common fields -->
 
         <br>
-        <button type="submit" class="btn btn-primary" name="submit">Save Change</button>
-        <button type="submit" class="btn btn-success" name="mark_as_paid">Paid</button>
+        <button type="submit" class="btn btn-primary" name="submit">Save Change</button> <br><br>
+        <button type="submit" class="btn btn-success" name="mark_as_paid">Paid</button><br><br>
         <button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
     </table>
 </form>
