@@ -1,5 +1,5 @@
-Homeowner Management Information System 
+                                            Homeowner Management Information System 
 
 
 
-Developed by Jason Reformado
+                                                  Developed by Jason Reformado
