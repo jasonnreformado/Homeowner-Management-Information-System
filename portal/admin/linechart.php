@@ -71,7 +71,7 @@
 
     // CanvasJS Line Chart
     var canvasjsChart = new CanvasJS.Chart("canvasjsChart", {
-      title: { text: "Total Collection" },
+      title: { text: "" },
       axisY: { title: "Total Collection", includeZero: false },
       legend: {
         verticalAlign: "bottom",

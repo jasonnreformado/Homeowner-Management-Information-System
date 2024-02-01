@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <div class="sticky-header header-section ">
       <div class="header-left">
         <!--toggle button start-->
@@ -20,51 +17,68 @@ session_start();
         <div class="clearfix"> </div>
       </div>
       <div class="header-right">
-        <div class="profile_details_left"><!--notifications of menu start -->
-          <ul class="nofitications-dropdown">
-            <?php
-$ret1=mysqli_query($con,"select tbluser.FirstName,tbluser.LastName,tblbook.ID as bid,tblbook.AptNumber from tblbook join tbluser on tbluser.ID=tblbook.UserID where tblbook.Status is null");
-$num=mysqli_num_rows($ret1);
+        <div class="profile_details_left">
+         <!-- Notifications menu start -->
+  <ul class="nofitications-dropdown">
+    <?php
+        // Get approved appointments notifications
+        $retApprovedAppointments = mysqli_query($con, "SELECT tbluser.FirstName, tbluser.LastName, tblbook.ID as bid, tblbook.AptNumber FROM tblbook JOIN tbluser ON tbluser.ID=tblbook.UserID WHERE tblbook.Status = 'Approved'");
+        $numApprovedAppointments = mysqli_num_rows($retApprovedAppointments);
 
-?>  
+        // Get rejected appointments notifications
+        $retRejectedAppointments = mysqli_query($con, "SELECT tbluser.FirstName, tbluser.LastName, tblbook.ID as bid, tblbook.AptNumber FROM tblbook JOIN tbluser ON tbluser.ID=tblbook.UserID WHERE tblbook.Status = 'Rejected'");
+        $numRejectedAppointments = mysqli_num_rows($retRejectedAppointments);
+
+        // Total unread notifications count
+        $totalUnreadNotifications = $numApprovedAppointments + $numRejectedAppointments;
+?>
+    
             <li class="dropdown head-dpdn">
-             
-              
-              <ul class="dropdown-menu">
-                <li>
-                  <div class="notification_header">
-                    <h3>You have <?php echo $num;?> Notification</h3>
-                  </div>
-                </li>
-                <li>
-            
-                   <div class="notification_desc">
-                     <?php if($num>0){
-while($result=mysqli_fetch_array($ret1))
-{
-            ?>
-                 <a class="dropdown-item" href="view-appointment.php?viewid=<?php echo $result['bid'];?>">New appointment received from <?php echo $result['FirstName'];?> <?php echo $result['LastName'];?> (<?php echo $result['AptNumber'];?>)</a>
-                 <hr />
-<?php }} else {?>
-    <a class="dropdown-item" href="all-appointment.php">No New Appointment Received</a>
-        <?php } ?>
-                           
-                  </div>
-                  <div class="clearfix"></div>  
-                 </a></li>
-                 
-                
-                 <li>
-                  <div class="notification_bottom">
-                    <a href="new-appointment.php">See all notifications</a>
-                  </div> 
-                </li>
-              </ul>
-            </li> 
-          
-          </ul>
-          <div class="clearfix"> </div>
-        </div>
+            <a href="#" id="bellButton" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+  <i class="fa fa-bell"></i><span class="badge blue"><?php echo $totalUnreadNotifications; ?></span>
+</a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="notification_header">
+                            <h3>You have <?php echo $totalUnreadNotifications; ?> Notifications</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="notification_desc">
+                            <?php if ($totalUnreadNotifications > 0) {
+                                // Display approved appointments notifications
+                                while ($resultApprovedAppointment = mysqli_fetch_array($retApprovedAppointments)) {
+                                    ?>
+                                    <a class="dropdown-item" href="booking-history.php?viewid=<?php echo $resultApprovedAppointment['bid']; ?>">Your appointment has been approved: <?php echo $resultApprovedAppointment['FirstName']; ?> <?php echo $resultApprovedAppointment['LastName']; ?> (<?php echo $resultApprovedAppointment['AptNumber']; ?>)</a>
+                                    <hr />
+                                <?php
+                                }
+
+                                // Display rejected appointments notifications
+                                while ($resultRejectedAppointment = mysqli_fetch_array($retRejectedAppointments)) {
+                                    ?>
+                                    <a class="dropdown-item" href="booking-history.php?viewid=<?php echo $resultRejectedAppointment['bid']; ?>">Your appointment has been rejected: <?php echo $resultRejectedAppointment['FirstName']; ?> <?php echo $resultRejectedAppointment['LastName']; ?> (<?php echo $resultRejectedAppointment['AptNumber']; ?>)</a>
+                                    <hr />
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <a class="dropdown-item" href="#">No New Notifications</a>
+                            <?php } ?>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                    <li>
+                        <div class="notification_bottom">
+                            <a href="#">See all notifications</a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clearfix"> </div>
+</div>
         <!--notification menu end -->
         <div class="profile_details">  
         <?php
@@ -103,5 +117,22 @@ while($result=mysqli_fetch_array($ret1))
       </div>
       <div class="clearfix"> </div> 
     </div>
-
-    alt="" width="50" height="50">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <!-- Add this script after including jQuery -->
+<script>
+  $(document).ready(function () {
+    $("#bellButton").click(function () {
+      $.ajax({
+        type: "POST",
+        url: "update-notifications.php",
+        success: function (data) {
+          // Update the notification count on success
+          $("#bellButton .badge").text("0");
+        },
+        error: function (xhr, status, error) {
+          console.error("Error updating notifications: " + error);
+        }
+      });
+    });
+  });
+</script>

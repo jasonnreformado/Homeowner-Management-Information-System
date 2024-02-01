@@ -170,12 +170,12 @@ if (empty($_SESSION['bpmsuid'])) {
 
               <div style="padding-top: 30px;">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname; ?>" readonly="true">
+                <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lastname; ?>" >
               </div>
 
               <div style="padding-top: 30px;">
                 <label for="mobilenumber">Mobile Number</label>
-                <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo $mobilenumber; ?>" readonly="true">
+                <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo $mobilenumber; ?>" >
               </div>
 
               <div style="padding-top: 30px;">
