@@ -16,8 +16,9 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 
         // Check if the selected date and time range is available for the specific activity
         $checkQuery = mysqli_query($con, "SELECT AptTime, endTime FROM tblbook WHERE AptDate = '$adate' AND (
-            ('$atime' >= AptTime AND '$atime' < endTime) OR
-            ('$endtime' > AptTime AND '$endtime' <= endTime) 
+            ('$atime' > AptTime AND '$atime' < endTime) OR
+            ('$endtime' > AptTime AND '$endtime' < endTime) OR
+            ('$atime' <= AptTime AND '$endtime' >= endTime)
         ) AND Message = '$msg'");
 
         if (mysqli_num_rows($checkQuery) > 0) {
