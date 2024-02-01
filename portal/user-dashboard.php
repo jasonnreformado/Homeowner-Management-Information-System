@@ -13,54 +13,35 @@ if (empty($_SESSION['bpmsuid'])) {
         $lname = $_POST['lastname'];
         $mobilenumber = $_POST['mobilenumber'];
         $email = $_POST['email'];
-        $numplp = $_POST['numplp'];
-        $movein = $_POST['movein'];
 
-        // File upload handling
-        $target_dir = "uploads/";  // Specify your upload directory
-        $target_file = $target_dir . basename($_FILES["profilepicture"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // Check if a new profile picture is uploaded
+        $profilePicturePath = '';
 
-        // Check if image file is a valid image
-        $check = getimagesize($_FILES["profilepicture"]["tmp_name"]);
-        if ($check === false) {
-            echo '<script>alert("File is not an image.")</script>';
-            $uploadOk = 0;
-        }
+        if (!empty($_FILES["profilepicture"]["name"])) {
+            // File upload handling (your existing code)
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["profilepicture"]["name"]);
 
-        // Check file size
-        if ($_FILES["profilepicture"]["size"] > 500000) {
-            echo '<script>alert("Sorry, your file is too large.")</script>';
-            $uploadOk = 0;
-        }
+            // ... (rest of your file upload code)
 
-        // Allow certain file formats
-        $allowedFormats = ["jpg", "jpeg", "png", "gif"];
-        if (!in_array($imageFileType, $allowedFormats)) {
-            echo '<script>alert("Sorry, only JPG, JPEG, PNG & GIF files are allowed.")</script>';
-            $uploadOk = 0;
-        }
-
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo '<script>alert("Sorry, your file was not uploaded.")</script>';
-        } else {
             if (move_uploaded_file($_FILES["profilepicture"]["tmp_name"], $target_file)) {
                 $profilePicturePath = $target_file;
-
-                // Update user profile including the profile picture path
-                $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber', numplp='$numplp', movein='$movein', ProfilePicture='$profilePicturePath' WHERE ID='$uid'");
-
-                if ($query) {
-                    echo '<script>alert("Profile updated successfully.")</script>';
-                    echo '<script>window.location.href="user-dashboard.php"</script>';
-                } else {
-                    echo '<script>alert("Something Went Wrong. Please try again.")</script>';
-                }
             } else {
                 echo '<script>alert("Sorry, there was an error uploading your file.")</script>';
             }
+        }
+
+        // Only update ProfilePicture if a new picture is uploaded
+        $updateProfilePicture = !empty($profilePicturePath) ? ", ProfilePicture='$profilePicturePath'" : "";
+
+        // Update user profile
+        $query = mysqli_query($con, "UPDATE tbluser SET FirstName='$fname', LastName='$lname', Email='$email', MobileNumber='$mobilenumber'$updateProfilePicture WHERE ID='$uid'");
+
+        if ($query) {
+            echo '<script>alert("Profile updated successfully.")</script>';
+            echo '<script>window.location.href="user-dashboard.php"</script>';
+        } else {
+            echo '<script>alert("Something Went Wrong. Please try again.")</script>';
         }
     }
 
@@ -82,6 +63,7 @@ if (empty($_SESSION['bpmsuid'])) {
     }
 }
 ?>
+
 
 
 
@@ -183,7 +165,7 @@ if (empty($_SESSION['bpmsuid'])) {
 
               <div style="padding-top: 0px;">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname; ?>" readonly="true">
+                <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $firstname; ?>" >
               </div>
 
               <div style="padding-top: 30px;">

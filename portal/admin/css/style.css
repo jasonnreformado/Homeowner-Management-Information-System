@@ -95,11 +95,13 @@ button#showLeftPush:hover {
 .cbp-spmenu-vertical {
     width: 309px;
     height: 100%;
-    top: 95px;
+    top: 90px;
     z-index: 1000;
-    background-color:#478f3f;
-	padding: 2em 0;
+    background-color: #fafafa;
+    padding: 2em 0;
+    border: 3px solid #e0d8d8; /* Add a 1px solid border with a light gray color */
 }
+
 .cbp-spmenu-left {
     left: 0;
 }
@@ -137,7 +139,7 @@ button#showLeftPush:hover {
 	 margin-bottom: 1em;
 }
 .sidebar ul li a {
-    color: #FFFFFF;
+    color: #000000;
     font-size: 1em;
     font-family: 'Helvetica';
 
@@ -230,7 +232,7 @@ ul.dropdown-menu{
     font-weight: 700;
 }
 .logo a span {
-    color: rgb(102, 219, 112);
+    color: rgb(0, 0, 0);
     font-size: 1.7em;
     text-align: center;
     letter-spacing: 7px;
@@ -842,21 +844,21 @@ ul.dropdown-menu.drp-mnu li {
 .stats-left {
     float: left;
     width: 70%;
-    background-color: rgb(49, 141, 57);
+    background-color: rgb(17, 153, 24);
 	text-align: center;
 	padding: 1em;
 }
 .states-mdl .stats-left {
-    background-color: #9b5757;
+    background-color: #cc3737;
 }
 .states-mdl .stats-right {
-    background-color: rgba(112, 45, 45, 0.88);
+    background-color: rgba(190, 70, 70, 0.88);
 }
 .states-last .stats-left {
-    background-color: #4e4c7c;
+    background-color: #4f48e2;
 }
 .states-last .stats-right {
-    background-color: rgb(65, 63, 90);
+    background-color: rgb(94, 89, 172);
 }
 .stats-right {
     float: right;

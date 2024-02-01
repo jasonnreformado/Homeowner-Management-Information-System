@@ -95,11 +95,13 @@ button#showLeftPush:hover {
 .cbp-spmenu-vertical {
     width: 309px;
     height: 100%;
-    top: 95px;
+    top: 90px;
     z-index: 1000;
-    background-color:#478f3f;
-	padding: 2em 0;
+    background-color: #fafafa;
+    padding: 2em 0;
+    border: 3px solid #e0d8d8; /* Add a 1px solid border with a light gray color */
 }
+
 .cbp-spmenu-left {
     left: 0;
 }
@@ -137,14 +139,16 @@ button#showLeftPush:hover {
 	 margin-bottom: 1em;
 }
 .sidebar ul li a {
-    color: #FFFFFF;
+    color: #000000;
     font-size: 1em;
+    font-family: 'Helvetica';
+
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     background-color: transparent;
-    color: #F2B33F;
+    color: #16b8aa;
 }
 .sidebar .arrow {
     float: right;
@@ -165,7 +169,7 @@ i.nav_icon {
 span.nav-badge {
     font-size: 12px;
     color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.32);
+    background: rgba(214, 205, 205, 0.32);
     width: 25px;
     height: 25px;
     border-radius: 68%;
@@ -217,7 +221,7 @@ ul.dropdown-menu{
     float: left;
 }
 .logo a{
-    padding: 1.6em 1em .7em;
+    padding: 1.6em .3em .7em;
 	display: flex;
 	text-decoration: none;
 }
@@ -228,7 +232,7 @@ ul.dropdown-menu{
     font-weight: 700;
 }
 .logo a span {
-    color: rgb(102, 219, 112);
+    color: rgb(0, 0, 0);
     font-size: 1.7em;
     text-align: center;
     letter-spacing: 7px;
@@ -427,7 +431,7 @@ ul.dropdown-menu li {
 	margin-left:0;
 }
 .sidebar .nav-second-level li a.active ,.sidebar ul li a.active{
-    color: #F2B33F;
+    color: #3e3b35;
 }
 li.active a i, .act a i {
     color: #F2B33F;
@@ -840,32 +844,32 @@ ul.dropdown-menu.drp-mnu li {
 .stats-left {
     float: left;
     width: 70%;
-    background-color: #be6583;
+    background-color: rgb(17,138,24,1);
 	text-align: center;
 	padding: 1em;
 }
 .states-mdl .stats-left {
-    background-color: #585858;
+    background-color: #cc3737;
 }
 .states-mdl .stats-right {
-    background-color: rgba(88, 88, 88, 0.88);
+    background-color: rgba(190, 70, 70, 0.88);
 }
 .states-last .stats-left {
-    background-color: #4f4e60;
+    background-color: #4f48e2;
 }
 .states-last .stats-right {
-    background-color: rgb(152 151 173);
+    background-color: rgb(94, 89, 172);
 }
 .stats-right {
     float: right;
     width: 30%;
     text-align: center;
-	padding: 1.54em 1em;
-	background-color: #a18b92;
+	padding: 1.70em 1em;
+	background-color:rgb(36, 112, 42);
 }
 .stats-left h5 {
     color: #fff;
-    font-size: 1em;
+    font-size: 1.3em;
 }
 .stats-left h4 {
     font-size: 2em;
@@ -873,12 +877,12 @@ ul.dropdown-menu.drp-mnu li {
     margin-top: 10px;
 }
 .stats-right label {
-    font-size: 2em;
+    font-size: 1em;
     color: #fff;
 }
 /*--charts--*/
 .charts,.row {
-    margin: 2em 0 0;
+    margin: 1em 0 0;
 }
 .charts-grids {
     background-color: #fff;

@@ -24,6 +24,7 @@ if (strlen($_SESSION['bpmsaid']==0)) {
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <!--webfonts-->
+	
     <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <!--//webfonts-->
     <!--animate-->
@@ -93,149 +94,7 @@ $totalappointment=mysqli_num_rows($query2);
 						<div class="clearfix"> </div>	
 					</div>
 
-					<div class="col-md-4 widget states-last">
-					<?php
-
- $query6=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
- from tblinvoice 
-  join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE();");
-while($row=mysqli_fetch_array($query6))
-{
-$todays_sale=$row['Cost'];
-$todysale+=$todays_sale;
-
-}
- ?>
-						<div class="stats-left">
-							<h5>Today</h5>
-							<h5>Collection</h5>
-						</div>
-						<div class="stats-right">
-							<label> <?php 
-if($todysale==""):
-							echo "0";
-else:
-	echo $todysale;
-endif;
-						?></label>
-						</div>
-						
-				
-
-						
-					</div>
-				</div>
-						</div>
-
-				<div class="row calender widget-shadow">
-					<div class="row-one">
-					<div class="col-md-4 widget">
-					<?php $query5=mysqli_query($con,"Select * from  employees");
-$totalser=mysqli_num_rows($query5);
-?>
-						<div class="stats-left">
-			
-							<h4>Officer</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalser;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-
-
-
-					<div class="col-md-4 widget states-mdl">
-					<?php $query3=mysqli_query($con,"Select * from tblbook where Status='Approved'");
-$totalaccapt=mysqli_num_rows($query3);
-?>
-						<div class="stats-left">
-				
-							<h4>Accepted</h4>
-						</div>
-
-						<div class="stats-right">
-							<label><?php echo $totalaccapt;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-
-
 					
-						<!-- today-->	
-					<div class="col-md-4 widget states-last">
-					<?php
-
-$query7=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
-from tblinvoice 
- join tblservices  on tblservices.ID=tblinvoice.ServiceId where date(PostingDate)=CURDATE()-1;");
-while($row7=mysqli_fetch_array($query7))
-{
-$yesterdays_sale=$row7['Cost'];
-$yesterdaysale+=$yesterdays_sale;
-
-}
-?>
-					   <div class="stats-left ">
-						   <h5>Yesterday</h5>
-						   <h5>Collection</h5>
-					   </div>
-					   <div class="stats-right">
-						   <label> <?php 
-if($yesterdaysale==""):
-						   echo "0";
-else:
-   echo $yesterdaysale;
-endif;
-					   ?></label>
-					   </div>
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="clearfix"> </div>	
-				</div>
-						
-					</div>
-
-
-
-	<!-- yersterday -->
-				<div class="row calender widget-shadow">
-					<div class="row-one">
-					<div class="col-md-4 widget">
-					<?php $query5=mysqli_query($con,"Select * from  tblservices");
-$totalser=mysqli_num_rows($query5);
-?>
-						<div class="stats-left">
-			
-							<h4>Category</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalser;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-
-
-
-	<!-- sevendays -->
-					<div class="col-md-4 widget states-mdl">
-					<?php $query4=mysqli_query($con,"Select * from tblbook where Status='Rejected'");
-$totalrejapt=mysqli_num_rows($query4);
-?>
-						<div class="stats-left ">
-		
-							<h4>Rejected </h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalrejapt;?></label>
-						</div>
-
-
-
-
-
-						<div class="clearfix"> </div>	
-					</div>
 
 
 
@@ -274,11 +133,13 @@ endif;
 			
 					</div>	<br>	
 				
-					<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+				
+					
 					
                 <!-- ... (existing content) ... -->
 			
 					<?php include_once('linechart.php');?>
+					
 				</div>
 				
 				<div class="clearfix"> </div>

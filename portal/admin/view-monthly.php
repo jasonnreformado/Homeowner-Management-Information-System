@@ -224,15 +224,15 @@ if (empty($_SESSION['bpmsuid'])) {
                     <!-- January Form -->
                     <input type="hidden" name="monthly" value="January">
                     <tr>
-                        <td><label>January Total Fee</label></td>
+                        <td><label> Total Fee</label></td>
                         <td><input type="text" class="form-control" name="january_total_fee" value="<?php echo $row['January_total_fee']; ?>" required="true"></td>
                     </tr>
                     <tr>
-                        <td><label>January Total Paid</label></td>
+                        <td><label> Total Paid</label></td>
                         <td><input type="text" class="form-control" name="january_total_paid" value="<?php echo $row['January_total_paid']; ?>" readonly="true"></td>
                     </tr>
                     <tr>
-                        <td><label>January Balance</label></td>
+                        <td><label> Balance</label></td>
                         <td><input type="text" class="form-control" name="january_balance" value="<?php echo $row['January_balance']; ?>" readonly="true"></td>
                     </tr>
                     <!-- ... (existing code for January) ... -->
@@ -242,15 +242,15 @@ if (empty($_SESSION['bpmsuid'])) {
                         <!-- February Form -->
                         <input type="hidden" name="monthly" value="February">
                         <tr>
-                        <td><label>February Total Fee</label></td>
+                        <td><label> Total Fee</label></td>
                         <td><input type="text" class="form-control" name="february_total_fee" value="<?php echo $row['February_total_fee']; ?>" required="true"></td>
                     </tr>
                     <tr>
-                        <td><label>February Total Paid</label></td>
+                        <td><label> Total Paid</label></td>
                         <td><input type="text" class="form-control" name="february_total_paid" value="<?php echo $row['February_total_paid']; ?>" readonly="true"></td>
                     </tr>
                     <tr>
-                        <td><label>February Balance</label></td>
+                        <td><label> Balance</label></td>
                         <td><input type="text" class="form-control" name="february_balance" value="<?php echo $row['February_balance']; ?>" readonly="true"></td>
                     </tr>
                         <!-- ... (existing code for February) ... -->
@@ -260,15 +260,15 @@ if (empty($_SESSION['bpmsuid'])) {
                     <!-- March Form -->
                     <input type="hidden" name="monthly" value="March">
                     <tr>
-                        <td><label>March Total Fee</label></td>
+                        <td><label> Total Fee</label></td>
                         <td><input type="text" class="form-control" name="march_total_fee" value="<?php echo $row['March_total_fee']; ?>" required="true"></td>
                     </tr>
                     <tr>
-                        <td><label>March Total Paid</label></td>
+                        <td><label> Total Paid</label></td>
                         <td><input type="text" class="form-control" name="march_total_paid" value="<?php echo $row['March_total_paid']; ?>" readonly="true"></td>
                     </tr>
                     <tr>
-                        <td><label>March Balance</label></td>
+                        <td><label> Balance</label></td>
                         <td><input type="text" class="form-control" name="march_balance" value="<?php echo $row['March_balance']; ?>" readonly="true"></td>
                     </tr>
                     <!-- ... (existing code for March) ... -->
