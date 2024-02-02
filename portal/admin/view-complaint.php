@@ -100,10 +100,26 @@ while ($row=mysqli_fetch_array($ret)) {
     <td colspan="4"><?php  echo $row['address'];?></td>
   </tr>
 
-			
-   <th >Message</th>
-    <td colspan="4"><?php  echo $row['Message'];?></td>
-  </tr>
+  <tr>
+   <th>Message</th>
+   <td colspan="4"><?php echo $row['Message'];?></td>
+   <th>Proof of Incident</th>
+   <td colspan="3">
+    <?php
+    // Check if the 'proof' field contains a valid file path
+    if (!empty($row['proof']) && file_exists($row['proof'])) {
+        // Display the image
+        echo '<img src="uploads/' . $row['proof'] . '" style="max-width: 100%; height: auto;" alt="Proof of Incident">';
+    } else {
+        // Display a placeholder or message if no proof is available
+        echo 'No proof available';
+    }
+    ?>
+</td>
+</tr>
+
+ 
+  
 
 
 

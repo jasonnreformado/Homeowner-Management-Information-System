@@ -85,11 +85,9 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
           <?php include_once('complaint-include.php');?>
                    
 
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+ 
+    </div> </div>
 
 <!--content-->
 

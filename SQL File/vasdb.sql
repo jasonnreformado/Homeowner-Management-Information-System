@@ -171,6 +171,7 @@ CREATE TABLE `tblcomplaint` (
   `address` varchar(225) NOT NULL,
   `subject` varchar(30) NOT NULL,
   `time` time DEFAULT NULL
+  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
