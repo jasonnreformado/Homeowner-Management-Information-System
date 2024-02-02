@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 16, 2024 at 06:47 PM
+-- Generation Time: Feb 02, 2024 at 05:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -124,7 +124,7 @@ CREATE TABLE `tbladmin` (
 --
 
 INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`) VALUES
-(1, 'Admin', 'admintest', 9728194635, 'admintest@gmail.com', '66d4aaa5ea177ac32c69946de3731ec0', '2023-01-12 17:42:46');
+(1, 'Admin', 'admin', 9728194635, 'admintest@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '2023-01-12 17:42:46');
 
 -- --------------------------------------------------------
 
@@ -151,7 +151,7 @@ CREATE TABLE `tblbook` (
 --
 
 INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTime`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
-(74, 20, 140376539, '2024-01-14', '23:06:00', '12:06:00', 'Basketball Court', '2024-01-14 15:06:12', NULL, NULL, NULL);
+(103, 20, 972433957, '2024-02-02', '19:20:00', '20:20:00', 'Basketball Court', '2024-02-02 11:20:54', 'yes', 'Approved', '2024-02-02 11:21:05');
 
 -- --------------------------------------------------------
 
@@ -170,9 +170,16 @@ CREATE TABLE `tblcomplaint` (
   `IsRead` int(5) DEFAULT NULL,
   `address` varchar(225) NOT NULL,
   `subject` varchar(30) NOT NULL,
-  `time` time DEFAULT NULL
-  
+  `time` time DEFAULT NULL,
+  `proof` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblcomplaint`
+--
+
+INSERT INTO `tblcomplaint` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`, `time`, `proof`) VALUES
+(52, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', 'nasagasaan', '2024-02-02 06:25:10', 1, 'block 10 lot 4', 'note', '14:23:00', 'admin/uploads/image.png');
 
 -- --------------------------------------------------------
 
@@ -199,7 +206,9 @@ INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate
 (148, 20, 28, 170805236, '2024-01-12 18:10:37'),
 (149, 20, 29, 170805236, '2024-01-12 18:10:37'),
 (150, 20, 30, 170805236, '2024-01-12 18:10:37'),
-(151, 20, 33, 170805236, '2024-01-12 18:10:37');
+(151, 20, 33, 170805236, '2024-01-12 18:10:37'),
+(152, 20, 33, 205475555, '2024-02-01 13:31:48'),
+(153, 20, 33, 307913415, '2024-02-02 16:48:12');
 
 -- --------------------------------------------------------
 
@@ -275,15 +284,64 @@ CREATE TABLE `tbluser` (
   `total_fee` int(55) DEFAULT NULL,
   `total_paid` int(55) DEFAULT NULL,
   `balance` int(55) DEFAULT NULL,
-  `paid` int(55) DEFAULT NULL
+  `paid` int(55) DEFAULT NULL,
+  `January_total_fee` decimal(10,2) DEFAULT 0.00,
+  `January_total_paid` decimal(10,2) DEFAULT 0.00,
+  `January_balance` decimal(10,2) DEFAULT 0.00,
+  `February_total_fee` decimal(10,2) DEFAULT 0.00,
+  `February_total_paid` decimal(10,2) DEFAULT 0.00,
+  `February_balance` decimal(10,2) DEFAULT 0.00,
+  `March_total_fee` decimal(10,2) DEFAULT 0.00,
+  `March_total_paid` decimal(10,2) DEFAULT 0.00,
+  `March_balance` decimal(10,2) DEFAULT 0.00,
+  `April_total_fee` decimal(10,2) DEFAULT 0.00,
+  `April_total_paid` decimal(10,2) DEFAULT 0.00,
+  `April_balance` decimal(10,2) DEFAULT 0.00,
+  `May_total_fee` decimal(10,2) DEFAULT 0.00,
+  `May_total_paid` decimal(10,2) DEFAULT 0.00,
+  `May_balance` decimal(10,2) DEFAULT 0.00,
+  `June_total_fee` decimal(10,2) DEFAULT 0.00,
+  `June_total_paid` decimal(10,2) DEFAULT 0.00,
+  `June_balance` decimal(10,2) DEFAULT 0.00,
+  `July_total_fee` decimal(10,2) DEFAULT 0.00,
+  `July_total_paid` decimal(10,2) DEFAULT 0.00,
+  `July_balance` decimal(10,2) DEFAULT 0.00,
+  `August_total_fee` decimal(10,2) DEFAULT 0.00,
+  `August_total_paid` decimal(10,2) DEFAULT 0.00,
+  `August_balance` decimal(10,2) DEFAULT 0.00,
+  `September_total_fee` decimal(10,2) DEFAULT 0.00,
+  `September_total_paid` decimal(10,2) DEFAULT 0.00,
+  `September_balance` decimal(10,2) DEFAULT 0.00,
+  `October_total_fee` decimal(10,2) DEFAULT 0.00,
+  `October_total_paid` decimal(10,2) DEFAULT 0.00,
+  `October_balance` decimal(10,2) DEFAULT 0.00,
+  `November_total_fee` decimal(10,2) DEFAULT 0.00,
+  `November_total_paid` decimal(10,2) DEFAULT 0.00,
+  `November_balance` decimal(10,2) DEFAULT 0.00,
+  `December_total_fee` decimal(10,2) DEFAULT 0.00,
+  `December_total_paid` decimal(10,2) DEFAULT 0.00,
+  `December_balance` decimal(10,2) DEFAULT 0.00,
+  `February` varchar(11) DEFAULT NULL,
+  `March` varchar(11) DEFAULT NULL,
+  `April` varchar(11) DEFAULT NULL,
+  `May` varchar(11) DEFAULT NULL,
+  `June` int(11) DEFAULT NULL,
+  `July` int(11) DEFAULT NULL,
+  `August` int(11) DEFAULT NULL,
+  `September` int(11) DEFAULT NULL,
+  `October` int(11) DEFAULT NULL,
+  `November` int(11) DEFAULT NULL,
+  `December` int(11) DEFAULT NULL,
+  `January` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`, `ProfilePicture`, `numplp`, `movein`, `monthly`, `total_fee`, `total_paid`, `balance`, `paid`) VALUES
-(20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/b51dea4167df064c4d5c8547c42f8a1c.jpg', 5, '2024-01-11', 'January', 10000, 0, 10000, 0);
+INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`, `ProfilePicture`, `numplp`, `movein`, `monthly`, `total_fee`, `total_paid`, `balance`, `paid`, `January_total_fee`, `January_total_paid`, `January_balance`, `February_total_fee`, `February_total_paid`, `February_balance`, `March_total_fee`, `March_total_paid`, `March_balance`, `April_total_fee`, `April_total_paid`, `April_balance`, `May_total_fee`, `May_total_paid`, `May_balance`, `June_total_fee`, `June_total_paid`, `June_balance`, `July_total_fee`, `July_total_paid`, `July_balance`, `August_total_fee`, `August_total_paid`, `August_balance`, `September_total_fee`, `September_total_paid`, `September_balance`, `October_total_fee`, `October_total_paid`, `October_balance`, `November_total_fee`, `November_total_paid`, `November_balance`, `December_total_fee`, `December_total_paid`, `December_balance`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `January`) VALUES
+(20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/321312.png', 5, '2024-01-11', '', 10000, 0, 0, 0, 0.00, 0.00, 0.00, 800.00, 0.00, 800.00, 1500.00, 0.00, 1500.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 'March', 'April', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5000'),
+(33, 'test', 'test', 945263815, 'test@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2024-02-02 06:21:47', 'Block 4 Lot 5', 'Renter', 'uploads/image.png', 4, '2024-02-02', NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -384,19 +442,19 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblbook`
 --
 ALTER TABLE `tblbook`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `tblcomplaint`
 --
 ALTER TABLE `tblcomplaint`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -414,7 +472,7 @@ ALTER TABLE `tblservices`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

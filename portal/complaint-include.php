@@ -71,7 +71,7 @@ if(isset($_POST['submit']))
 .form-control {
     width: 48%; /* Adjust as needed */
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 25px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
