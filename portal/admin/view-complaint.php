@@ -91,7 +91,7 @@ while ($row=mysqli_fetch_array($ret)) {
                 	<th>Time    </th>
                 	<td><?php  echo $row['time'];?></td>
 
-                	                	<th>Subject</th>
+                	                	<th>Incident Type</th>
                 	<td><?php  echo $row['subject'];?></td>
                 </tr>
 
@@ -101,7 +101,7 @@ while ($row=mysqli_fetch_array($ret)) {
   </tr>
 
   <tr>
-   <th>Message</th>
+   <th>Description of the Incident</th>
    <td colspan="4"><?php echo $row['Message'];?></td>
    <th>Proof of Incident</th>
    <td colspan="3">
