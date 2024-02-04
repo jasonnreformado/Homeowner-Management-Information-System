@@ -68,13 +68,13 @@ echo "<script>window.location.href='customer-list.php'</script>";
                     <h3 class="title1">Homeowner's Member</h3>
 
                     <div class="text-right">
-                        <a href="../signup.php" class="btn btn-secondary" style="background-color: blue; color: white;">
+                    <a href="../signup.php" class="btn btn-secondary" style="background-color: blue; color: white;">
                             <i class="bi bi-plus-circle-fill"></i> Add New
                         </a>
-						<a href="mail.php" class="btn btn-primary"style="background-color: blue; color: white;">
-                        <i class="bi bi-plus-circle-fill"></i> Mail</a>
+						
                     </div>
 
+                    <div class="table-responsive bs-example widget-shadow">
                     <form action="" method="get" class="mb-4">
                         <div class="input-group">
                             <select class="form-control" name="statusFilter" id="statusFilter">
@@ -84,13 +84,9 @@ echo "<script>window.location.href='customer-list.php'</script>";
                             </select>
 							<br><br>
                             <button type="button" class="btn btn-primary" onclick="filterStatus()">Filter</button>
-
-                           
                         </div>
                     </form>
-
-                    <div class="table-responsive bs-example widget-shadow">
-                        <h4>Homeowner's List:</h4>
+                     <br>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -127,9 +123,13 @@ echo "<script>window.location.href='customer-list.php'</script>";
                                         <td><?php echo $row['status']; ?></td>
                                         <td><?php echo $row['RegDate']; ?></td>
                                         <td>
-                                        <a href="view-profiles.php?uid=<?php echo $row['ID']; ?>" class="btn btn-primary">View</a>
+                                      
                                             <a href="add-customer-services.php?addid=<?php echo $row['ID']; ?>" class="btn btn-primary">Bill</a>
+                                            <a href="view-profiles.php?uid=<?php echo $row['ID']; ?>" class="btn btn-primary">Edit</a>
                                             <a href="customer-list.php?delid=<?php echo $row['ID']; ?>" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                            <a href="mail.php?userid=<?php echo $row['ID']; ?>" class="btn btn-primary" style="background-color: blue; color: white;">
+        <i class="bi bi-plus-circle-fill"></i> Mail
+    </a>
                                         </td>
                                     </tr>
                                 <?php

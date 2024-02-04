@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Feb 02, 2024 at 05:49 PM
+-- Generation Time: Feb 04, 2024 at 06:29 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -146,13 +146,6 @@ CREATE TABLE `tblbook` (
   `RemarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `tblbook`
---
-
-INSERT INTO `tblbook` (`ID`, `UserID`, `AptNumber`, `AptDate`, `AptTime`, `endTime`, `Message`, `BookingDate`, `Remark`, `Status`, `RemarkDate`) VALUES
-(103, 20, 972433957, '2024-02-02', '19:20:00', '20:20:00', 'Basketball Court', '2024-02-02 11:20:54', 'yes', 'Approved', '2024-02-02 11:21:05');
-
 -- --------------------------------------------------------
 
 --
@@ -179,7 +172,7 @@ CREATE TABLE `tblcomplaint` (
 --
 
 INSERT INTO `tblcomplaint` (`ID`, `FirstName`, `LastName`, `Phone`, `Email`, `Message`, `EnquiryDate`, `IsRead`, `address`, `subject`, `time`, `proof`) VALUES
-(52, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', 'nasagasaan', '2024-02-02 06:25:10', 1, 'block 10 lot 4', 'note', '14:23:00', 'admin/uploads/image.png');
+(77, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', 'test', '2024-02-04 15:47:05', 1, 'Near Court', 'Road Accident', '23:47:00', 'uploads/321312.png');
 
 -- --------------------------------------------------------
 
@@ -208,7 +201,8 @@ INSERT INTO `tblinvoice` (`id`, `Userid`, `ServiceId`, `BillingId`, `PostingDate
 (150, 20, 30, 170805236, '2024-01-12 18:10:37'),
 (151, 20, 33, 170805236, '2024-01-12 18:10:37'),
 (152, 20, 33, 205475555, '2024-02-01 13:31:48'),
-(153, 20, 33, 307913415, '2024-02-02 16:48:12');
+(153, 20, 33, 307913415, '2024-02-02 16:48:12'),
+(154, 20, 33, 284813570, '2024-02-04 14:35:22');
 
 -- --------------------------------------------------------
 
@@ -340,8 +334,9 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`ID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Password`, `RegDate`, `address`, `status`, `ProfilePicture`, `numplp`, `movein`, `monthly`, `total_fee`, `total_paid`, `balance`, `paid`, `January_total_fee`, `January_total_paid`, `January_balance`, `February_total_fee`, `February_total_paid`, `February_balance`, `March_total_fee`, `March_total_paid`, `March_balance`, `April_total_fee`, `April_total_paid`, `April_balance`, `May_total_fee`, `May_total_paid`, `May_balance`, `June_total_fee`, `June_total_paid`, `June_balance`, `July_total_fee`, `July_total_paid`, `July_balance`, `August_total_fee`, `August_total_paid`, `August_balance`, `September_total_fee`, `September_total_paid`, `September_balance`, `October_total_fee`, `October_total_paid`, `October_balance`, `November_total_fee`, `November_total_paid`, `November_balance`, `December_total_fee`, `December_total_paid`, `December_balance`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `January`) VALUES
-(20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/321312.png', 5, '2024-01-11', '', 10000, 0, 0, 0, 0.00, 0.00, 0.00, 800.00, 0.00, 800.00, 1500.00, 0.00, 1500.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 'March', 'April', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5000'),
-(33, 'test', 'test', 945263815, 'test@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2024-02-02 06:21:47', 'Block 4 Lot 5', 'Renter', 'uploads/image.png', 4, '2024-02-02', NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(20, 'Jason', 'Reformado', 946843322, 'jasonreformado8@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2023-12-05 13:15:28', 'Block 2 Lot 1', 'Owner', 'uploads/profile.jpg', 5, '2024-01-11', '', 10000, 0, 0, 0, 0.00, 0.00, 0.00, 800.00, 0.00, 800.00, 1500.00, 0.00, 1500.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 'March', 'April', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5000'),
+(33, 'test', 'test', 945263815, 'test@gmail.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2024-02-02 06:21:47', 'Block 4 Lot 5', 'Renter', 'uploads/image.png', 4, '2024-02-02', NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(34, 'sample', 'sample', 945663121, 'peterparker@sms.com', '2b877b4b825b48a9a0950dd5bd1f264d', '2024-02-04 12:54:47', 'Block 4 Lot 5', 'Owner', '', 1, '2024-02-19', NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -448,13 +443,13 @@ ALTER TABLE `tblbook`
 -- AUTO_INCREMENT for table `tblcomplaint`
 --
 ALTER TABLE `tblcomplaint`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `tblpage`
@@ -472,7 +467,7 @@ ALTER TABLE `tblservices`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
