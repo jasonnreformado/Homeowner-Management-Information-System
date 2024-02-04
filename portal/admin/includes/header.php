@@ -90,7 +90,7 @@ $name=$row['AdminName'];
             <li class="dropdown profile_details_drop">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <div class="profile_img"> 
-                  <span class="prfil-img"><img src="images/admin.jpg" alt="" width="50" height="50"> </span> 
+                  <span class="prfil-img"><img src="images/admin.png" alt="" width="50" height="50"> </span> 
                   <div class="user-name">
                     <p><?php echo $name; ?></p>
                     <span>Administrator</span>
