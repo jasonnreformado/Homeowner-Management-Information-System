@@ -4,8 +4,7 @@ error_reporting(0);
 include('includes/dbconnection.php');
 error_reporting(0);
 
-if(isset($_POST['submit']))
-  {
+if(isset($_POST['submit'])) {
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $phone=$_POST['phone'];
@@ -15,33 +14,40 @@ if(isset($_POST['submit']))
     $message=$_POST['message'];
     $time=$_POST['time'];
 
-    $uploadDir = "admin/uploads/";  // Specify the directory where you want to save uploaded files
+    $uploadDir = "uploads/";  // Specify the directory where you want to save uploaded files
 
     // Check if the 'proof' file input is set and if there is no error during file upload
     if (isset($_FILES['proof']) && $_FILES['proof']['error'] == UPLOAD_ERR_OK) {
         $proofTmp = $_FILES['proof']['tmp_name'];
         $proofFile = $uploadDir . basename($_FILES['proof']['name']);
+        
+        // Check if the uploaded file is an image (you can modify this based on your allowed file types)
+        $allowedFileTypes = ['jpg', 'jpeg', 'png'];
+        $fileExtension = strtolower(pathinfo($proofFile, PATHINFO_EXTENSION));
 
-        // Move the uploaded file to the specified directory
-        if (move_uploaded_file($proofTmp, $proofFile)) {
-            $query = mysqli_query($con, "INSERT INTO tblcomplaint (FirstName, LastName, Phone, Email, address, subject, time, Message, proof) VALUES ('$fname', '$lname', '$phone', '$email', '$address', '$subject', '$time', '$message', '$proofFile')");
+        if (in_array($fileExtension, $allowedFileTypes)) {
+            // Move the uploaded file to the specified directory
+            if (move_uploaded_file($proofTmp, $proofFile)) {
+                $query = mysqli_query($con, "INSERT INTO tblcomplaint (FirstName, LastName, Phone, Email, address, subject, time, Message, proof) VALUES ('$fname', '$lname', '$phone', '$email', '$address', '$subject', '$time', '$message', '$proofFile')");
 
-            if ($query) {
-                echo "<script>alert('Your message was sent successfully!');</script>";
-                echo "<script>window.location.href ='complaint.php'</script>";
+                if ($query) {
+                    echo "<script>alert('Your message was sent successfully!');</script>";
+                    echo "<script>window.location.href ='complaint.php'</script>";
+                } else {
+                    echo '<script>alert("Something Went Wrong. Please try again")</script>';
+                }
             } else {
-                echo '<script>alert("Something Went Wrong. Please try again")</script>';
+                echo '<script>alert("Failed to move the uploaded file. Please try again.")</script>';
             }
-          } else {
-            echo '<script>alert("Failed to move the uploaded file. Please try again. ' . $_FILES['proof']['error'] . '")</script>';
+        } else {
+            echo '<script>alert("Invalid file type. Please upload a JPG, JPEG, or PNG file.")</script>';
         }
     } else {
         echo '<script>alert("Error uploading the file. Please try again.")</script>';
     }
 }
-     
-  
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -147,14 +153,17 @@ textarea {
                         <input type="text" class="form-control" name="email" value="<?php echo $row['Email']; ?>" readonly="true">
                     </div>
                     <div class="twice-two">
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Location" required="">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="What kind of incident" required="">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Specific Location" required="">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">
                     </div>
                     <div class="twice-two">
                         <input type="file" class="form-control" name="proof" id="proof" accept="image/*,application/pdf" required="">
                         <input type="time" class="form-control" name="time" id="time" placeholder="Time" required="">
                     </div>
-                    <textarea class="form-control" id="message" name="message" placeholder="Description of Incident" required=""></textarea>
+                    <textarea class="form-control" id="message" name="message" placeholder="Description of Incident" style="width: 770px; height: 100px;" required=""></textarea>
+
+
+
                 <?php } ?>
                 <button type="submit" class="btn btn-contact" name="submit">Send Message</button>
             </form>

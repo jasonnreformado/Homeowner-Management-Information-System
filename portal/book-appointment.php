@@ -123,7 +123,7 @@ $(function () {
     </div>
 
     <div style="padding-top: 30px;">
-        <label>Message ↓</label>
+        <label>Available Rental ↓</label>
         <select class="form-control" id="message" name="message" required="">
             <option value="Basketball Court">Basketball Court</option>
             <option value="Club House">Club House</option>

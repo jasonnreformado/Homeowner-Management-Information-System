@@ -111,23 +111,27 @@ if(isset($_POST['btnlogin']))
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    max-width: 95%; /* Adjust as needed */
-    max-height: 95%; /* Adjust as needed */
+    max-width: 90vw; /* Adjust as needed */
+    max-height: 90vh; /* Adjust as needed */
     overflow: hidden;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    padding: 10px;
+    padding: 40px;
     cursor: move;
 }
 
 .image-popup img {
     width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80vw; /* Adjust as needed */
+    max-height: 80vh; /* Adjust as needed */
     cursor: grab;
 }
+
+
+
+
 
 .close-button {
     position: absolute;
@@ -396,74 +400,91 @@ if(isset($_POST['btnlogin']))
 
 </script>
 <script>
-   var currentZoomLevel = 1.0;
-var zoomStep = 0.1;
-var isDragging = false;
-var dragStartX, dragStartY, initialX, initialY;
+    var currentZoomLevel = 1.0;
+    var zoomStep = 0.1;
+    var isDragging = false;
+    var dragStartX, dragStartY, initialX, initialY;
 
-function showImagePopup() {
-    document.getElementById('imagePopup').style.display = 'block';
-}
+    function showImagePopup() {
+        var imagePopup = document.getElementById('imagePopup');
+        var popupImage = document.getElementById('popupImage');
 
-function closeImagePopup() {
-    var image = document.getElementById('popupImage');
-    document.getElementById('imagePopup').style.display = 'none';
-    currentZoomLevel = 1.0;
-    isDragging = false;
-    image.style.transform = 'scale(' + currentZoomLevel + ')';
-    image.style.left = '0px';
-    image.style.top = '0px';
-}
+        // Show the image popup
+        imagePopup.style.display = 'block';
 
-function handleZoom(event) {
-    event.preventDefault();
-    var image = document.getElementById('popupImage');
-    var deltaY = event.deltaY || event.detail || event.wheelDelta;
-
-    if (deltaY > 0) {
-        currentZoomLevel -= zoomStep;
-    } else {
-        currentZoomLevel += zoomStep;
+        // Attach dragging events to the image when it becomes visible
+        popupImage.addEventListener('mousedown', handleDragStart);
+        document.addEventListener('mousemove', handleDragMove);
+        document.addEventListener('mouseup', handleDragEnd);
     }
 
-    image.style.transform = 'scale(' + currentZoomLevel + ')';
-}
+    function closeImagePopup() {
+        var image = document.getElementById('popupImage');
+        var imagePopup = document.getElementById('imagePopup');
 
-function handleDragStart(event) {
-    if (currentZoomLevel > 1.0) {
-        return;
+        // Hide the image popup
+        imagePopup.style.display = 'none';
+
+        // Remove dragging events from the image
+        image.removeEventListener('mousedown', handleDragStart);
+        document.removeEventListener('mousemove', handleDragMove);
+        document.removeEventListener('mouseup', handleDragEnd);
+
+        currentZoomLevel = 1.0;
+        isDragging = false;
+        image.style.transform = 'scale(' + currentZoomLevel + ')';
+        image.style.left = '0px';
+        image.style.top = '0px';
     }
-    isDragging = true;
-    dragStartX = event.clientX;
-    dragStartY = event.clientY;
-    initialX = dragStartX - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).left);
-    initialY = dragStartY - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).top);
-}
 
-function handleDragMove(event) {
-    if (!isDragging) return;
-    var image = document.getElementById('popupImage');
-    var offsetX = event.clientX - dragStartX;
-    var offsetY = event.clientY - dragStartY;
-    var newLeft = initialX + offsetX;
-    var newTop = initialY + offsetY;
+    function handleZoom(event) {
+        event.preventDefault();
+        var image = document.getElementById('popupImage');
+        var deltaY = event.deltaY || event.detail || event.wheelDelta;
 
-    image.style.left = newLeft + 'px';
-    image.style.top = newTop + 'px';
-}
+        if (deltaY > 0) {
+            currentZoomLevel = Math.max(1.0, currentZoomLevel - zoomStep); // Zoom out
+        } else {
+            currentZoomLevel += zoomStep; // Zoom in
+        }
 
-function handleDragEnd() {
-    isDragging = false;
-}
+        image.style.transform = 'scale(' + currentZoomLevel + ')';
+    }
 
-document.getElementById('mapButton').addEventListener('click', function () {
-    showImagePopup();
-});
+    function handleDragStart(event) {
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        initialX = dragStartX - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).left);
+        initialY = dragStartY - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).top);
+    }
 
-document.getElementById('popupImage').addEventListener('wheel', handleZoom);
-document.getElementById('popupImage').addEventListener('mousedown', handleDragStart);
-document.addEventListener('mousemove', handleDragMove);
-document.addEventListener('mouseup', handleDragEnd);
+    function handleDragMove(event) {
+        if (!isDragging) return;
+        var image = document.getElementById('popupImage');
+        var offsetX = event.clientX - dragStartX;
+        var offsetY = event.clientY - dragStartY;
+        var newLeft = initialX + offsetX;
+        var newTop = initialY + offsetY;
+
+        image.style.left = newLeft + 'px';
+        image.style.top = newTop + 'px';
+    }
+
+    function handleDragEnd() {
+        isDragging = false;
+    }
+
+    document.getElementById('mapButton').addEventListener('click', function () {
+        showImagePopup();
+    });
+
+    var popupImage = document.getElementById('popupImage');
+    popupImage.addEventListener('wheel', handleZoom);
+    popupImage.addEventListener('mousedown', handleDragStart);
+
+    document.addEventListener('mousemove', handleDragMove);
+    document.addEventListener('mouseup', handleDragEnd);
 
 </script>
 

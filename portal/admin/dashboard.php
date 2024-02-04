@@ -52,107 +52,80 @@ if (strlen($_SESSION['bpmsaid']==0)) {
     <!--//Metis Menu -->
 </head>
 <body class="cbp-spmenu-push">
-<div class="main-content">
-		
-		 <?php include_once('includes/sidebar.php');?>
-		
-	<?php include_once('includes/header.php');?>
-		<!-- main content start-->
-		<div id="page-wrapper" class="row calender widget-shadow">
-			<div class="main-page">
-				
-			
-				<div class="row calender widget-shadow">
-					<div class="row-one">
-					<div class="col-md-4 widget">
-						<?php $query1=mysqli_query($con,"Select * from tbluser");
-$totalcust=mysqli_num_rows($query1);
-?>
-						<div class="stats-left ">
-						
-							
-							<h4>Resident</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalcust;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
+    <div class="main-content">
+        <?php include_once('includes/sidebar.php');?>
+        <?php include_once('includes/header.php');?>
+        
+        <!-- main content start-->
+        <div id="page-wrapper" class="row calender widget-shadow">
+            <div class="main-page">
+                <div class="row calender widget-shadow">
+                    <div class="row-one">
+                        <div class="col-md-4 widget">
+                            <?php 
+                                $query1 = mysqli_query($con, "Select * from tbluser");
+                                $totalcust = mysqli_num_rows($query1);
+                            ?>
+                            <div class="stats-left">
+                                <h4>Resident</h4>
+                            </div>
+                            <div class="stats-right">
+                                <label> <?php echo $totalcust; ?></label>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                        <div class="col-md-4 widget states-mdl">
+                            <?php 
+                                $query2 = mysqli_query($con, "Select * from tblbook");
+                                $totalappointment = mysqli_num_rows($query2);
+                            ?>
+                            <div class="stats-left">
+                                <h4>Appointment</h4>
+                            </div>
+                            <div class="stats-right">
+                                <label> <?php echo $totalappointment; ?></label>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                        <div class="col-md-4 widget states-last">
+                            <?php
+                                $totalsale = 0; // Initialize $totalsale here
+                                $query9 = mysqli_query($con, "select tblinvoice.ServiceId as ServiceId, tblservices.Cost from tblinvoice join tblservices on tblservices.ID=tblinvoice.ServiceId");
+                                while ($row9 = mysqli_fetch_array($query9)) {
+                                    $total_sale = $row9['Cost'];
+                                    $totalsale += $total_sale;
+                                }
+                            ?>
+                            <div class="stats-left">
+                                <h5>Total</h5>
+                                <h5>Collection</h5>
+                            </div>
+                            <div class="stats-right">
+                                <label><?php
+                                    if ($totalsale == "") {
+                                        echo "0";
+                                    } else {
+                                        echo $totalsale;
+                                    }
+                                ?></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="clearfix"> </div>
+
+             
+                <?php include_once('linechart.php');?>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</body>
 
 
-					<div class="col-md-4 widget states-mdl">
-						<?php $query2=mysqli_query($con,"Select * from tblbook");
-$totalappointment=mysqli_num_rows($query2);
-?>
-						<div class="stats-left">
-					
-							<h4>Appointment</h4>
-						</div>
-						<div class="stats-right">
-							<label> <?php echo $totalappointment;?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-
-					
-
-
-
-						<!-- total -->
-					<div class="col-md-4 widget states-last">
-						<?php
-
- $query9=mysqli_query($con,"select tblinvoice.ServiceId as ServiceId, tblservices.Cost
- from tblinvoice 
-  join tblservices  on tblservices.ID=tblinvoice.ServiceId");
-while($row9=mysqli_fetch_array($query9))
-{
-$total_sale=$row9['Cost'];
-$totalsale+=$total_sale;
-
-}
- ?>
-						<div class="stats-left">
-							<h5>Total</h5>
-							<h5>Collection</h5>
-						</div>
-						<div class="stats-right">
-							<label><?php
-
-		if($totalsale==""):
-							echo "0";
-else:
-	echo $totalsale;
-endif;
-						?></label>
-						</div>
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="clearfix"> </div>	
-				</div>
-			
-					</div>	<br>	
-				
-				
-					
-					
-                <!-- ... (existing content) ... -->
-			
-					<?php include_once('linechart.php');?>
-					
-				</div>
-				
-				<div class="clearfix"> </div>
-			</div>
-
-			
-
-		
-
-		<!--footer-->
-		<?php include_once('includes/footer.php');?>
-        <!--//footer-->
-	</div>
 	<!-- Classie -->
 		<script src="js/classie.js"></script>
 		<script>

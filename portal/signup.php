@@ -4,38 +4,33 @@ error_reporting(0);
 include('includes/dbconnection.php');
 error_reporting(0);
 
-if(isset($_POST['submit']))
-  {
-    $fname=$_POST['firstname'];
-    $lname=$_POST['lastname'];
-    $contno=$_POST['mobilenumber'];
-    $email=$_POST['email'];
-    $address=$_POST['address'];
-    $numplp=$_POST['numplp'];
-    $movein=$_POST['movein'];
-    $status=$_POST['status'];
-    $password=md5($_POST['password']);
+if (isset($_POST['submit'])) {
+    $fname = $_POST['firstname'];
+    $lname = $_POST['lastname'];
+    $contno = $_POST['mobilenumber'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $numplp = $_POST['numplp'];
+    $movein = $_POST['movein'];
+    $status = $_POST['status'];
+    $password = md5($_POST['password']);
 
-    $ret=mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNumber='$contno'");
-    $result=mysqli_fetch_array($ret);
-    if($result>0){
-
-echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
+    $ret = mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNumber='$contno'");
+    $result = mysqli_fetch_array($ret);
+    if ($result > 0) {
+        echo "<script>alert('This email or Contact Number already associated with another account!.');</script>";
+    } else {
+        $query = mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address,numplp,movein,status, Password) value('$fname', '$lname','$contno', '$email', '$address','$numplp','$movein','$status', '$password' )");
+        if ($query) {
+            echo "<script>alert('You have successfully registered.'); window.location.href='admin/customer-list.php';</script>";
+            exit; // Exit to prevent further execution
+        } else {
+            echo "<script>alert('Something Went Wrong. Please try again.');</script>";
+        }
     }
-    else{
-    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, address,numplp,movein,status, Password) value('$fname', '$lname','$contno', '$email', '$address','$numplp','$movein','$status', '$password' )");
-    if ($query) {
-    
-    echo "<script>alert('You have successfully registered.');</script>";
-  }
-  else
-    {
-    
-      echo "<script>alert('Something Went Wrong. Please try again.');</script>";
-    }
-}
 }
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -138,9 +133,16 @@ return true;
                         </div>
 
                         <div style="padding-top: 30px;">
-                            <label>Status</label>
-                            <input type="text" class="form-control" class="form-control" placeholder="Status" required="" name="status">
+                            <label for="status">Status</label>
+                            <select class="form-control" required="" name="status" id="status">
+                                
+                                <option value="option1">Owner</option>
+                                <option value="option2">Renter</option>
+                               
+                                <!-- Add more options as needed -->
+                            </select>
                         </div>
+
 
                          <div style="padding-top: 30px;">
                             <label>Password</label>
