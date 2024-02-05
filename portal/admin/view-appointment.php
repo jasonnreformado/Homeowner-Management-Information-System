@@ -2,27 +2,56 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-    if (strlen($_SESSION['bpmsaid']==0)) {
-  header('location:logout.php');
-  } else{
-if(isset($_POST['submit']))
-  {
-    
-    $cid=$_GET['viewid'];
-      $remark=$_POST['remark'];
-      $status=$_POST['status'];
-   $query=mysqli_query($con, "update  tblbook set Remark='$remark',Status='$status' where ID='$cid'");
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require './PHPMailer/src/Exception.php';
+require './PHPMailer/src/PHPMailer.php';
+require './PHPMailer/src/SMTP.php';
+
+if (isset($_POST['submit'])) {
+
+    $cid = $_GET['viewid'];
+    $remark = $_POST['remark'];
+    $status = $_POST['status'];
+
+    $query = mysqli_query($con, "update  tblbook set Remark='$remark',Status='$status' where ID='$cid'");
     if ($query) {
-    
-    echo '<script>alert("All remark has been updated.")</script>';
-    echo "<script type='text/javascript'> document.location ='all-appointment.php'; </script>";
-  }
-  else
-    {
-      echo '<script>alert("Something Went Wrong. Please try again")</script>';
+
+        // Retrieve user information
+        $userQuery = mysqli_query($con, "SELECT tbluser.Email, tbluser.FirstName FROM tbluser JOIN tblbook ON tbluser.ID = tblbook.UserID WHERE tblbook.ID='$cid'");
+        $userRow = mysqli_fetch_assoc($userQuery);
+        $userEmail = $userRow['Email'];
+        $userName = $userRow['FirstName'];
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; // Update with your SMTP host
+        $mail->SMTPAuth = true;
+        $mail->Username = 'jasonreformado46@gmail.com'; // Update with your email
+        $mail->Password = 'zgeg fjhg qknl gpvh   '; // Update with your email password
+        $mail->Port = 465;
+        $mail->SMTPSecure = 'ssl';
+        $mail->isHTML(true);
+
+        $mail->setFrom('your_email@example.com', 'Villa Arcadia Subdivision'); // Replace with your email and name
+        $mail->addAddress($userEmail, $userName);
+        $mail->Subject = 'Reservation Status Update';
+        $mail->Body = "Dear $userName,\n\nWe hope this email finds you well. We would like to inform you that your reservation status has been updated to $status. Thank you for choosing Villa Arcadia for your reservation. If you have any questions or concerns, please feel free to contact us.\n\nBest regards,\nThe Villa Arcadia Team, Below are the details:\n\nRemark: $remark\n\n";
+
+
+        try {
+            $mail->send();
+            echo '<script>alert("All remarks have been updated. Email sent to the user.")</script>';
+            echo "<script type='text/javascript'> document.location ='all-appointment.php'; </script>";
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    } else {
+        echo '<script>alert("Something Went Wrong. Please try again")</script>';
     }
 }
-  ?>
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -237,4 +266,4 @@ if($row['Status']=="Rejected")
 	<script src="js/bootstrap.js"> </script>
 </body>
 </html>
-<?php }  ?>
+<?php   ?>
