@@ -127,14 +127,15 @@ $(function () {
         <select class="form-control" id="message" name="message" required="">
             <option value="Basketball Court">Basketball Court</option>
             <option value="Club House">Club House</option>
-            <option value="Table">Table</option>
-            <option value="Chairs">Chairs</option>
+            <option value="Table">Small Table with 2 Chairs</option>
+            <option value="Chairs">Medium Table with 4 Chairs</option>
+            <option value="Long Chairs">Large Table with 6 Chairs</option>
             <!-- Add more options as needed -->
         </select>
     </div>
   
 
-    <button type="submit" class="btn btn-contact" name="submit">Make an Reservation
+    <button type="submit" class="btn btn-contact" name="submit">Book an Reservation
 </button>
 </form>
 

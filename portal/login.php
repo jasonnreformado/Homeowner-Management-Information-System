@@ -417,7 +417,7 @@ if(isset($_POST['btnlogin']))
         document.addEventListener('mousemove', handleDragMove);
         document.addEventListener('mouseup', handleDragEnd);
     }
-
+    
     function closeImagePopup() {
         var image = document.getElementById('popupImage');
         var imagePopup = document.getElementById('imagePopup');
@@ -451,29 +451,11 @@ if(isset($_POST['btnlogin']))
         image.style.transform = 'scale(' + currentZoomLevel + ')';
     }
 
-    function handleDragStart(event) {
-        isDragging = true;
-        dragStartX = event.clientX;
-        dragStartY = event.clientY;
-        initialX = dragStartX - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).left);
-        initialY = dragStartY - parseFloat(window.getComputedStyle(document.getElementById('popupImage')).top);
-    }
+    
 
-    function handleDragMove(event) {
-        if (!isDragging) return;
-        var image = document.getElementById('popupImage');
-        var offsetX = event.clientX - dragStartX;
-        var offsetY = event.clientY - dragStartY;
-        var newLeft = initialX + offsetX;
-        var newTop = initialY + offsetY;
+    
 
-        image.style.left = newLeft + 'px';
-        image.style.top = newTop + 'px';
-    }
-
-    function handleDragEnd() {
-        isDragging = false;
-    }
+   
 
     document.getElementById('mapButton').addEventListener('click', function () {
         showImagePopup();

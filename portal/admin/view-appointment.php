@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
         $mail->setFrom('your_email@example.com', 'Villa Arcadia Subdivision'); // Replace with your email and name
         $mail->addAddress($userEmail, $userName);
         $mail->Subject = 'Reservation Status Update';
-        $mail->Body = "Dear $userName,\n\nWe hope this email finds you well. We would like to inform you that your reservation status has been $status. Thank you for choosing Villa Arcadia for your reservation. If you have any questions or concerns, please feel free to contact us.\n\nBest regards,\nThe Villa Arcadia Team.\n\n Below are the details:\n\nRemark: $remark\n\nAdditional Details:\n- Reservation Number: $reservationNumber\n- Appointment Date: $appointmentDate\n- Start Time: $startTime\n- End Time: $endTime\n- Message: $message\n- Booking Date: $bookingDate";
+        $mail->Body = "Dear $userName,\n\nWe hope this email finds you well. We would like to inform you that your Amenity Reservation for $message has been $status. Thank you for choosing Villa Arcadia for your reservation. If you have any questions or concerns, please feel free to contact us.\n\nBest regards,\nThe Villa Arcadia Team.";
 
         try {
             $mail->send();
