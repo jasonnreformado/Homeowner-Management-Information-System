@@ -14,7 +14,7 @@ if (strlen($_SESSION['bpmsuid']==0)) {
   <head>
  
 
-    <title>Villa Arcadia | Booking History</title>
+    <title>Villa Arcadia | Amenity Reservation History</title>
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -49,7 +49,7 @@ $(function () {
 <ul class="breadcrumbs-custom-path">
     <li class="right-side propClone"><a href="user-dashboard.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
     <li class="active ">
-        Booking History</li>
+    Amenity Reservation History</li>
 </ul>
 </div>
 </div>
@@ -63,30 +63,27 @@ $(function () {
             <div>
                 <div class="cont-details">
                    <div class="table-content table-responsive cart-table-content m-t-30">
-                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Appointment History</h4>
+                    <h4 style="padding-bottom: 20px;text-align: center;color: blue;">Amenity Reservation History</h4>
                         <table border="2" class="table">
-                            <thead class="gray-bg" >
-                                <tr>
-                                    <th>#</th>
-                                <th>Appointment Number</th>
-                                <th>Date</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                                <th>Message</th>
-                                <th>Remarks</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                <tr>
-                                    <?php
-                                   $userid= $_SESSION['bpmsuid'];
- $query=mysqli_query($con,"select tbluser.ID as uid, tbluser.FirstName,tbluser.LastName,tbluser.Email,tbluser.MobileNumber,tblbook.ID as bid,tblbook.AptNumber,tblbook.AptDate,tblbook.AptTime,tblbook.endTime,tblbook.Message,tblbook.Remark,tblbook.BookingDate,tblbook.Status from tblbook join tbluser on tbluser.ID=tblbook.UserID where tbluser.ID='$userid'");
-$cnt=1;
-              while($row=mysqli_fetch_array($query))
-              { ?>
+                        <thead class="gray-bg">
+    <tr>
+        <th>#</th>
+        <th>Reservation Number</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+       
+    </tr>
+</thead>
+<tbody>
+    <?php
+    $userid = $_SESSION['bpmsuid'];
+    $query = mysqli_query($con, "SELECT tbluser.ID as uid, tbluser.FirstName, tbluser.LastName, tbluser.Email, tbluser.MobileNumber, tblbook.ID as bid, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, tblbook.endTime, tblbook.Message, tblbook.Remark, tblbook.BookingDate, tblbook.Status FROM tblbook JOIN tbluser ON tbluser.ID=tblbook.UserID WHERE tbluser.ID='$userid'");
+    $cnt = 1;
+    while ($row = mysqli_fetch_array($query)) { ?>
                <tr>
     <td><?php echo $cnt;?></td>
 <td><?php echo $row['AptNumber'];?></td>
@@ -94,7 +91,7 @@ $cnt=1;
 <td><?php echo $row['AptTime']?></td> 
 <td><?php echo $row['endTime']?></td> 
 <td><?php echo $row['Message']?></td> 
-<td><?php echo $row['Remark']?></td> 
+
 <td><?php $status=$row['Status'];
 if($status==''){
  echo "Waiting for confirmation";   
@@ -103,10 +100,12 @@ echo $status;
 }
 ?>  </td>   
 
-<td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber'];?>" class="btn btn-primary">View</a></td>       
-</tr><?php $cnt=$cnt+1; } ?>
-                             
-                            </tbody>
+            <td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber']; ?>" class="btn btn-primary">View</a>
+            <a href="cancel-reservation.php?aptnumber=<?php echo $row['AptNumber']; ?>" class="btn btn-danger">Cancel</a></td> <!-- Cancel button -->
+        </tr>
+    <?php $cnt = $cnt + 1;
+    } ?>
+</tbody>
                         </table>
                     </div> </div>
                 

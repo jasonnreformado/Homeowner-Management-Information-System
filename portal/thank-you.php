@@ -47,7 +47,7 @@ $(function () {
             <div class="main-titles-head text-center">
             <h3 class="header-name ">
                 
-Appointment Confirmation
+            Amenity Reservation Confirmation
             </h3>
         </div>
 </div>
@@ -71,7 +71,7 @@ Appointment Confirmation
             <div>
                 
  
-                    <h4 class="w3ls_head">Thank you for applying. Your Appointment  no is: <?php echo $_SESSION['aptno'];?> </h4>
+                    <h4 class="w3ls_head">Thank you for applying. Your Amenity Reservation  no is: <?php echo $_SESSION['aptno'];?> </h4>
                     
        
     </div>

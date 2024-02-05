@@ -88,7 +88,7 @@ $(function () {
 <ul class="breadcrumbs-custom-path">
     <li class="right-side propClone"><a href="user-dashboard.php" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
     <li class="active ">
-        Book Appointment</li>
+    Amenity Reservation</li>
 </ul>
 </div>
 </div>
@@ -108,7 +108,7 @@ $(function () {
                 <div class="map-content-9 mt-lg-0 mt-4">
                 <form method="post">
     <div style="padding-top: 30px;">
-        <label>Appointment Date</label>
+        <label>Reservation Date</label>
         <input type="date" class="form-control appointment_date" placeholder="Date" name="adate" id='adate' required="true">
     </div>
 
@@ -123,7 +123,7 @@ $(function () {
     </div>
 
     <div style="padding-top: 30px;">
-        <label>Available Rental ↓</label>
+        <label>Available Amenity ↓</label>
         <select class="form-control" id="message" name="message" required="">
             <option value="Basketball Court">Basketball Court</option>
             <option value="Club House">Club House</option>
@@ -132,8 +132,10 @@ $(function () {
             <!-- Add more options as needed -->
         </select>
     </div>
+  
 
-    <button type="submit" class="btn btn-contact" name="submit">Make an Appointment</button>
+    <button type="submit" class="btn btn-contact" name="submit">Make an Reservation
+</button>
 </form>
 
                 </div>

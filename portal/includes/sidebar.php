@@ -62,16 +62,19 @@
                     <!-- Reservation  -->
                     <ul class="nav">
         <li>
-            <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
+            <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Amenity Reservation<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
                 <li>
-                    <a href="book-appointment.php">Book Appointment</a>
+                    <a href="book-appointment.php">Amenity Reservation
+</a>
                 </li>
                 <li>
-                    <a href="appointment-detail.php">Appointment Details</a>
+                    <a href="appointment-detail.php">Amenity Reservation
+ Details</a>
                 </li>
                 <li>
-                    <a href="booking-history.php">Appointment History</a>
+                    <a href="booking-history.php">Amenity Reservation
+ History</a>
                 </li>
             </ul>
         </li>
