@@ -246,7 +246,7 @@ if(isset($_POST['btnlogin']))
 </div>
 <div class="image-popup" id="imagePopup">
     <span class="close-button" onclick="closeImagePopup()">&times;</span>
-    <img id="popupImage" src="assets/images/map.png" alt="Popup Image">
+    <img id="popupImage" src="assets/images/map2.jpg" alt="Popup Image">
 </div>
 <!-- Left sidebar menu end -->
 	<!--Main container start -->			
