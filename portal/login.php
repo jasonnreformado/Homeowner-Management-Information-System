@@ -215,7 +215,7 @@ if(isset($_POST['btnlogin']))
                     <li>
                         <a href="https://forms.gle/E74R2QDrTMxzyKQn7" class="ttr-material-button">
                             <span class="ttr-icon"><i class="fa fa-user-plus"></i></span>
-                            <span class="ttr-label">Apply for Resident Account </span>
+                            <span class="ttr-label">Creating for Resident Account </span>
                         </a>
                     </li>		
                     <li>
@@ -312,7 +312,7 @@ if(isset($_POST['btnlogin']))
         </div>
         <div class="widget-inner">						
             <ul style="padding-left: 15px;">
-                <li style="padding-bottom: 15px; font-family:  Times New Roman;  font-size: 18px;"><strong>Applying for an Account.</strong>
+                <li style="padding-bottom: 15px; font-family:  Times New Roman;  font-size: 18px;"><strong>Creating for an Account.</strong>
                     <ul style="padding-left: 50px;text-align:left;">										
                         <li>Provide the requested information to admin</li>
                         <li>Make sure to provide working email address</li>

@@ -101,7 +101,7 @@ echo $status;
 ?>  </td>   
 
             <td><a href="appointment-detail.php?aptnumber=<?php echo $row['AptNumber']; ?>" class="btn btn-primary">View</a>
-            <a href="cancel-reservation.php?aptnumber=<?php echo $row['AptNumber']; ?>" class="btn btn-danger">Cancel</a></td> <!-- Cancel button -->
+            
         </tr>
     <?php $cnt = $cnt + 1;
     } ?>

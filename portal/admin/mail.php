@@ -115,7 +115,7 @@ if (isset($_POST['send'])) {
 <body class="center-absolute">
 
 <form class="display-grid row-gap-1-rem" method="post">
-    <h2>Email</h2>
+    <h2>Monthly Reminder</h2>
     <textarea class="box-shadow-primary" name="subject" placeholder="Subject" required></textarea>
     <textarea class="box-shadow-primary" name="message" placeholder="Message..." required></textarea>
     <button type="submit" name="send">

@@ -11,10 +11,11 @@ if (empty($_SESSION['bpmsuid'])) {
     if (isset($_POST['submit'])) {
         $selectedMonth = mysqli_real_escape_string($con, $_POST['monthly']);
         $total_fee = mysqli_real_escape_string($con, $_POST[$selectedMonth.'_total_fee']);
+        $total_paid = mysqli_real_escape_string($con, $_POST[$selectedMonth.'_total_paid']);
         $balance = mysqli_real_escape_string($con, $_POST[$selectedMonth.'_balance']);
         $paid = mysqli_real_escape_string($con, $_POST['paid']);
 
-        $query = "UPDATE tbluser SET {$selectedMonth}_total_fee='$total_fee', {$selectedMonth}_balance='$balance', paid='$paid' WHERE ID='$uid'";
+        $query = "UPDATE tbluser SET {$selectedMonth}_total_fee='$total_fee',{$selectedMonth}_total_paid='$total_paid', {$selectedMonth}_balance='$balance', paid='$paid' WHERE ID='$uid'";
 
         $result = mysqli_query($con, $query);
 
@@ -59,7 +60,9 @@ if (empty($_SESSION['bpmsuid'])) {
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Villa Arcadia | Edit Balances</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Villa Arcadia | Edit Balances</title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
@@ -81,7 +84,7 @@ if (empty($_SESSION['bpmsuid'])) {
 <script src="js/wow.min.js"></script>
 	<script>
 		 new WOW().init();
-	</script>
+	</script>   
 <!--//end-animate-->
 <!-- Metis Menu -->
 <script src="js/metisMenu.min.js"></script>
