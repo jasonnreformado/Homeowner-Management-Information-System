@@ -32,19 +32,19 @@
             </li>
           
             <li>
-              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Appointment<span class="fa arrow"></span></a>
+              <a href="all-appointment.php"><i class="fa fa-check-square-o nav_icon"></i>Amenity Reservation<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
                 <li>
-                  <a href="all-appointment.php">All Appointment</a>
+                  <a href="all-appointment.php">All Reservation</a>
                 </li>
                 <li>
-                  <a href="new-appointment.php">New Appointment</a>
+                  <a href="new-appointment.php">New Reservation</a>
                 </li>
                 <li>
-                  <a href="accepted-appointment.php">Accepted Appointment</a>
+                  <a href="accepted-appointment.php">Accepted Reservation</a>
                 </li>
                 <li>
-                  <a href="rejected-appointment.php">Rejected Appointment</a>
+                  <a href="rejected-appointment.php">Rejected Reservation</a>
                 </li>
               </ul>
               <!-- //nav-second-level -->

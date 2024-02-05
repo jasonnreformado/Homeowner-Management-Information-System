@@ -15,15 +15,22 @@ if (isset($_POST['submit'])) {
     $remark = $_POST['remark'];
     $status = $_POST['status'];
 
-    $query = mysqli_query($con, "update  tblbook set Remark='$remark',Status='$status' where ID='$cid'");
+    $query = mysqli_query($con, "UPDATE tblbook SET Remark='$remark', Status='$status' WHERE ID='$cid'");
     if ($query) {
 
-        // Retrieve user information
-        $userQuery = mysqli_query($con, "SELECT tbluser.Email, tbluser.FirstName FROM tbluser JOIN tblbook ON tbluser.ID = tblbook.UserID WHERE tblbook.ID='$cid'");
+        // Retrieve user information and reservation details
+        $userQuery = mysqli_query($con, "SELECT tbluser.Email, tbluser.FirstName, tblbook.AptNumber, tblbook.AptDate, tblbook.AptTime, tblbook.endTime, tblbook.Message, tblbook.BookingDate FROM tbluser JOIN tblbook ON tbluser.ID = tblbook.UserID WHERE tblbook.ID='$cid'");
         $userRow = mysqli_fetch_assoc($userQuery);
         $userEmail = $userRow['Email'];
         $userName = $userRow['FirstName'];
+        $reservationNumber = $userRow['AptNumber'];
+        $appointmentDate = $userRow['AptDate'];
+        $startTime = $userRow['AptTime'];
+        $endTime = $userRow['endTime'];
+        $message = $userRow['Message'];
+        $bookingDate = $userRow['BookingDate'];
 
+        // Send email to the user using PHPMailer
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Update with your SMTP host
@@ -37,8 +44,7 @@ if (isset($_POST['submit'])) {
         $mail->setFrom('your_email@example.com', 'Villa Arcadia Subdivision'); // Replace with your email and name
         $mail->addAddress($userEmail, $userName);
         $mail->Subject = 'Reservation Status Update';
-        $mail->Body = "Dear $userName,\n\nWe hope this email finds you well. We would like to inform you that your reservation status has been updated to $status. Thank you for choosing Villa Arcadia for your reservation. If you have any questions or concerns, please feel free to contact us.\n\nBest regards,\nThe Villa Arcadia Team, Below are the details:\n\nRemark: $remark\n\n";
-
+        $mail->Body = "Dear $userName,\n\nWe hope this email finds you well. We would like to inform you that your reservation status has been $status. Thank you for choosing Villa Arcadia for your reservation. If you have any questions or concerns, please feel free to contact us.\n\nBest regards,\nThe Villa Arcadia Team.\n\n Below are the details:\n\nRemark: $remark\n\nAdditional Details:\n- Reservation Number: $reservationNumber\n- Appointment Date: $appointmentDate\n- Start Time: $startTime\n- End Time: $endTime\n- Message: $message\n- Booking Date: $bookingDate";
 
         try {
             $mail->send();
