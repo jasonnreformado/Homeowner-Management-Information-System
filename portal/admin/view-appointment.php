@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
 
         try {
             $mail->send();
-            echo '<script>alert("All remarks have been updated. Email sent to the user.")</script>';
+            echo '<script>alert("All remarks have been updated.")</script>';
             echo "<script type='text/javascript'> document.location ='all-appointment.php'; </script>";
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

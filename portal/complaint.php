@@ -5,22 +5,7 @@ include('includes/dbconnection.php');
 
 if (strlen($_SESSION['bpmsuid'] == 0)) {
   header('location:logout.php');
-} else {
-  $uid = $_SESSION['bpmsuid'];
-
-  $ret = mysqli_query($con, "SELECT * FROM tbluser WHERE ID='$uid'");
-  $cnt = 1;
-  
-  if ($row = mysqli_fetch_assoc($ret)) {
-    $firstname = $row['FirstName'];
-    $lastname = $row['LastName'];
-    $mobilenumber = $row['MobileNumber'];
-    $email = $row['Email'];
-    $profilePicture = $row['ProfilePicture'];
-    $address = $row['address'];
-    $status = $row['status'];
-    $regdate = $row['RegDate'];
-}
+} 
 ?>
 
 
@@ -56,14 +41,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
-<style>
-    #profile-picture-preview {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%; /* Make it circular */
-      display: block;
-    }
-  </style>
+
 </head> 
 <body class="cbp-spmenu-push">
   <div class="main-content">
@@ -127,23 +105,7 @@ if (strlen($_SESSION['bpmsuid'] == 0)) {
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"> </script>
 
-    <script>
-    function previewProfilePicture(input) {
-      var preview = document.getElementById('profile-picture-preview');
-      var file = input.files[0];
-      var reader = new FileReader();
-
-      reader.onloadend = function () {
-        preview.src = reader.result;
-      }
-
-      if (file) {
-        reader.readAsDataURL(file);
-      } else {
-        preview.src = "<?php echo $profilePicture; ?>";
-      }
-    }
-  </script>
+    
 </body>
 </html>
-<?php  }
+<?php  
